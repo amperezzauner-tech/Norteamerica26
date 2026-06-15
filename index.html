@@ -10,41 +10,34 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;backgrou
 .hdr{background:#0d2137;padding:16px;text-align:center;border-bottom:3px solid #c8a200}
 .hdr h1{font-size:1.2rem;font-weight:700;color:#f5d020;text-transform:uppercase;letter-spacing:1px;margin:0 0 3px}
 .hdr p{font-size:.72rem;color:#8ab4d4}
-.results-bar{background:#132840;padding:7px 14px;font-size:.68rem;color:#8ab4d4;border-bottom:1px solid #1e3a55;overflow-x:auto;white-space:nowrap}
-.results-bar b{color:#4cde7a}
-
-/* TABS */
+.rbar{background:#132840;padding:7px 14px;font-size:.68rem;color:#8ab4d4;border-bottom:1px solid #1e3a55;overflow-x:auto;white-space:nowrap}
+.rbar b{color:#4cde7a}
 .nav{display:flex;background:#0d2137;border-bottom:2px solid #1e3a55;position:sticky;top:0;z-index:20}
 .nav a{flex:1;display:block;padding:12px 2px;text-align:center;font-size:.72rem;font-weight:700;color:#6a8faa;text-decoration:none;text-transform:uppercase;letter-spacing:.5px;border-bottom:3px solid transparent;cursor:pointer}
 .nav a.act{color:#f5d020;border-bottom-color:#f5d020}
 .tab{display:none;padding-bottom:70px}
 .tab.act{display:block}
-
-/* RANKING */
 .sb{padding:10px 14px;background:#0d2137;border-bottom:1px solid #1e3a55}
 .sb input{width:100%;padding:8px 14px;border-radius:20px;border:1px solid #2a5070;background:#1a3a5c;color:#fff;font-size:.88rem;outline:none}
 .sb input::placeholder{color:#6a8faa}
 table{width:100%;border-collapse:collapse}
 thead th{background:#1a3a5c;padding:9px 8px;font-size:.68rem;text-transform:uppercase;color:#8ab4d4;border-bottom:2px solid #c8a200}
-th:first-child,td:first-child{text-align:center;width:36px;color:#8ab4d4;font-size:.75rem}
+th:first-child,td:first-child{width:36px;text-align:center;color:#8ab4d4;font-size:.75rem}
 th:nth-child(2),td:nth-child(2){text-align:left;padding-left:12px}
 th:last-child,td:last-child{text-align:right;padding-right:12px;color:#f5d020;font-weight:700}
 tbody tr{border-bottom:1px solid #1a3050}
 td{padding:10px 8px;font-size:.88rem}
 .hidden{display:none}
-
-/* PREDICCIONES */
 .gb{padding:10px 14px;background:#0d2137;border-bottom:1px solid #1e3a55;display:flex;gap:6px;flex-wrap:wrap;position:sticky;top:44px;z-index:19}
 .grp-btn{padding:5px 11px;border-radius:12px;border:1px solid #2a5070;background:transparent;color:#8ab4d4;font-size:.72rem;font-weight:600;cursor:pointer}
 .grp-btn.act{background:#c8a200;color:#000;border-color:#c8a200}
 .gp{display:none}.gp.act{display:block}
 .mc{margin:10px 12px;background:#0d2137;border-radius:10px;border:1px solid #1e3a55;overflow:hidden}
 .mh{padding:9px 13px;background:#1a3a5c;display:flex;justify-content:space-between;align-items:center;gap:8px}
-.mn{font-size:.95rem;font-weight:700}
-.mi{font-size:.7rem;color:#8ab4d4;text-align:right}
+.mn{font-size:.95rem;font-weight:700}.mi{font-size:.7rem;color:#8ab4d4;text-align:right}
 .rbadge{background:#1a5c2a;color:#4cde7a;padding:2px 6px;border-radius:6px;font-size:.7rem;font-weight:700;margin-right:4px}
 .tend{display:flex;height:6px;margin:9px 13px 2px;border-radius:3px;overflow:hidden}
-.th{background:#2e86de}.td{background:#8ab4d4}.ta{background:#e74c3c}
+.th{background:#2e86de}.tdiv{background:#8ab4d4}.ta{background:#e74c3c}
 .tl{display:flex;justify-content:space-between;padding:2px 13px 8px;font-size:.7rem;color:#8ab4d4}
 .tl b{color:#fff}
 .pl{padding:6px 13px 11px}
@@ -56,42 +49,37 @@ td{padding:10px 8px;font-size:.88rem}
 .pn{font-size:.7rem;color:#6a8faa;min-width:28px}
 .top1 .b{background:#f5d020}.top1 .ps{color:#f5d020}
 .exact .b{background:#4cde7a}.exact .ps{color:#4cde7a}
-
-/* POSICIONES */
-.pos-grp{margin:10px 12px;background:#0d2137;border-radius:10px;border:1px solid #1e3a55;overflow:hidden}
+.pos-grp{margin:10px 12px;background:#0d2137;border-radius:10px;border:1px solid #1e3a55;overflow:hidden;margin-bottom:10px}
 .pos-grp h3{background:#1a3a5c;padding:9px 14px;font-size:.85rem;color:#f5d020;font-weight:700}
 .pos-grp table{width:100%}
-.pos-grp th{background:#132840;padding:7px 10px;font-size:.65rem;text-transform:uppercase;color:#8ab4d4;border-bottom:1px solid #1e3a55;text-align:center}
-.pos-grp th:nth-child(2){text-align:left}
-.pos-grp td{padding:8px 10px;font-size:.8rem;border-bottom:1px solid #1a3050;text-align:center}
-.pos-grp td:nth-child(2){text-align:left;font-weight:600}
-.pos-grp tr:last-child td{border-bottom:none}
-.pct-bar{display:inline-block;height:6px;background:#c8a200;border-radius:3px;vertical-align:middle;margin-left:6px}
+.pos-grp thead th{background:#132840;padding:7px 8px;font-size:.65rem;text-transform:uppercase;color:#8ab4d4;border-bottom:1px solid #1e3a55;text-align:center}
+.pos-grp thead th:first-child{text-align:left;padding-left:12px;width:auto}
+.pos-grp tbody td{padding:8px 8px;font-size:.78rem;border-bottom:1px solid #1a3050;text-align:center;color:#fff}
+.pos-grp tbody tr:last-child td{border-bottom:none}
+.tnm{text-align:left!important;padding-left:12px!important;font-weight:600}
+.pbar{display:inline-block;height:6px;background:#1e3a55;border-radius:3px;width:90px;vertical-align:middle;overflow:hidden}
+.pbfill{height:100%;border-radius:3px;display:block}
+.p1f{background:#f5d020}.p2f{background:#8ab4d4}.p3f{background:#c8a200}.p4f{background:#3a5a7a}
+.pnum{font-size:.7rem;color:#8ab4d4;margin-left:4px}
 </style>
 </head>
 <body>
-
 <div class="hdr">
   <h1>⚽ Polla FIFA 2026 ⚽</h1>
   <p>116 participantes · 11 partidos jugados</p>
 </div>
-<div class="results-bar">
-  <b>Resultados:</b> Mex-Saf 2-0 · Kor-Cze 2-1 · Can-Bih 1-1 · Usa-Par 4-1 · Qat-Swi 1-1 · Bra-Mar 1-1 · Hai-Esc 0-1 · Aus-Tur 2-0 · Ale-Cur 7-1 · PB-Jap 2-2 · CM-Ecu 1-0
-</div>
-
+<div class="rbar"><b>Resultados:</b> Mex-Saf 2-0 · Kor-Cze 2-1 · Can-Bih 1-1 · Usa-Par 4-1 · Qat-Swi 1-1 · Bra-Mar 1-1 · Hai-Esc 0-1 · Aus-Tur 2-0 · Ale-Cur 7-1 · PB-Jap 2-2 · CM-Ecu 1-0</div>
 <div class="nav">
   <a class="act" onclick="showTab('ranking',this)">Ranking</a>
   <a onclick="showTab('preds',this)">Predicciones</a>
   <a onclick="showTab('posiciones',this)">Posiciones</a>
 </div>
 
-<!-- RANKING -->
 <div id="tab-ranking" class="tab act">
   <div class="sb"><input type="text" placeholder="🔍 Buscar participante..." oninput="filterTable(this.value)"></div>
   <table>
     <thead><tr><th>#</th><th>Participante</th><th>Pts</th></tr></thead>
-    <tbody id="rank-body">
-<tr><td>1</td><td>🥇 Alejandro Lisson</td><td>42</td></tr>
+    <tbody id="rank-body"><tr><td>1</td><td>🥇 Alejandro Lisson</td><td>42</td></tr>
 <tr><td>2</td><td>🥈 Andres Merizalde</td><td>39</td></tr>
 <tr><td>3</td><td>🥉 Juan Jose Olarte</td><td>39</td></tr>
 <tr><td>4</td><td> Ernesto Samper</td><td>38</td></tr>
@@ -207,15 +195,12 @@ td{padding:10px 8px;font-size:.88rem}
 <tr><td>114</td><td> Alejandro Arias</td><td>14</td></tr>
 <tr><td>115</td><td> Alejandro Arbelaez</td><td>13</td></tr>
 <tr><td>116</td><td> Nicolas De Narvaez</td><td>12</td></tr>
-
-    </tbody>
+</tbody>
   </table>
 </div>
 
-<!-- PREDICCIONES -->
 <div id="tab-preds" class="tab">
-  <div class="gb" id="grp-bar">
-<button class="grp-btn act" onclick="switchGrp('Grupo_A',this)">A</button>
+  <div class="gb"><button class="grp-btn act" onclick="switchGrp('Grupo_A',this)">A</button>
 <button class="grp-btn" onclick="switchGrp('Grupo_B',this)">B</button>
 <button class="grp-btn" onclick="switchGrp('Grupo_C',this)">C</button>
 <button class="grp-btn" onclick="switchGrp('Grupo_D',this)">D</button>
@@ -227,319 +212,681 @@ td{padding:10px 8px;font-size:.88rem}
 <button class="grp-btn" onclick="switchGrp('Grupo_J',this)">J</button>
 <button class="grp-btn" onclick="switchGrp('Grupo_K',this)">K</button>
 <button class="grp-btn" onclick="switchGrp('Grupo_L',this)">L</button>
-
-  </div>
-  <div id="pred-panels">
-<div class="gp act" id="panel_Grupo_A"><div class="mc">
+</div>
+  <div id="pred-panels"><div class="gp act" id="panel_Grupo_A"><div class="mc">
 <div class="mh"><span class="mn">Mex-Saf</span><span class="mi"><span class="rbadge">✅ 2-0</span> 116 votos</span></div>
-<div class="tend"><div class="th" style="width:91%"></div><div class="td" style="width:6%"></div><div class="ta" style="width:3%"></div></div>
+<div class="tend"><div class="th" style="width:91%"></div><div class="tdiv" style="width:6%"></div><div class="ta" style="width:3%"></div></div>
 <div class="tl"><span><b>91%</b> Mex</span><span>Empate <b>6%</b></span><span>Saf <b>3%</b></span></div>
 <div class="pl"><div class="pr exact"><span class="ps">2-0⭐</span><div class="bw"><div class="b" style="width:44%"></div></div><span class="pp">44%</span><span class="pn">(51)</span></div><div class="pr "><span class="ps">2-1</span><div class="bw"><div class="b" style="width:23%"></div></div><span class="pp">23%</span><span class="pn">(27)</span></div><div class="pr "><span class="ps">1-0</span><div class="bw"><div class="b" style="width:12%"></div></div><span class="pp">12%</span><span class="pn">(14)</span></div><div class="pr "><span class="ps">3-1</span><div class="bw"><div class="b" style="width:7%"></div></div><span class="pp">7%</span><span class="pn">(8)</span></div><div class="pr "><span class="ps">3-0</span><div class="bw"><div class="b" style="width:5%"></div></div><span class="pp">5%</span><span class="pn">(6)</span></div></div></div><div class="mc">
 <div class="mh"><span class="mn">Kor-Cze</span><span class="mi"><span class="rbadge">✅ 2-1</span> 116 votos</span></div>
-<div class="tend"><div class="th" style="width:31%"></div><div class="td" style="width:47%"></div><div class="ta" style="width:22%"></div></div>
+<div class="tend"><div class="th" style="width:31%"></div><div class="tdiv" style="width:47%"></div><div class="ta" style="width:22%"></div></div>
 <div class="tl"><span><b>31%</b> Kor</span><span>Empate <b>47%</b></span><span>Cze <b>22%</b></span></div>
 <div class="pl"><div class="pr top1"><span class="ps">1-1</span><div class="bw"><div class="b" style="width:41%"></div></div><span class="pp">41%</span><span class="pn">(48)</span></div><div class="pr exact"><span class="ps">2-1⭐</span><div class="bw"><div class="b" style="width:14%"></div></div><span class="pp">14%</span><span class="pn">(16)</span></div><div class="pr "><span class="ps">1-0</span><div class="bw"><div class="b" style="width:14%"></div></div><span class="pp">14%</span><span class="pn">(16)</span></div><div class="pr "><span class="ps">1-2</span><div class="bw"><div class="b" style="width:10%"></div></div><span class="pp">10%</span><span class="pn">(12)</span></div><div class="pr "><span class="ps">2-2</span><div class="bw"><div class="b" style="width:4%"></div></div><span class="pp">4%</span><span class="pn">(5)</span></div></div></div><div class="mc">
 <div class="mh"><span class="mn">Cze-Saf</span><span class="mi"> 116 votos</span></div>
-<div class="tend"><div class="th" style="width:72%"></div><div class="td" style="width:19%"></div><div class="ta" style="width:9%"></div></div>
+<div class="tend"><div class="th" style="width:72%"></div><div class="tdiv" style="width:19%"></div><div class="ta" style="width:9%"></div></div>
 <div class="tl"><span><b>72%</b> Cze</span><span>Empate <b>19%</b></span><span>Saf <b>9%</b></span></div>
 <div class="pl"><div class="pr top1"><span class="ps">2-0</span><div class="bw"><div class="b" style="width:24%"></div></div><span class="pp">24%</span><span class="pn">(28)</span></div><div class="pr "><span class="ps">1-0</span><div class="bw"><div class="b" style="width:18%"></div></div><span class="pp">18%</span><span class="pn">(21)</span></div><div class="pr "><span class="ps">2-1</span><div class="bw"><div class="b" style="width:18%"></div></div><span class="pp">18%</span><span class="pn">(21)</span></div><div class="pr "><span class="ps">1-1</span><div class="bw"><div class="b" style="width:14%"></div></div><span class="pp">14%</span><span class="pn">(16)</span></div><div class="pr "><span class="ps">3-1</span><div class="bw"><div class="b" style="width:8%"></div></div><span class="pp">8%</span><span class="pn">(9)</span></div></div></div><div class="mc">
 <div class="mh"><span class="mn">Mex-Kor</span><span class="mi"> 116 votos</span></div>
-<div class="tend"><div class="th" style="width:56%"></div><div class="td" style="width:36%"></div><div class="ta" style="width:8%"></div></div>
+<div class="tend"><div class="th" style="width:56%"></div><div class="tdiv" style="width:36%"></div><div class="ta" style="width:8%"></div></div>
 <div class="tl"><span><b>56%</b> Mex</span><span>Empate <b>36%</b></span><span>Kor <b>8%</b></span></div>
 <div class="pl"><div class="pr top1"><span class="ps">2-1</span><div class="bw"><div class="b" style="width:31%"></div></div><span class="pp">31%</span><span class="pn">(36)</span></div><div class="pr "><span class="ps">1-1</span><div class="bw"><div class="b" style="width:25%"></div></div><span class="pp">25%</span><span class="pn">(29)</span></div><div class="pr "><span class="ps">1-0</span><div class="bw"><div class="b" style="width:11%"></div></div><span class="pp">11%</span><span class="pn">(13)</span></div><div class="pr "><span class="ps">2-2</span><div class="bw"><div class="b" style="width:10%"></div></div><span class="pp">10%</span><span class="pn">(12)</span></div><div class="pr "><span class="ps">2-0</span><div class="bw"><div class="b" style="width:8%"></div></div><span class="pp">8%</span><span class="pn">(9)</span></div></div></div><div class="mc">
 <div class="mh"><span class="mn">Cze-Mex</span><span class="mi"> 116 votos</span></div>
-<div class="tend"><div class="th" style="width:9%"></div><div class="td" style="width:41%"></div><div class="ta" style="width:51%"></div></div>
+<div class="tend"><div class="th" style="width:9%"></div><div class="tdiv" style="width:41%"></div><div class="ta" style="width:51%"></div></div>
 <div class="tl"><span><b>9%</b> Cze</span><span>Empate <b>41%</b></span><span>Mex <b>51%</b></span></div>
 <div class="pl"><div class="pr top1"><span class="ps">1-1</span><div class="bw"><div class="b" style="width:32%"></div></div><span class="pp">32%</span><span class="pn">(37)</span></div><div class="pr "><span class="ps">1-2</span><div class="bw"><div class="b" style="width:22%"></div></div><span class="pp">22%</span><span class="pn">(26)</span></div><div class="pr "><span class="ps">0-1</span><div class="bw"><div class="b" style="width:14%"></div></div><span class="pp">14%</span><span class="pn">(16)</span></div><div class="pr "><span class="ps">0-2</span><div class="bw"><div class="b" style="width:10%"></div></div><span class="pp">10%</span><span class="pn">(12)</span></div><div class="pr "><span class="ps">2-2</span><div class="bw"><div class="b" style="width:8%"></div></div><span class="pp">8%</span><span class="pn">(9)</span></div></div></div><div class="mc">
 <div class="mh"><span class="mn">Saf-Kor</span><span class="mi"> 116 votos</span></div>
-<div class="tend"><div class="th" style="width:9%"></div><div class="td" style="width:23%"></div><div class="ta" style="width:68%"></div></div>
+<div class="tend"><div class="th" style="width:9%"></div><div class="tdiv" style="width:23%"></div><div class="ta" style="width:68%"></div></div>
 <div class="tl"><span><b>9%</b> Saf</span><span>Empate <b>23%</b></span><span>Kor <b>68%</b></span></div>
 <div class="pl"><div class="pr top1"><span class="ps">0-2</span><div class="bw"><div class="b" style="width:28%"></div></div><span class="pp">28%</span><span class="pn">(32)</span></div><div class="pr "><span class="ps">1-2</span><div class="bw"><div class="b" style="width:22%"></div></div><span class="pp">22%</span><span class="pn">(25)</span></div><div class="pr "><span class="ps">1-1</span><div class="bw"><div class="b" style="width:16%"></div></div><span class="pp">16%</span><span class="pn">(19)</span></div><div class="pr "><span class="ps">0-1</span><div class="bw"><div class="b" style="width:9%"></div></div><span class="pp">9%</span><span class="pn">(11)</span></div><div class="pr "><span class="ps">1-3</span><div class="bw"><div class="b" style="width:5%"></div></div><span class="pp">5%</span><span class="pn">(6)</span></div></div></div></div>
 <div class="gp" id="panel_Grupo_B"><div class="mc">
 <div class="mh"><span class="mn">Can-Bih</span><span class="mi"><span class="rbadge">✅ 1-1</span> 116 votos</span></div>
-<div class="tend"><div class="th" style="width:57%"></div><div class="td" style="width:29%"></div><div class="ta" style="width:14%"></div></div>
+<div class="tend"><div class="th" style="width:57%"></div><div class="tdiv" style="width:29%"></div><div class="ta" style="width:14%"></div></div>
 <div class="tl"><span><b>57%</b> Can</span><span>Empate <b>29%</b></span><span>Bih <b>14%</b></span></div>
 <div class="pl"><div class="pr exact"><span class="ps">1-1⭐</span><div class="bw"><div class="b" style="width:22%"></div></div><span class="pp">22%</span><span class="pn">(26)</span></div><div class="pr "><span class="ps">2-1</span><div class="bw"><div class="b" style="width:22%"></div></div><span class="pp">22%</span><span class="pn">(25)</span></div><div class="pr "><span class="ps">2-0</span><div class="bw"><div class="b" style="width:16%"></div></div><span class="pp">16%</span><span class="pn">(19)</span></div><div class="pr "><span class="ps">1-0</span><div class="bw"><div class="b" style="width:15%"></div></div><span class="pp">15%</span><span class="pn">(17)</span></div><div class="pr "><span class="ps">2-2</span><div class="bw"><div class="b" style="width:6%"></div></div><span class="pp">6%</span><span class="pn">(7)</span></div></div></div><div class="mc">
 <div class="mh"><span class="mn">Qat-Swi</span><span class="mi"><span class="rbadge">✅ 1-1</span> 116 votos</span></div>
-<div class="tend"><div class="th" style="width:2%"></div><div class="td" style="width:3%"></div><div class="ta" style="width:96%"></div></div>
+<div class="tend"><div class="th" style="width:2%"></div><div class="tdiv" style="width:3%"></div><div class="ta" style="width:96%"></div></div>
 <div class="tl"><span><b>2%</b> Qat</span><span>Empate <b>3%</b></span><span>Swi <b>96%</b></span></div>
 <div class="pl"><div class="pr top1"><span class="ps">0-2</span><div class="bw"><div class="b" style="width:40%"></div></div><span class="pp">40%</span><span class="pn">(46)</span></div><div class="pr "><span class="ps">0-3</span><div class="bw"><div class="b" style="width:22%"></div></div><span class="pp">22%</span><span class="pn">(25)</span></div><div class="pr "><span class="ps">1-3</span><div class="bw"><div class="b" style="width:13%"></div></div><span class="pp">13%</span><span class="pn">(15)</span></div><div class="pr "><span class="ps">1-2</span><div class="bw"><div class="b" style="width:10%"></div></div><span class="pp">10%</span><span class="pn">(12)</span></div><div class="pr "><span class="ps">0-1</span><div class="bw"><div class="b" style="width:9%"></div></div><span class="pp">9%</span><span class="pn">(11)</span></div></div></div><div class="mc">
 <div class="mh"><span class="mn">Swi-Bih</span><span class="mi"> 116 votos</span></div>
-<div class="tend"><div class="th" style="width:74%"></div><div class="td" style="width:25%"></div><div class="ta" style="width:1%"></div></div>
+<div class="tend"><div class="th" style="width:74%"></div><div class="tdiv" style="width:25%"></div><div class="ta" style="width:1%"></div></div>
 <div class="tl"><span><b>74%</b> Swi</span><span>Empate <b>25%</b></span><span>Bih <b>1%</b></span></div>
 <div class="pl"><div class="pr top1"><span class="ps">2-1</span><div class="bw"><div class="b" style="width:30%"></div></div><span class="pp">30%</span><span class="pn">(35)</span></div><div class="pr "><span class="ps">2-0</span><div class="bw"><div class="b" style="width:22%"></div></div><span class="pp">22%</span><span class="pn">(26)</span></div><div class="pr "><span class="ps">1-1</span><div class="bw"><div class="b" style="width:18%"></div></div><span class="pp">18%</span><span class="pn">(21)</span></div><div class="pr "><span class="ps">1-0</span><div class="bw"><div class="b" style="width:9%"></div></div><span class="pp">9%</span><span class="pn">(10)</span></div><div class="pr "><span class="ps">3-1</span><div class="bw"><div class="b" style="width:6%"></div></div><span class="pp">6%</span><span class="pn">(7)</span></div></div></div><div class="mc">
 <div class="mh"><span class="mn">Can-Qat</span><span class="mi"> 116 votos</span></div>
-<div class="tend"><div class="th" style="width:89%"></div><div class="td" style="width:10%"></div><div class="ta" style="width:1%"></div></div>
+<div class="tend"><div class="th" style="width:89%"></div><div class="tdiv" style="width:10%"></div><div class="ta" style="width:1%"></div></div>
 <div class="tl"><span><b>89%</b> Can</span><span>Empate <b>10%</b></span><span>Qat <b>1%</b></span></div>
 <div class="pl"><div class="pr top1"><span class="ps">2-0</span><div class="bw"><div class="b" style="width:28%"></div></div><span class="pp">28%</span><span class="pn">(32)</span></div><div class="pr "><span class="ps">1-0</span><div class="bw"><div class="b" style="width:22%"></div></div><span class="pp">22%</span><span class="pn">(25)</span></div><div class="pr "><span class="ps">2-1</span><div class="bw"><div class="b" style="width:21%"></div></div><span class="pp">21%</span><span class="pn">(24)</span></div><div class="pr "><span class="ps">3-0</span><div class="bw"><div class="b" style="width:10%"></div></div><span class="pp">10%</span><span class="pn">(12)</span></div><div class="pr "><span class="ps">3-1</span><div class="bw"><div class="b" style="width:9%"></div></div><span class="pp">9%</span><span class="pn">(10)</span></div></div></div><div class="mc">
 <div class="mh"><span class="mn">Swi-Can</span><span class="mi"> 116 votos</span></div>
-<div class="tend"><div class="th" style="width:52%"></div><div class="td" style="width:43%"></div><div class="ta" style="width:5%"></div></div>
+<div class="tend"><div class="th" style="width:52%"></div><div class="tdiv" style="width:43%"></div><div class="ta" style="width:5%"></div></div>
 <div class="tl"><span><b>52%</b> Swi</span><span>Empate <b>43%</b></span><span>Can <b>5%</b></span></div>
 <div class="pl"><div class="pr top1"><span class="ps">1-1</span><div class="bw"><div class="b" style="width:31%"></div></div><span class="pp">31%</span><span class="pn">(36)</span></div><div class="pr "><span class="ps">2-1</span><div class="bw"><div class="b" style="width:28%"></div></div><span class="pp">28%</span><span class="pn">(33)</span></div><div class="pr "><span class="ps">1-0</span><div class="bw"><div class="b" style="width:11%"></div></div><span class="pp">11%</span><span class="pn">(13)</span></div><div class="pr "><span class="ps">2-2</span><div class="bw"><div class="b" style="width:10%"></div></div><span class="pp">10%</span><span class="pn">(12)</span></div><div class="pr "><span class="ps">2-0</span><div class="bw"><div class="b" style="width:5%"></div></div><span class="pp">5%</span><span class="pn">(6)</span></div></div></div><div class="mc">
 <div class="mh"><span class="mn">Bih-Qat</span><span class="mi"> 116 votos</span></div>
-<div class="tend"><div class="th" style="width:72%"></div><div class="td" style="width:19%"></div><div class="ta" style="width:9%"></div></div>
+<div class="tend"><div class="th" style="width:72%"></div><div class="tdiv" style="width:19%"></div><div class="ta" style="width:9%"></div></div>
 <div class="tl"><span><b>72%</b> Bih</span><span>Empate <b>19%</b></span><span>Qat <b>9%</b></span></div>
 <div class="pl"><div class="pr top1"><span class="ps">2-0</span><div class="bw"><div class="b" style="width:23%"></div></div><span class="pp">23%</span><span class="pn">(27)</span></div><div class="pr "><span class="ps">1-0</span><div class="bw"><div class="b" style="width:19%"></div></div><span class="pp">19%</span><span class="pn">(22)</span></div><div class="pr "><span class="ps">2-1</span><div class="bw"><div class="b" style="width:16%"></div></div><span class="pp">16%</span><span class="pn">(19)</span></div><div class="pr "><span class="ps">1-1</span><div class="bw"><div class="b" style="width:10%"></div></div><span class="pp">10%</span><span class="pn">(12)</span></div><div class="pr "><span class="ps">3-0</span><div class="bw"><div class="b" style="width:7%"></div></div><span class="pp">7%</span><span class="pn">(8)</span></div></div></div></div>
 <div class="gp" id="panel_Grupo_C"><div class="mc">
 <div class="mh"><span class="mn">Bra-Mar</span><span class="mi"><span class="rbadge">✅ 1-1</span> 116 votos</span></div>
-<div class="tend"><div class="th" style="width:71%"></div><div class="td" style="width:28%"></div><div class="ta" style="width:2%"></div></div>
+<div class="tend"><div class="th" style="width:71%"></div><div class="tdiv" style="width:28%"></div><div class="ta" style="width:2%"></div></div>
 <div class="tl"><span><b>71%</b> Bra</span><span>Empate <b>28%</b></span><span>Mar <b>2%</b></span></div>
 <div class="pl"><div class="pr top1"><span class="ps">2-1</span><div class="bw"><div class="b" style="width:28%"></div></div><span class="pp">28%</span><span class="pn">(32)</span></div><div class="pr exact"><span class="ps">1-1⭐</span><div class="bw"><div class="b" style="width:16%"></div></div><span class="pp">16%</span><span class="pn">(19)</span></div><div class="pr "><span class="ps">3-0</span><div class="bw"><div class="b" style="width:11%"></div></div><span class="pp">11%</span><span class="pn">(13)</span></div><div class="pr "><span class="ps">2-0</span><div class="bw"><div class="b" style="width:11%"></div></div><span class="pp">11%</span><span class="pn">(13)</span></div><div class="pr "><span class="ps">2-2</span><div class="bw"><div class="b" style="width:11%"></div></div><span class="pp">11%</span><span class="pn">(13)</span></div></div></div><div class="mc">
 <div class="mh"><span class="mn">Hai-Esc</span><span class="mi"><span class="rbadge">✅ 0-1</span> 116 votos</span></div>
-<div class="tend"><div class="th" style="width:1%"></div><div class="td" style="width:4%"></div><div class="ta" style="width:95%"></div></div>
+<div class="tend"><div class="th" style="width:1%"></div><div class="tdiv" style="width:4%"></div><div class="ta" style="width:95%"></div></div>
 <div class="tl"><span><b>1%</b> Hai</span><span>Empate <b>4%</b></span><span>Esc <b>95%</b></span></div>
 <div class="pl"><div class="pr top1"><span class="ps">0-2</span><div class="bw"><div class="b" style="width:45%"></div></div><span class="pp">45%</span><span class="pn">(52)</span></div><div class="pr "><span class="ps">0-3</span><div class="bw"><div class="b" style="width:15%"></div></div><span class="pp">15%</span><span class="pn">(17)</span></div><div class="pr "><span class="ps">1-2</span><div class="bw"><div class="b" style="width:12%"></div></div><span class="pp">12%</span><span class="pn">(14)</span></div><div class="pr "><span class="ps">1-3</span><div class="bw"><div class="b" style="width:7%"></div></div><span class="pp">7%</span><span class="pn">(8)</span></div><div class="pr exact"><span class="ps">0-1⭐</span><div class="bw"><div class="b" style="width:7%"></div></div><span class="pp">7%</span><span class="pn">(8)</span></div></div></div><div class="mc">
 <div class="mh"><span class="mn">Esc-Mar</span><span class="mi"> 116 votos</span></div>
-<div class="tend"><div class="th" style="width:4%"></div><div class="td" style="width:23%"></div><div class="ta" style="width:72%"></div></div>
+<div class="tend"><div class="th" style="width:4%"></div><div class="tdiv" style="width:23%"></div><div class="ta" style="width:72%"></div></div>
 <div class="tl"><span><b>4%</b> Esc</span><span>Empate <b>23%</b></span><span>Mar <b>72%</b></span></div>
 <div class="pl"><div class="pr top1"><span class="ps">1-2</span><div class="bw"><div class="b" style="width:35%"></div></div><span class="pp">35%</span><span class="pn">(41)</span></div><div class="pr "><span class="ps">1-1</span><div class="bw"><div class="b" style="width:18%"></div></div><span class="pp">18%</span><span class="pn">(21)</span></div><div class="pr "><span class="ps">0-2</span><div class="bw"><div class="b" style="width:16%"></div></div><span class="pp">16%</span><span class="pn">(18)</span></div><div class="pr "><span class="ps">0-1</span><div class="bw"><div class="b" style="width:12%"></div></div><span class="pp">12%</span><span class="pn">(14)</span></div><div class="pr "><span class="ps">1-3</span><div class="bw"><div class="b" style="width:6%"></div></div><span class="pp">6%</span><span class="pn">(7)</span></div></div></div><div class="mc">
 <div class="mh"><span class="mn">Bra-Hai</span><span class="mi"> 116 votos</span></div>
-<div class="tend"><div class="th" style="width:99%"></div><div class="td" style="width:0%"></div><div class="ta" style="width:1%"></div></div>
+<div class="tend"><div class="th" style="width:99%"></div><div class="tdiv" style="width:0%"></div><div class="ta" style="width:1%"></div></div>
 <div class="tl"><span><b>99%</b> Bra</span><span>Empate <b>0%</b></span><span>Hai <b>1%</b></span></div>
 <div class="pl"><div class="pr top1"><span class="ps">4-0</span><div class="bw"><div class="b" style="width:34%"></div></div><span class="pp">34%</span><span class="pn">(40)</span></div><div class="pr "><span class="ps">3-0</span><div class="bw"><div class="b" style="width:19%"></div></div><span class="pp">19%</span><span class="pn">(22)</span></div><div class="pr "><span class="ps">5-0</span><div class="bw"><div class="b" style="width:16%"></div></div><span class="pp">16%</span><span class="pn">(19)</span></div><div class="pr "><span class="ps">3-1</span><div class="bw"><div class="b" style="width:6%"></div></div><span class="pp">6%</span><span class="pn">(7)</span></div><div class="pr "><span class="ps">4-1</span><div class="bw"><div class="b" style="width:6%"></div></div><span class="pp">6%</span><span class="pn">(7)</span></div></div></div><div class="mc">
 <div class="mh"><span class="mn">Esc-Bra</span><span class="mi"> 116 votos</span></div>
-<div class="tend"><div class="th" style="width:0%"></div><div class="td" style="width:7%"></div><div class="ta" style="width:93%"></div></div>
+<div class="tend"><div class="th" style="width:0%"></div><div class="tdiv" style="width:7%"></div><div class="ta" style="width:93%"></div></div>
 <div class="tl"><span><b>0%</b> Esc</span><span>Empate <b>7%</b></span><span>Bra <b>93%</b></span></div>
 <div class="pl"><div class="pr top1"><span class="ps">0-2</span><div class="bw"><div class="b" style="width:28%"></div></div><span class="pp">28%</span><span class="pn">(33)</span></div><div class="pr "><span class="ps">1-2</span><div class="bw"><div class="b" style="width:28%"></div></div><span class="pp">28%</span><span class="pn">(32)</span></div><div class="pr "><span class="ps">1-3</span><div class="bw"><div class="b" style="width:18%"></div></div><span class="pp">18%</span><span class="pn">(21)</span></div><div class="pr "><span class="ps">0-3</span><div class="bw"><div class="b" style="width:12%"></div></div><span class="pp">12%</span><span class="pn">(14)</span></div><div class="pr "><span class="ps">0-1</span><div class="bw"><div class="b" style="width:5%"></div></div><span class="pp">5%</span><span class="pn">(6)</span></div></div></div><div class="mc">
 <div class="mh"><span class="mn">Mar-Hai</span><span class="mi"> 116 votos</span></div>
-<div class="tend"><div class="th" style="width:97%"></div><div class="td" style="width:2%"></div><div class="ta" style="width:1%"></div></div>
+<div class="tend"><div class="th" style="width:97%"></div><div class="tdiv" style="width:2%"></div><div class="ta" style="width:1%"></div></div>
 <div class="tl"><span><b>97%</b> Mar</span><span>Empate <b>2%</b></span><span>Hai <b>1%</b></span></div>
 <div class="pl"><div class="pr top1"><span class="ps">2-0</span><div class="bw"><div class="b" style="width:34%"></div></div><span class="pp">34%</span><span class="pn">(39)</span></div><div class="pr "><span class="ps">3-0</span><div class="bw"><div class="b" style="width:31%"></div></div><span class="pp">31%</span><span class="pn">(36)</span></div><div class="pr "><span class="ps">4-0</span><div class="bw"><div class="b" style="width:8%"></div></div><span class="pp">8%</span><span class="pn">(9)</span></div><div class="pr "><span class="ps">3-1</span><div class="bw"><div class="b" style="width:7%"></div></div><span class="pp">7%</span><span class="pn">(8)</span></div><div class="pr "><span class="ps">2-1</span><div class="bw"><div class="b" style="width:7%"></div></div><span class="pp">7%</span><span class="pn">(8)</span></div></div></div></div>
 <div class="gp" id="panel_Grupo_D"><div class="mc">
 <div class="mh"><span class="mn">Usa-Par</span><span class="mi"><span class="rbadge">✅ 4-1</span> 116 votos</span></div>
-<div class="tend"><div class="th" style="width:39%"></div><div class="td" style="width:48%"></div><div class="ta" style="width:13%"></div></div>
+<div class="tend"><div class="th" style="width:39%"></div><div class="tdiv" style="width:48%"></div><div class="ta" style="width:13%"></div></div>
 <div class="tl"><span><b>39%</b> Usa</span><span>Empate <b>48%</b></span><span>Par <b>13%</b></span></div>
 <div class="pl"><div class="pr top1"><span class="ps">1-1</span><div class="bw"><div class="b" style="width:29%"></div></div><span class="pp">29%</span><span class="pn">(34)</span></div><div class="pr "><span class="ps">2-1</span><div class="bw"><div class="b" style="width:25%"></div></div><span class="pp">25%</span><span class="pn">(29)</span></div><div class="pr "><span class="ps">2-2</span><div class="bw"><div class="b" style="width:13%"></div></div><span class="pp">13%</span><span class="pn">(15)</span></div><div class="pr "><span class="ps">1-2</span><div class="bw"><div class="b" style="width:8%"></div></div><span class="pp">8%</span><span class="pn">(9)</span></div><div class="pr "><span class="ps">1-0</span><div class="bw"><div class="b" style="width:7%"></div></div><span class="pp">7%</span><span class="pn">(8)</span></div></div></div><div class="mc">
 <div class="mh"><span class="mn">Aus-Tur</span><span class="mi"><span class="rbadge">✅ 2-0</span> 116 votos</span></div>
-<div class="tend"><div class="th" style="width:9%"></div><div class="td" style="width:24%"></div><div class="ta" style="width:67%"></div></div>
+<div class="tend"><div class="th" style="width:9%"></div><div class="tdiv" style="width:24%"></div><div class="ta" style="width:67%"></div></div>
 <div class="tl"><span><b>9%</b> Aus</span><span>Empate <b>24%</b></span><span>Tur <b>67%</b></span></div>
 <div class="pl"><div class="pr top1"><span class="ps">1-2</span><div class="bw"><div class="b" style="width:29%"></div></div><span class="pp">29%</span><span class="pn">(34)</span></div><div class="pr "><span class="ps">1-1</span><div class="bw"><div class="b" style="width:16%"></div></div><span class="pp">16%</span><span class="pn">(19)</span></div><div class="pr "><span class="ps">0-2</span><div class="bw"><div class="b" style="width:14%"></div></div><span class="pp">14%</span><span class="pn">(16)</span></div><div class="pr "><span class="ps">0-1</span><div class="bw"><div class="b" style="width:14%"></div></div><span class="pp">14%</span><span class="pn">(16)</span></div><div class="pr "><span class="ps">1-3</span><div class="bw"><div class="b" style="width:9%"></div></div><span class="pp">9%</span><span class="pn">(10)</span></div></div></div><div class="mc">
 <div class="mh"><span class="mn">Usa-Aus</span><span class="mi"> 116 votos</span></div>
-<div class="tend"><div class="th" style="width:77%"></div><div class="td" style="width:21%"></div><div class="ta" style="width:3%"></div></div>
+<div class="tend"><div class="th" style="width:77%"></div><div class="tdiv" style="width:21%"></div><div class="ta" style="width:3%"></div></div>
 <div class="tl"><span><b>77%</b> Usa</span><span>Empate <b>21%</b></span><span>Aus <b>3%</b></span></div>
 <div class="pl"><div class="pr top1"><span class="ps">2-1</span><div class="bw"><div class="b" style="width:30%"></div></div><span class="pp">30%</span><span class="pn">(35)</span></div><div class="pr "><span class="ps">2-0</span><div class="bw"><div class="b" style="width:23%"></div></div><span class="pp">23%</span><span class="pn">(27)</span></div><div class="pr "><span class="ps">1-0</span><div class="bw"><div class="b" style="width:19%"></div></div><span class="pp">19%</span><span class="pn">(22)</span></div><div class="pr "><span class="ps">1-1</span><div class="bw"><div class="b" style="width:11%"></div></div><span class="pp">11%</span><span class="pn">(13)</span></div><div class="pr "><span class="ps">2-2</span><div class="bw"><div class="b" style="width:8%"></div></div><span class="pp">8%</span><span class="pn">(9)</span></div></div></div><div class="mc">
 <div class="mh"><span class="mn">Tur-Par</span><span class="mi"> 116 votos</span></div>
-<div class="tend"><div class="th" style="width:35%"></div><div class="td" style="width:33%"></div><div class="ta" style="width:32%"></div></div>
+<div class="tend"><div class="th" style="width:35%"></div><div class="tdiv" style="width:33%"></div><div class="ta" style="width:32%"></div></div>
 <div class="tl"><span><b>35%</b> Tur</span><span>Empate <b>33%</b></span><span>Par <b>32%</b></span></div>
 <div class="pl"><div class="pr top1"><span class="ps">2-1</span><div class="bw"><div class="b" style="width:25%"></div></div><span class="pp">25%</span><span class="pn">(29)</span></div><div class="pr "><span class="ps">1-1</span><div class="bw"><div class="b" style="width:25%"></div></div><span class="pp">25%</span><span class="pn">(29)</span></div><div class="pr "><span class="ps">1-2</span><div class="bw"><div class="b" style="width:18%"></div></div><span class="pp">18%</span><span class="pn">(21)</span></div><div class="pr "><span class="ps">0-1</span><div class="bw"><div class="b" style="width:9%"></div></div><span class="pp">9%</span><span class="pn">(11)</span></div><div class="pr "><span class="ps">2-2</span><div class="bw"><div class="b" style="width:6%"></div></div><span class="pp">6%</span><span class="pn">(7)</span></div></div></div><div class="mc">
 <div class="mh"><span class="mn">Tur-Usa</span><span class="mi"> 116 votos</span></div>
-<div class="tend"><div class="th" style="width:31%"></div><div class="td" style="width:29%"></div><div class="ta" style="width:40%"></div></div>
+<div class="tend"><div class="th" style="width:31%"></div><div class="tdiv" style="width:29%"></div><div class="ta" style="width:40%"></div></div>
 <div class="tl"><span><b>31%</b> Tur</span><span>Empate <b>29%</b></span><span>Usa <b>40%</b></span></div>
 <div class="pl"><div class="pr top1"><span class="ps">1-2</span><div class="bw"><div class="b" style="width:22%"></div></div><span class="pp">22%</span><span class="pn">(25)</span></div><div class="pr "><span class="ps">1-1</span><div class="bw"><div class="b" style="width:18%"></div></div><span class="pp">18%</span><span class="pn">(21)</span></div><div class="pr "><span class="ps">2-1</span><div class="bw"><div class="b" style="width:15%"></div></div><span class="pp">15%</span><span class="pn">(17)</span></div><div class="pr "><span class="ps">0-1</span><div class="bw"><div class="b" style="width:9%"></div></div><span class="pp">9%</span><span class="pn">(10)</span></div><div class="pr "><span class="ps">2-2</span><div class="bw"><div class="b" style="width:9%"></div></div><span class="pp">9%</span><span class="pn">(10)</span></div></div></div><div class="mc">
 <div class="mh"><span class="mn">Par-Aus</span><span class="mi"> 116 votos</span></div>
-<div class="tend"><div class="th" style="width:70%"></div><div class="td" style="width:22%"></div><div class="ta" style="width:8%"></div></div>
+<div class="tend"><div class="th" style="width:70%"></div><div class="tdiv" style="width:22%"></div><div class="ta" style="width:8%"></div></div>
 <div class="tl"><span><b>70%</b> Par</span><span>Empate <b>22%</b></span><span>Aus <b>8%</b></span></div>
 <div class="pl"><div class="pr top1"><span class="ps">2-1</span><div class="bw"><div class="b" style="width:26%"></div></div><span class="pp">26%</span><span class="pn">(30)</span></div><div class="pr "><span class="ps">2-0</span><div class="bw"><div class="b" style="width:21%"></div></div><span class="pp">21%</span><span class="pn">(24)</span></div><div class="pr "><span class="ps">1-0</span><div class="bw"><div class="b" style="width:18%"></div></div><span class="pp">18%</span><span class="pn">(21)</span></div><div class="pr "><span class="ps">1-1</span><div class="bw"><div class="b" style="width:16%"></div></div><span class="pp">16%</span><span class="pn">(18)</span></div><div class="pr "><span class="ps">0-0</span><div class="bw"><div class="b" style="width:4%"></div></div><span class="pp">4%</span><span class="pn">(5)</span></div></div></div></div>
 <div class="gp" id="panel_Grupo_E"><div class="mc">
 <div class="mh"><span class="mn">Ale-Cur</span><span class="mi"><span class="rbadge">✅ 7-1</span> 116 votos</span></div>
-<div class="tend"><div class="th" style="width:100%"></div><div class="td" style="width:0%"></div><div class="ta" style="width:0%"></div></div>
+<div class="tend"><div class="th" style="width:100%"></div><div class="tdiv" style="width:0%"></div><div class="ta" style="width:0%"></div></div>
 <div class="tl"><span><b>100%</b> Ale</span><span>Empate <b>0%</b></span><span>Cur <b>0%</b></span></div>
 <div class="pl"><div class="pr top1"><span class="ps">4-0</span><div class="bw"><div class="b" style="width:34%"></div></div><span class="pp">34%</span><span class="pn">(39)</span></div><div class="pr "><span class="ps">3-0</span><div class="bw"><div class="b" style="width:27%"></div></div><span class="pp">27%</span><span class="pn">(31)</span></div><div class="pr "><span class="ps">5-0</span><div class="bw"><div class="b" style="width:22%"></div></div><span class="pp">22%</span><span class="pn">(25)</span></div><div class="pr "><span class="ps">2-0</span><div class="bw"><div class="b" style="width:5%"></div></div><span class="pp">5%</span><span class="pn">(6)</span></div><div class="pr "><span class="ps">4-1</span><div class="bw"><div class="b" style="width:3%"></div></div><span class="pp">3%</span><span class="pn">(4)</span></div></div></div><div class="mc">
 <div class="mh"><span class="mn">CM-Ecu</span><span class="mi"><span class="rbadge">✅ 1-0</span> 116 votos</span></div>
-<div class="tend"><div class="th" style="width:6%"></div><div class="td" style="width:27%"></div><div class="ta" style="width:67%"></div></div>
+<div class="tend"><div class="th" style="width:6%"></div><div class="tdiv" style="width:27%"></div><div class="ta" style="width:67%"></div></div>
 <div class="tl"><span><b>6%</b> CM</span><span>Empate <b>27%</b></span><span>Ecu <b>67%</b></span></div>
 <div class="pl"><div class="pr top1"><span class="ps">1-2</span><div class="bw"><div class="b" style="width:40%"></div></div><span class="pp">40%</span><span class="pn">(46)</span></div><div class="pr "><span class="ps">1-1</span><div class="bw"><div class="b" style="width:22%"></div></div><span class="pp">22%</span><span class="pn">(25)</span></div><div class="pr "><span class="ps">0-2</span><div class="bw"><div class="b" style="width:15%"></div></div><span class="pp">15%</span><span class="pn">(17)</span></div><div class="pr "><span class="ps">0-1</span><div class="bw"><div class="b" style="width:6%"></div></div><span class="pp">6%</span><span class="pn">(7)</span></div><div class="pr "><span class="ps">2-2</span><div class="bw"><div class="b" style="width:5%"></div></div><span class="pp">5%</span><span class="pn">(6)</span></div></div></div><div class="mc">
 <div class="mh"><span class="mn">Ale-CM</span><span class="mi"> 116 votos</span></div>
-<div class="tend"><div class="th" style="width:94%"></div><div class="td" style="width:4%"></div><div class="ta" style="width:2%"></div></div>
+<div class="tend"><div class="th" style="width:94%"></div><div class="tdiv" style="width:4%"></div><div class="ta" style="width:2%"></div></div>
 <div class="tl"><span><b>94%</b> Ale</span><span>Empate <b>4%</b></span><span>CM <b>2%</b></span></div>
 <div class="pl"><div class="pr top1"><span class="ps">2-1</span><div class="bw"><div class="b" style="width:28%"></div></div><span class="pp">28%</span><span class="pn">(33)</span></div><div class="pr "><span class="ps">2-0</span><div class="bw"><div class="b" style="width:26%"></div></div><span class="pp">26%</span><span class="pn">(30)</span></div><div class="pr "><span class="ps">3-1</span><div class="bw"><div class="b" style="width:23%"></div></div><span class="pp">23%</span><span class="pn">(27)</span></div><div class="pr "><span class="ps">3-0</span><div class="bw"><div class="b" style="width:9%"></div></div><span class="pp">9%</span><span class="pn">(10)</span></div><div class="pr "><span class="ps">1-1</span><div class="bw"><div class="b" style="width:4%"></div></div><span class="pp">4%</span><span class="pn">(5)</span></div></div></div><div class="mc">
 <div class="mh"><span class="mn">Ecu-Cur</span><span class="mi"> 116 votos</span></div>
-<div class="tend"><div class="th" style="width:98%"></div><div class="td" style="width:2%"></div><div class="ta" style="width:0%"></div></div>
+<div class="tend"><div class="th" style="width:98%"></div><div class="tdiv" style="width:2%"></div><div class="ta" style="width:0%"></div></div>
 <div class="tl"><span><b>98%</b> Ecu</span><span>Empate <b>2%</b></span><span>Cur <b>0%</b></span></div>
 <div class="pl"><div class="pr top1"><span class="ps">3-0</span><div class="bw"><div class="b" style="width:34%"></div></div><span class="pp">34%</span><span class="pn">(40)</span></div><div class="pr "><span class="ps">2-0</span><div class="bw"><div class="b" style="width:32%"></div></div><span class="pp">32%</span><span class="pn">(37)</span></div><div class="pr "><span class="ps">4-0</span><div class="bw"><div class="b" style="width:8%"></div></div><span class="pp">8%</span><span class="pn">(9)</span></div><div class="pr "><span class="ps">2-1</span><div class="bw"><div class="b" style="width:8%"></div></div><span class="pp">8%</span><span class="pn">(9)</span></div><div class="pr "><span class="ps">3-1</span><div class="bw"><div class="b" style="width:7%"></div></div><span class="pp">7%</span><span class="pn">(8)</span></div></div></div><div class="mc">
 <div class="mh"><span class="mn">Cur-CM</span><span class="mi"> 116 votos</span></div>
-<div class="tend"><div class="th" style="width:2%"></div><div class="td" style="width:9%"></div><div class="ta" style="width:90%"></div></div>
+<div class="tend"><div class="th" style="width:2%"></div><div class="tdiv" style="width:9%"></div><div class="ta" style="width:90%"></div></div>
 <div class="tl"><span><b>2%</b> Cur</span><span>Empate <b>9%</b></span><span>CM <b>90%</b></span></div>
 <div class="pl"><div class="pr top1"><span class="ps">0-2</span><div class="bw"><div class="b" style="width:44%"></div></div><span class="pp">44%</span><span class="pn">(51)</span></div><div class="pr "><span class="ps">1-2</span><div class="bw"><div class="b" style="width:12%"></div></div><span class="pp">12%</span><span class="pn">(14)</span></div><div class="pr "><span class="ps">0-1</span><div class="bw"><div class="b" style="width:11%"></div></div><span class="pp">11%</span><span class="pn">(13)</span></div><div class="pr "><span class="ps">0-3</span><div class="bw"><div class="b" style="width:11%"></div></div><span class="pp">11%</span><span class="pn">(13)</span></div><div class="pr "><span class="ps">1-3</span><div class="bw"><div class="b" style="width:7%"></div></div><span class="pp">7%</span><span class="pn">(8)</span></div></div></div><div class="mc">
 <div class="mh"><span class="mn">Ecu-Ale</span><span class="mi"> 116 votos</span></div>
-<div class="tend"><div class="th" style="width:3%"></div><div class="td" style="width:28%"></div><div class="ta" style="width:70%"></div></div>
+<div class="tend"><div class="th" style="width:3%"></div><div class="tdiv" style="width:28%"></div><div class="ta" style="width:70%"></div></div>
 <div class="tl"><span><b>3%</b> Ecu</span><span>Empate <b>28%</b></span><span>Ale <b>70%</b></span></div>
 <div class="pl"><div class="pr top1"><span class="ps">1-2</span><div class="bw"><div class="b" style="width:41%"></div></div><span class="pp">41%</span><span class="pn">(47)</span></div><div class="pr "><span class="ps">1-1</span><div class="bw"><div class="b" style="width:20%"></div></div><span class="pp">20%</span><span class="pn">(23)</span></div><div class="pr "><span class="ps">0-2</span><div class="bw"><div class="b" style="width:12%"></div></div><span class="pp">12%</span><span class="pn">(14)</span></div><div class="pr "><span class="ps">0-1</span><div class="bw"><div class="b" style="width:9%"></div></div><span class="pp">9%</span><span class="pn">(10)</span></div><div class="pr "><span class="ps">2-2</span><div class="bw"><div class="b" style="width:6%"></div></div><span class="pp">6%</span><span class="pn">(7)</span></div></div></div></div>
 <div class="gp" id="panel_Grupo_F"><div class="mc">
 <div class="mh"><span class="mn">PB-Jap</span><span class="mi"><span class="rbadge">✅ 2-2</span> 116 votos</span></div>
-<div class="tend"><div class="th" style="width:78%"></div><div class="td" style="width:16%"></div><div class="ta" style="width:6%"></div></div>
+<div class="tend"><div class="th" style="width:78%"></div><div class="tdiv" style="width:16%"></div><div class="ta" style="width:6%"></div></div>
 <div class="tl"><span><b>78%</b> PB</span><span>Empate <b>16%</b></span><span>Jap <b>6%</b></span></div>
 <div class="pl"><div class="pr top1"><span class="ps">2-1</span><div class="bw"><div class="b" style="width:43%"></div></div><span class="pp">43%</span><span class="pn">(50)</span></div><div class="pr "><span class="ps">1-1</span><div class="bw"><div class="b" style="width:14%"></div></div><span class="pp">14%</span><span class="pn">(16)</span></div><div class="pr "><span class="ps">2-0</span><div class="bw"><div class="b" style="width:14%"></div></div><span class="pp">14%</span><span class="pn">(16)</span></div><div class="pr "><span class="ps">3-1</span><div class="bw"><div class="b" style="width:10%"></div></div><span class="pp">10%</span><span class="pn">(12)</span></div><div class="pr "><span class="ps">1-0</span><div class="bw"><div class="b" style="width:6%"></div></div><span class="pp">6%</span><span class="pn">(7)</span></div></div></div><div class="mc">
 <div class="mh"><span class="mn">Swe-Tun</span><span class="mi"> 116 votos</span></div>
-<div class="tend"><div class="th" style="width:79%"></div><div class="td" style="width:21%"></div><div class="ta" style="width:0%"></div></div>
+<div class="tend"><div class="th" style="width:79%"></div><div class="tdiv" style="width:21%"></div><div class="ta" style="width:0%"></div></div>
 <div class="tl"><span><b>79%</b> Swe</span><span>Empate <b>21%</b></span><span>Tun <b>0%</b></span></div>
 <div class="pl"><div class="pr top1"><span class="ps">2-0</span><div class="bw"><div class="b" style="width:27%"></div></div><span class="pp">27%</span><span class="pn">(31)</span></div><div class="pr "><span class="ps">2-1</span><div class="bw"><div class="b" style="width:24%"></div></div><span class="pp">24%</span><span class="pn">(28)</span></div><div class="pr "><span class="ps">1-0</span><div class="bw"><div class="b" style="width:20%"></div></div><span class="pp">20%</span><span class="pn">(23)</span></div><div class="pr "><span class="ps">1-1</span><div class="bw"><div class="b" style="width:16%"></div></div><span class="pp">16%</span><span class="pn">(18)</span></div><div class="pr "><span class="ps">3-0</span><div class="bw"><div class="b" style="width:4%"></div></div><span class="pp">4%</span><span class="pn">(5)</span></div></div></div><div class="mc">
 <div class="mh"><span class="mn">PB-Swe</span><span class="mi"> 116 votos</span></div>
-<div class="tend"><div class="th" style="width:77%"></div><div class="td" style="width:21%"></div><div class="ta" style="width:3%"></div></div>
+<div class="tend"><div class="th" style="width:77%"></div><div class="tdiv" style="width:21%"></div><div class="ta" style="width:3%"></div></div>
 <div class="tl"><span><b>77%</b> PB</span><span>Empate <b>21%</b></span><span>Swe <b>3%</b></span></div>
 <div class="pl"><div class="pr top1"><span class="ps">2-1</span><div class="bw"><div class="b" style="width:35%"></div></div><span class="pp">35%</span><span class="pn">(41)</span></div><div class="pr "><span class="ps">2-0</span><div class="bw"><div class="b" style="width:19%"></div></div><span class="pp">19%</span><span class="pn">(22)</span></div><div class="pr "><span class="ps">1-1</span><div class="bw"><div class="b" style="width:13%"></div></div><span class="pp">13%</span><span class="pn">(15)</span></div><div class="pr "><span class="ps">1-0</span><div class="bw"><div class="b" style="width:9%"></div></div><span class="pp">9%</span><span class="pn">(11)</span></div><div class="pr "><span class="ps">3-1</span><div class="bw"><div class="b" style="width:9%"></div></div><span class="pp">9%</span><span class="pn">(10)</span></div></div></div><div class="mc">
 <div class="mh"><span class="mn">Tun-Jap</span><span class="mi"> 116 votos</span></div>
-<div class="tend"><div class="th" style="width:6%"></div><div class="td" style="width:13%"></div><div class="ta" style="width:81%"></div></div>
+<div class="tend"><div class="th" style="width:6%"></div><div class="tdiv" style="width:13%"></div><div class="ta" style="width:81%"></div></div>
 <div class="tl"><span><b>6%</b> Tun</span><span>Empate <b>13%</b></span><span>Jap <b>81%</b></span></div>
 <div class="pl"><div class="pr top1"><span class="ps">0-2</span><div class="bw"><div class="b" style="width:28%"></div></div><span class="pp">28%</span><span class="pn">(33)</span></div><div class="pr "><span class="ps">0-1</span><div class="bw"><div class="b" style="width:21%"></div></div><span class="pp">21%</span><span class="pn">(24)</span></div><div class="pr "><span class="ps">1-2</span><div class="bw"><div class="b" style="width:21%"></div></div><span class="pp">21%</span><span class="pn">(24)</span></div><div class="pr "><span class="ps">1-1</span><div class="bw"><div class="b" style="width:9%"></div></div><span class="pp">9%</span><span class="pn">(11)</span></div><div class="pr "><span class="ps">1-3</span><div class="bw"><div class="b" style="width:6%"></div></div><span class="pp">6%</span><span class="pn">(7)</span></div></div></div><div class="mc">
 <div class="mh"><span class="mn">Jap-Swe</span><span class="mi"> 116 votos</span></div>
-<div class="tend"><div class="th" style="width:39%"></div><div class="td" style="width:35%"></div><div class="ta" style="width:26%"></div></div>
+<div class="tend"><div class="th" style="width:39%"></div><div class="tdiv" style="width:35%"></div><div class="ta" style="width:26%"></div></div>
 <div class="tl"><span><b>39%</b> Jap</span><span>Empate <b>35%</b></span><span>Swe <b>26%</b></span></div>
 <div class="pl"><div class="pr top1"><span class="ps">1-1</span><div class="bw"><div class="b" style="width:26%"></div></div><span class="pp">26%</span><span class="pn">(30)</span></div><div class="pr "><span class="ps">2-1</span><div class="bw"><div class="b" style="width:21%"></div></div><span class="pp">21%</span><span class="pn">(24)</span></div><div class="pr "><span class="ps">1-2</span><div class="bw"><div class="b" style="width:16%"></div></div><span class="pp">16%</span><span class="pn">(19)</span></div><div class="pr "><span class="ps">1-0</span><div class="bw"><div class="b" style="width:13%"></div></div><span class="pp">13%</span><span class="pn">(15)</span></div><div class="pr "><span class="ps">2-2</span><div class="bw"><div class="b" style="width:8%"></div></div><span class="pp">8%</span><span class="pn">(9)</span></div></div></div><div class="mc">
 <div class="mh"><span class="mn">Tun-PB</span><span class="mi"> 116 votos</span></div>
-<div class="tend"><div class="th" style="width:2%"></div><div class="td" style="width:5%"></div><div class="ta" style="width:93%"></div></div>
+<div class="tend"><div class="th" style="width:2%"></div><div class="tdiv" style="width:5%"></div><div class="ta" style="width:93%"></div></div>
 <div class="tl"><span><b>2%</b> Tun</span><span>Empate <b>5%</b></span><span>PB <b>93%</b></span></div>
 <div class="pl"><div class="pr top1"><span class="ps">0-2</span><div class="bw"><div class="b" style="width:35%"></div></div><span class="pp">35%</span><span class="pn">(41)</span></div><div class="pr "><span class="ps">0-3</span><div class="bw"><div class="b" style="width:25%"></div></div><span class="pp">25%</span><span class="pn">(29)</span></div><div class="pr "><span class="ps">1-3</span><div class="bw"><div class="b" style="width:13%"></div></div><span class="pp">13%</span><span class="pn">(15)</span></div><div class="pr "><span class="ps">0-4</span><div class="bw"><div class="b" style="width:6%"></div></div><span class="pp">6%</span><span class="pn">(7)</span></div><div class="pr "><span class="ps">1-1</span><div class="bw"><div class="b" style="width:5%"></div></div><span class="pp">5%</span><span class="pn">(6)</span></div></div></div></div>
 <div class="gp" id="panel_Grupo_G"><div class="mc">
 <div class="mh"><span class="mn">Bel-Egi</span><span class="mi"> 116 votos</span></div>
-<div class="tend"><div class="th" style="width:86%"></div><div class="td" style="width:10%"></div><div class="ta" style="width:3%"></div></div>
+<div class="tend"><div class="th" style="width:86%"></div><div class="tdiv" style="width:10%"></div><div class="ta" style="width:3%"></div></div>
 <div class="tl"><span><b>86%</b> Bel</span><span>Empate <b>10%</b></span><span>Egi <b>3%</b></span></div>
 <div class="pl"><div class="pr top1"><span class="ps">2-1</span><div class="bw"><div class="b" style="width:28%"></div></div><span class="pp">28%</span><span class="pn">(33)</span></div><div class="pr "><span class="ps">2-0</span><div class="bw"><div class="b" style="width:28%"></div></div><span class="pp">28%</span><span class="pn">(33)</span></div><div class="pr "><span class="ps">3-1</span><div class="bw"><div class="b" style="width:11%"></div></div><span class="pp">11%</span><span class="pn">(13)</span></div><div class="pr "><span class="ps">1-0</span><div class="bw"><div class="b" style="width:9%"></div></div><span class="pp">9%</span><span class="pn">(11)</span></div><div class="pr "><span class="ps">1-1</span><div class="bw"><div class="b" style="width:9%"></div></div><span class="pp">9%</span><span class="pn">(10)</span></div></div></div><div class="mc">
 <div class="mh"><span class="mn">Ira-NZ</span><span class="mi"> 116 votos</span></div>
-<div class="tend"><div class="th" style="width:39%"></div><div class="td" style="width:42%"></div><div class="ta" style="width:19%"></div></div>
+<div class="tend"><div class="th" style="width:39%"></div><div class="tdiv" style="width:42%"></div><div class="ta" style="width:19%"></div></div>
 <div class="tl"><span><b>39%</b> Ira</span><span>Empate <b>42%</b></span><span>NZ <b>19%</b></span></div>
 <div class="pl"><div class="pr top1"><span class="ps">1-1</span><div class="bw"><div class="b" style="width:27%"></div></div><span class="pp">27%</span><span class="pn">(31)</span></div><div class="pr "><span class="ps">1-0</span><div class="bw"><div class="b" style="width:19%"></div></div><span class="pp">19%</span><span class="pn">(22)</span></div><div class="pr "><span class="ps">2-0</span><div class="bw"><div class="b" style="width:15%"></div></div><span class="pp">15%</span><span class="pn">(17)</span></div><div class="pr "><span class="ps">0-0</span><div class="bw"><div class="b" style="width:10%"></div></div><span class="pp">10%</span><span class="pn">(12)</span></div><div class="pr "><span class="ps">0-1</span><div class="bw"><div class="b" style="width:9%"></div></div><span class="pp">9%</span><span class="pn">(10)</span></div></div></div><div class="mc">
 <div class="mh"><span class="mn">Bel-Ira</span><span class="mi"> 116 votos</span></div>
-<div class="tend"><div class="th" style="width:94%"></div><div class="td" style="width:3%"></div><div class="ta" style="width:3%"></div></div>
+<div class="tend"><div class="th" style="width:94%"></div><div class="tdiv" style="width:3%"></div><div class="ta" style="width:3%"></div></div>
 <div class="tl"><span><b>94%</b> Bel</span><span>Empate <b>3%</b></span><span>Ira <b>3%</b></span></div>
 <div class="pl"><div class="pr top1"><span class="ps">2-0</span><div class="bw"><div class="b" style="width:33%"></div></div><span class="pp">33%</span><span class="pn">(38)</span></div><div class="pr "><span class="ps">2-1</span><div class="bw"><div class="b" style="width:18%"></div></div><span class="pp">18%</span><span class="pn">(21)</span></div><div class="pr "><span class="ps">3-0</span><div class="bw"><div class="b" style="width:16%"></div></div><span class="pp">16%</span><span class="pn">(19)</span></div><div class="pr "><span class="ps">3-1</span><div class="bw"><div class="b" style="width:16%"></div></div><span class="pp">16%</span><span class="pn">(18)</span></div><div class="pr "><span class="ps">1-0</span><div class="bw"><div class="b" style="width:6%"></div></div><span class="pp">6%</span><span class="pn">(7)</span></div></div></div><div class="mc">
 <div class="mh"><span class="mn">NZ-Egi</span><span class="mi"> 116 votos</span></div>
-<div class="tend"><div class="th" style="width:7%"></div><div class="td" style="width:31%"></div><div class="ta" style="width:62%"></div></div>
+<div class="tend"><div class="th" style="width:7%"></div><div class="tdiv" style="width:31%"></div><div class="ta" style="width:62%"></div></div>
 <div class="tl"><span><b>7%</b> NZ</span><span>Empate <b>31%</b></span><span>Egi <b>62%</b></span></div>
 <div class="pl"><div class="pr top1"><span class="ps">0-2</span><div class="bw"><div class="b" style="width:22%"></div></div><span class="pp">22%</span><span class="pn">(25)</span></div><div class="pr "><span class="ps">1-1</span><div class="bw"><div class="b" style="width:21%"></div></div><span class="pp">21%</span><span class="pn">(24)</span></div><div class="pr "><span class="ps">1-2</span><div class="bw"><div class="b" style="width:20%"></div></div><span class="pp">20%</span><span class="pn">(23)</span></div><div class="pr "><span class="ps">0-1</span><div class="bw"><div class="b" style="width:15%"></div></div><span class="pp">15%</span><span class="pn">(17)</span></div><div class="pr "><span class="ps">0-0</span><div class="bw"><div class="b" style="width:7%"></div></div><span class="pp">7%</span><span class="pn">(8)</span></div></div></div><div class="mc">
 <div class="mh"><span class="mn">Egi-Ira</span><span class="mi"> 116 votos</span></div>
-<div class="tend"><div class="th" style="width:57%"></div><div class="td" style="width:40%"></div><div class="ta" style="width:3%"></div></div>
+<div class="tend"><div class="th" style="width:57%"></div><div class="tdiv" style="width:40%"></div><div class="ta" style="width:3%"></div></div>
 <div class="tl"><span><b>57%</b> Egi</span><span>Empate <b>40%</b></span><span>Ira <b>3%</b></span></div>
 <div class="pl"><div class="pr top1"><span class="ps">1-1</span><div class="bw"><div class="b" style="width:27%"></div></div><span class="pp">27%</span><span class="pn">(31)</span></div><div class="pr "><span class="ps">2-0</span><div class="bw"><div class="b" style="width:19%"></div></div><span class="pp">19%</span><span class="pn">(22)</span></div><div class="pr "><span class="ps">1-0</span><div class="bw"><div class="b" style="width:18%"></div></div><span class="pp">18%</span><span class="pn">(21)</span></div><div class="pr "><span class="ps">2-1</span><div class="bw"><div class="b" style="width:11%"></div></div><span class="pp">11%</span><span class="pn">(13)</span></div><div class="pr "><span class="ps">2-2</span><div class="bw"><div class="b" style="width:7%"></div></div><span class="pp">7%</span><span class="pn">(8)</span></div></div></div><div class="mc">
 <div class="mh"><span class="mn">NZ-Bel</span><span class="mi"> 116 votos</span></div>
-<div class="tend"><div class="th" style="width:1%"></div><div class="td" style="width:2%"></div><div class="ta" style="width:97%"></div></div>
+<div class="tend"><div class="th" style="width:1%"></div><div class="tdiv" style="width:2%"></div><div class="ta" style="width:97%"></div></div>
 <div class="tl"><span><b>1%</b> NZ</span><span>Empate <b>2%</b></span><span>Bel <b>97%</b></span></div>
 <div class="pl"><div class="pr top1"><span class="ps">0-3</span><div class="bw"><div class="b" style="width:29%"></div></div><span class="pp">29%</span><span class="pn">(34)</span></div><div class="pr "><span class="ps">0-2</span><div class="bw"><div class="b" style="width:25%"></div></div><span class="pp">25%</span><span class="pn">(29)</span></div><div class="pr "><span class="ps">1-3</span><div class="bw"><div class="b" style="width:16%"></div></div><span class="pp">16%</span><span class="pn">(18)</span></div><div class="pr "><span class="ps">1-2</span><div class="bw"><div class="b" style="width:11%"></div></div><span class="pp">11%</span><span class="pn">(13)</span></div><div class="pr "><span class="ps">0-4</span><div class="bw"><div class="b" style="width:6%"></div></div><span class="pp">6%</span><span class="pn">(7)</span></div></div></div></div>
 <div class="gp" id="panel_Grupo_H"><div class="mc">
 <div class="mh"><span class="mn">Esp-CV</span><span class="mi"> 116 votos</span></div>
-<div class="tend"><div class="th" style="width:99%"></div><div class="td" style="width:1%"></div><div class="ta" style="width:0%"></div></div>
+<div class="tend"><div class="th" style="width:99%"></div><div class="tdiv" style="width:1%"></div><div class="ta" style="width:0%"></div></div>
 <div class="tl"><span><b>99%</b> Esp</span><span>Empate <b>1%</b></span><span>CV <b>0%</b></span></div>
 <div class="pl"><div class="pr top1"><span class="ps">3-0</span><div class="bw"><div class="b" style="width:36%"></div></div><span class="pp">36%</span><span class="pn">(42)</span></div><div class="pr "><span class="ps">4-0</span><div class="bw"><div class="b" style="width:22%"></div></div><span class="pp">22%</span><span class="pn">(26)</span></div><div class="pr "><span class="ps">2-0</span><div class="bw"><div class="b" style="width:9%"></div></div><span class="pp">9%</span><span class="pn">(11)</span></div><div class="pr "><span class="ps">5-0</span><div class="bw"><div class="b" style="width:9%"></div></div><span class="pp">9%</span><span class="pn">(10)</span></div><div class="pr "><span class="ps">4-1</span><div class="bw"><div class="b" style="width:5%"></div></div><span class="pp">5%</span><span class="pn">(6)</span></div></div></div><div class="mc">
 <div class="mh"><span class="mn">AS-Uru</span><span class="mi"> 116 votos</span></div>
-<div class="tend"><div class="th" style="width:1%"></div><div class="td" style="width:8%"></div><div class="ta" style="width:91%"></div></div>
+<div class="tend"><div class="th" style="width:1%"></div><div class="tdiv" style="width:8%"></div><div class="ta" style="width:91%"></div></div>
 <div class="tl"><span><b>1%</b> AS</span><span>Empate <b>8%</b></span><span>Uru <b>91%</b></span></div>
 <div class="pl"><div class="pr top1"><span class="ps">0-2</span><div class="bw"><div class="b" style="width:35%"></div></div><span class="pp">35%</span><span class="pn">(41)</span></div><div class="pr "><span class="ps">1-2</span><div class="bw"><div class="b" style="width:28%"></div></div><span class="pp">28%</span><span class="pn">(32)</span></div><div class="pr "><span class="ps">0-1</span><div class="bw"><div class="b" style="width:11%"></div></div><span class="pp">11%</span><span class="pn">(13)</span></div><div class="pr "><span class="ps">1-3</span><div class="bw"><div class="b" style="width:9%"></div></div><span class="pp">9%</span><span class="pn">(11)</span></div><div class="pr "><span class="ps">0-3</span><div class="bw"><div class="b" style="width:6%"></div></div><span class="pp">6%</span><span class="pn">(7)</span></div></div></div><div class="mc">
 <div class="mh"><span class="mn">Esp-AS</span><span class="mi"> 116 votos</span></div>
-<div class="tend"><div class="th" style="width:99%"></div><div class="td" style="width:1%"></div><div class="ta" style="width:0%"></div></div>
+<div class="tend"><div class="th" style="width:99%"></div><div class="tdiv" style="width:1%"></div><div class="ta" style="width:0%"></div></div>
 <div class="tl"><span><b>99%</b> Esp</span><span>Empate <b>1%</b></span><span>AS <b>0%</b></span></div>
 <div class="pl"><div class="pr top1"><span class="ps">3-0</span><div class="bw"><div class="b" style="width:28%"></div></div><span class="pp">28%</span><span class="pn">(32)</span></div><div class="pr "><span class="ps">2-0</span><div class="bw"><div class="b" style="width:22%"></div></div><span class="pp">22%</span><span class="pn">(26)</span></div><div class="pr "><span class="ps">3-1</span><div class="bw"><div class="b" style="width:16%"></div></div><span class="pp">16%</span><span class="pn">(18)</span></div><div class="pr "><span class="ps">2-1</span><div class="bw"><div class="b" style="width:15%"></div></div><span class="pp">15%</span><span class="pn">(17)</span></div><div class="pr "><span class="ps">4-0</span><div class="bw"><div class="b" style="width:10%"></div></div><span class="pp">10%</span><span class="pn">(12)</span></div></div></div><div class="mc">
 <div class="mh"><span class="mn">Uru-CV</span><span class="mi"> 116 votos</span></div>
-<div class="tend"><div class="th" style="width:97%"></div><div class="td" style="width:2%"></div><div class="ta" style="width:2%"></div></div>
+<div class="tend"><div class="th" style="width:97%"></div><div class="tdiv" style="width:2%"></div><div class="ta" style="width:2%"></div></div>
 <div class="tl"><span><b>97%</b> Uru</span><span>Empate <b>2%</b></span><span>CV <b>2%</b></span></div>
 <div class="pl"><div class="pr top1"><span class="ps">2-0</span><div class="bw"><div class="b" style="width:33%"></div></div><span class="pp">33%</span><span class="pn">(38)</span></div><div class="pr "><span class="ps">3-0</span><div class="bw"><div class="b" style="width:18%"></div></div><span class="pp">18%</span><span class="pn">(21)</span></div><div class="pr "><span class="ps">2-1</span><div class="bw"><div class="b" style="width:16%"></div></div><span class="pp">16%</span><span class="pn">(18)</span></div><div class="pr "><span class="ps">1-0</span><div class="bw"><div class="b" style="width:13%"></div></div><span class="pp">13%</span><span class="pn">(15)</span></div><div class="pr "><span class="ps">3-1</span><div class="bw"><div class="b" style="width:8%"></div></div><span class="pp">8%</span><span class="pn">(9)</span></div></div></div><div class="mc">
 <div class="mh"><span class="mn">CV-SA</span><span class="mi"> 116 votos</span></div>
-<div class="tend"><div class="th" style="width:7%"></div><div class="td" style="width:38%"></div><div class="ta" style="width:55%"></div></div>
+<div class="tend"><div class="th" style="width:7%"></div><div class="tdiv" style="width:38%"></div><div class="ta" style="width:55%"></div></div>
 <div class="tl"><span><b>7%</b> CV</span><span>Empate <b>38%</b></span><span>SA <b>55%</b></span></div>
 <div class="pl"><div class="pr top1"><span class="ps">1-1</span><div class="bw"><div class="b" style="width:28%"></div></div><span class="pp">28%</span><span class="pn">(32)</span></div><div class="pr "><span class="ps">1-2</span><div class="bw"><div class="b" style="width:18%"></div></div><span class="pp">18%</span><span class="pn">(21)</span></div><div class="pr "><span class="ps">0-1</span><div class="bw"><div class="b" style="width:17%"></div></div><span class="pp">17%</span><span class="pn">(20)</span></div><div class="pr "><span class="ps">0-2</span><div class="bw"><div class="b" style="width:16%"></div></div><span class="pp">16%</span><span class="pn">(19)</span></div><div class="pr "><span class="ps">0-0</span><div class="bw"><div class="b" style="width:9%"></div></div><span class="pp">9%</span><span class="pn">(10)</span></div></div></div><div class="mc">
 <div class="mh"><span class="mn">Uru-Esp</span><span class="mi"> 116 votos</span></div>
-<div class="tend"><div class="th" style="width:3%"></div><div class="td" style="width:21%"></div><div class="ta" style="width:77%"></div></div>
+<div class="tend"><div class="th" style="width:3%"></div><div class="tdiv" style="width:21%"></div><div class="ta" style="width:77%"></div></div>
 <div class="tl"><span><b>3%</b> Uru</span><span>Empate <b>21%</b></span><span>Esp <b>77%</b></span></div>
 <div class="pl"><div class="pr top1"><span class="ps">1-2</span><div class="bw"><div class="b" style="width:40%"></div></div><span class="pp">40%</span><span class="pn">(46)</span></div><div class="pr "><span class="ps">1-3</span><div class="bw"><div class="b" style="width:14%"></div></div><span class="pp">14%</span><span class="pn">(16)</span></div><div class="pr "><span class="ps">1-1</span><div class="bw"><div class="b" style="width:13%"></div></div><span class="pp">13%</span><span class="pn">(15)</span></div><div class="pr "><span class="ps">0-2</span><div class="bw"><div class="b" style="width:9%"></div></div><span class="pp">9%</span><span class="pn">(10)</span></div><div class="pr "><span class="ps">2-2</span><div class="bw"><div class="b" style="width:8%"></div></div><span class="pp">8%</span><span class="pn">(9)</span></div></div></div></div>
 <div class="gp" id="panel_Grupo_I"><div class="mc">
 <div class="mh"><span class="mn">Fra-Sen</span><span class="mi"> 116 votos</span></div>
-<div class="tend"><div class="th" style="width:97%"></div><div class="td" style="width:2%"></div><div class="ta" style="width:1%"></div></div>
+<div class="tend"><div class="th" style="width:97%"></div><div class="tdiv" style="width:2%"></div><div class="ta" style="width:1%"></div></div>
 <div class="tl"><span><b>97%</b> Fra</span><span>Empate <b>2%</b></span><span>Sen <b>1%</b></span></div>
 <div class="pl"><div class="pr top1"><span class="ps">2-1</span><div class="bw"><div class="b" style="width:27%"></div></div><span class="pp">27%</span><span class="pn">(31)</span></div><div class="pr "><span class="ps">3-1</span><div class="bw"><div class="b" style="width:22%"></div></div><span class="pp">22%</span><span class="pn">(25)</span></div><div class="pr "><span class="ps">2-0</span><div class="bw"><div class="b" style="width:20%"></div></div><span class="pp">20%</span><span class="pn">(23)</span></div><div class="pr "><span class="ps">3-0</span><div class="bw"><div class="b" style="width:15%"></div></div><span class="pp">15%</span><span class="pn">(17)</span></div><div class="pr "><span class="ps">1-0</span><div class="bw"><div class="b" style="width:3%"></div></div><span class="pp">3%</span><span class="pn">(4)</span></div></div></div><div class="mc">
 <div class="mh"><span class="mn">Irq-Nor</span><span class="mi"> 116 votos</span></div>
-<div class="tend"><div class="th" style="width:0%"></div><div class="td" style="width:8%"></div><div class="ta" style="width:92%"></div></div>
+<div class="tend"><div class="th" style="width:0%"></div><div class="tdiv" style="width:8%"></div><div class="ta" style="width:92%"></div></div>
 <div class="tl"><span><b>0%</b> Irq</span><span>Empate <b>8%</b></span><span>Nor <b>92%</b></span></div>
 <div class="pl"><div class="pr top1"><span class="ps">0-2</span><div class="bw"><div class="b" style="width:34%"></div></div><span class="pp">34%</span><span class="pn">(39)</span></div><div class="pr "><span class="ps">0-3</span><div class="bw"><div class="b" style="width:20%"></div></div><span class="pp">20%</span><span class="pn">(23)</span></div><div class="pr "><span class="ps">0-1</span><div class="bw"><div class="b" style="width:14%"></div></div><span class="pp">14%</span><span class="pn">(16)</span></div><div class="pr "><span class="ps">1-2</span><div class="bw"><div class="b" style="width:13%"></div></div><span class="pp">13%</span><span class="pn">(15)</span></div><div class="pr "><span class="ps">1-1</span><div class="bw"><div class="b" style="width:6%"></div></div><span class="pp">6%</span><span class="pn">(7)</span></div></div></div><div class="mc">
 <div class="mh"><span class="mn">Fra-Irq</span><span class="mi"> 116 votos</span></div>
-<div class="tend"><div class="th" style="width:99%"></div><div class="td" style="width:1%"></div><div class="ta" style="width:0%"></div></div>
+<div class="tend"><div class="th" style="width:99%"></div><div class="tdiv" style="width:1%"></div><div class="ta" style="width:0%"></div></div>
 <div class="tl"><span><b>99%</b> Fra</span><span>Empate <b>1%</b></span><span>Irq <b>0%</b></span></div>
 <div class="pl"><div class="pr top1"><span class="ps">3-0</span><div class="bw"><div class="b" style="width:32%"></div></div><span class="pp">32%</span><span class="pn">(37)</span></div><div class="pr "><span class="ps">4-0</span><div class="bw"><div class="b" style="width:26%"></div></div><span class="pp">26%</span><span class="pn">(30)</span></div><div class="pr "><span class="ps">2-0</span><div class="bw"><div class="b" style="width:16%"></div></div><span class="pp">16%</span><span class="pn">(19)</span></div><div class="pr "><span class="ps">3-1</span><div class="bw"><div class="b" style="width:6%"></div></div><span class="pp">6%</span><span class="pn">(7)</span></div><div class="pr "><span class="ps">5-0</span><div class="bw"><div class="b" style="width:5%"></div></div><span class="pp">5%</span><span class="pn">(6)</span></div></div></div><div class="mc">
 <div class="mh"><span class="mn">Nor-Sen</span><span class="mi"> 116 votos</span></div>
-<div class="tend"><div class="th" style="width:45%"></div><div class="td" style="width:36%"></div><div class="ta" style="width:19%"></div></div>
+<div class="tend"><div class="th" style="width:45%"></div><div class="tdiv" style="width:36%"></div><div class="ta" style="width:19%"></div></div>
 <div class="tl"><span><b>45%</b> Nor</span><span>Empate <b>36%</b></span><span>Sen <b>19%</b></span></div>
 <div class="pl"><div class="pr top1"><span class="ps">2-1</span><div class="bw"><div class="b" style="width:31%"></div></div><span class="pp">31%</span><span class="pn">(36)</span></div><div class="pr "><span class="ps">1-1</span><div class="bw"><div class="b" style="width:27%"></div></div><span class="pp">27%</span><span class="pn">(31)</span></div><div class="pr "><span class="ps">1-2</span><div class="bw"><div class="b" style="width:14%"></div></div><span class="pp">14%</span><span class="pn">(16)</span></div><div class="pr "><span class="ps">2-2</span><div class="bw"><div class="b" style="width:7%"></div></div><span class="pp">7%</span><span class="pn">(8)</span></div><div class="pr "><span class="ps">2-0</span><div class="bw"><div class="b" style="width:4%"></div></div><span class="pp">4%</span><span class="pn">(5)</span></div></div></div><div class="mc">
 <div class="mh"><span class="mn">Nor-Fra</span><span class="mi"> 116 votos</span></div>
-<div class="tend"><div class="th" style="width:3%"></div><div class="td" style="width:16%"></div><div class="ta" style="width:81%"></div></div>
+<div class="tend"><div class="th" style="width:3%"></div><div class="tdiv" style="width:16%"></div><div class="ta" style="width:81%"></div></div>
 <div class="tl"><span><b>3%</b> Nor</span><span>Empate <b>16%</b></span><span>Fra <b>81%</b></span></div>
 <div class="pl"><div class="pr top1"><span class="ps">1-2</span><div class="bw"><div class="b" style="width:34%"></div></div><span class="pp">34%</span><span class="pn">(39)</span></div><div class="pr "><span class="ps">1-3</span><div class="bw"><div class="b" style="width:21%"></div></div><span class="pp">21%</span><span class="pn">(24)</span></div><div class="pr "><span class="ps">0-2</span><div class="bw"><div class="b" style="width:13%"></div></div><span class="pp">13%</span><span class="pn">(15)</span></div><div class="pr "><span class="ps">1-1</span><div class="bw"><div class="b" style="width:9%"></div></div><span class="pp">9%</span><span class="pn">(11)</span></div><div class="pr "><span class="ps">2-2</span><div class="bw"><div class="b" style="width:7%"></div></div><span class="pp">7%</span><span class="pn">(8)</span></div></div></div><div class="mc">
 <div class="mh"><span class="mn">Sen-Irq</span><span class="mi"> 116 votos</span></div>
-<div class="tend"><div class="th" style="width:89%"></div><div class="td" style="width:11%"></div><div class="ta" style="width:0%"></div></div>
+<div class="tend"><div class="th" style="width:89%"></div><div class="tdiv" style="width:11%"></div><div class="ta" style="width:0%"></div></div>
 <div class="tl"><span><b>89%</b> Sen</span><span>Empate <b>11%</b></span><span>Irq <b>0%</b></span></div>
 <div class="pl"><div class="pr top1"><span class="ps">2-0</span><div class="bw"><div class="b" style="width:50%"></div></div><span class="pp">50%</span><span class="pn">(58)</span></div><div class="pr "><span class="ps">2-1</span><div class="bw"><div class="b" style="width:18%"></div></div><span class="pp">18%</span><span class="pn">(21)</span></div><div class="pr "><span class="ps">1-0</span><div class="bw"><div class="b" style="width:9%"></div></div><span class="pp">9%</span><span class="pn">(11)</span></div><div class="pr "><span class="ps">3-0</span><div class="bw"><div class="b" style="width:6%"></div></div><span class="pp">6%</span><span class="pn">(7)</span></div><div class="pr "><span class="ps">1-1</span><div class="bw"><div class="b" style="width:5%"></div></div><span class="pp">5%</span><span class="pn">(6)</span></div></div></div></div>
 <div class="gp" id="panel_Grupo_J"><div class="mc">
 <div class="mh"><span class="mn">Arg-Alg</span><span class="mi"> 116 votos</span></div>
-<div class="tend"><div class="th" style="width:95%"></div><div class="td" style="width:5%"></div><div class="ta" style="width:0%"></div></div>
+<div class="tend"><div class="th" style="width:95%"></div><div class="tdiv" style="width:5%"></div><div class="ta" style="width:0%"></div></div>
 <div class="tl"><span><b>95%</b> Arg</span><span>Empate <b>5%</b></span><span>Alg <b>0%</b></span></div>
 <div class="pl"><div class="pr top1"><span class="ps">3-0</span><div class="bw"><div class="b" style="width:33%"></div></div><span class="pp">33%</span><span class="pn">(38)</span></div><div class="pr "><span class="ps">2-0</span><div class="bw"><div class="b" style="width:22%"></div></div><span class="pp">22%</span><span class="pn">(25)</span></div><div class="pr "><span class="ps">3-1</span><div class="bw"><div class="b" style="width:14%"></div></div><span class="pp">14%</span><span class="pn">(16)</span></div><div class="pr "><span class="ps">2-1</span><div class="bw"><div class="b" style="width:13%"></div></div><span class="pp">13%</span><span class="pn">(15)</span></div><div class="pr "><span class="ps">1-0</span><div class="bw"><div class="b" style="width:6%"></div></div><span class="pp">6%</span><span class="pn">(7)</span></div></div></div><div class="mc">
 <div class="mh"><span class="mn">Aus-Jor</span><span class="mi"> 116 votos</span></div>
-<div class="tend"><div class="th" style="width:91%"></div><div class="td" style="width:9%"></div><div class="ta" style="width:1%"></div></div>
+<div class="tend"><div class="th" style="width:91%"></div><div class="tdiv" style="width:9%"></div><div class="ta" style="width:1%"></div></div>
 <div class="tl"><span><b>91%</b> Aus</span><span>Empate <b>9%</b></span><span>Jor <b>1%</b></span></div>
 <div class="pl"><div class="pr top1"><span class="ps">2-0</span><div class="bw"><div class="b" style="width:37%"></div></div><span class="pp">37%</span><span class="pn">(43)</span></div><div class="pr "><span class="ps">1-0</span><div class="bw"><div class="b" style="width:25%"></div></div><span class="pp">25%</span><span class="pn">(29)</span></div><div class="pr "><span class="ps">2-1</span><div class="bw"><div class="b" style="width:13%"></div></div><span class="pp">13%</span><span class="pn">(15)</span></div><div class="pr "><span class="ps">3-0</span><div class="bw"><div class="b" style="width:8%"></div></div><span class="pp">8%</span><span class="pn">(9)</span></div><div class="pr "><span class="ps">1-1</span><div class="bw"><div class="b" style="width:7%"></div></div><span class="pp">7%</span><span class="pn">(8)</span></div></div></div><div class="mc">
 <div class="mh"><span class="mn">Arg-Aus</span><span class="mi"> 116 votos</span></div>
-<div class="tend"><div class="th" style="width:93%"></div><div class="td" style="width:7%"></div><div class="ta" style="width:0%"></div></div>
+<div class="tend"><div class="th" style="width:93%"></div><div class="tdiv" style="width:7%"></div><div class="ta" style="width:0%"></div></div>
 <div class="tl"><span><b>93%</b> Arg</span><span>Empate <b>7%</b></span><span>Aus <b>0%</b></span></div>
 <div class="pl"><div class="pr top1"><span class="ps">2-0</span><div class="bw"><div class="b" style="width:40%"></div></div><span class="pp">40%</span><span class="pn">(46)</span></div><div class="pr "><span class="ps">2-1</span><div class="bw"><div class="b" style="width:30%"></div></div><span class="pp">30%</span><span class="pn">(35)</span></div><div class="pr "><span class="ps">3-1</span><div class="bw"><div class="b" style="width:9%"></div></div><span class="pp">9%</span><span class="pn">(11)</span></div><div class="pr "><span class="ps">1-0</span><div class="bw"><div class="b" style="width:6%"></div></div><span class="pp">6%</span><span class="pn">(7)</span></div><div class="pr "><span class="ps">3-0</span><div class="bw"><div class="b" style="width:4%"></div></div><span class="pp">4%</span><span class="pn">(5)</span></div></div></div><div class="mc">
 <div class="mh"><span class="mn">Jor-Alg</span><span class="mi"> 116 votos</span></div>
-<div class="tend"><div class="th" style="width:3%"></div><div class="td" style="width:35%"></div><div class="ta" style="width:62%"></div></div>
+<div class="tend"><div class="th" style="width:3%"></div><div class="tdiv" style="width:35%"></div><div class="ta" style="width:62%"></div></div>
 <div class="tl"><span><b>3%</b> Jor</span><span>Empate <b>35%</b></span><span>Alg <b>62%</b></span></div>
 <div class="pl"><div class="pr top1"><span class="ps">1-1</span><div class="bw"><div class="b" style="width:21%"></div></div><span class="pp">21%</span><span class="pn">(24)</span></div><div class="pr "><span class="ps">1-2</span><div class="bw"><div class="b" style="width:20%"></div></div><span class="pp">20%</span><span class="pn">(23)</span></div><div class="pr "><span class="ps">0-2</span><div class="bw"><div class="b" style="width:19%"></div></div><span class="pp">19%</span><span class="pn">(22)</span></div><div class="pr "><span class="ps">0-1</span><div class="bw"><div class="b" style="width:13%"></div></div><span class="pp">13%</span><span class="pn">(15)</span></div><div class="pr "><span class="ps">0-0</span><div class="bw"><div class="b" style="width:10%"></div></div><span class="pp">10%</span><span class="pn">(12)</span></div></div></div><div class="mc">
 <div class="mh"><span class="mn">Alg-Aus</span><span class="mi"> 116 votos</span></div>
-<div class="tend"><div class="th" style="width:13%"></div><div class="td" style="width:42%"></div><div class="ta" style="width:45%"></div></div>
+<div class="tend"><div class="th" style="width:13%"></div><div class="tdiv" style="width:42%"></div><div class="ta" style="width:45%"></div></div>
 <div class="tl"><span><b>13%</b> Alg</span><span>Empate <b>42%</b></span><span>Aus <b>45%</b></span></div>
 <div class="pl"><div class="pr top1"><span class="ps">1-1</span><div class="bw"><div class="b" style="width:28%"></div></div><span class="pp">28%</span><span class="pn">(33)</span></div><div class="pr "><span class="ps">1-2</span><div class="bw"><div class="b" style="width:20%"></div></div><span class="pp">20%</span><span class="pn">(23)</span></div><div class="pr "><span class="ps">0-1</span><div class="bw"><div class="b" style="width:12%"></div></div><span class="pp">12%</span><span class="pn">(14)</span></div><div class="pr "><span class="ps">2-2</span><div class="bw"><div class="b" style="width:12%"></div></div><span class="pp">12%</span><span class="pn">(14)</span></div><div class="pr "><span class="ps">0-2</span><div class="bw"><div class="b" style="width:10%"></div></div><span class="pp">10%</span><span class="pn">(12)</span></div></div></div><div class="mc">
 <div class="mh"><span class="mn">Jor-Arg</span><span class="mi"> 116 votos</span></div>
-<div class="tend"><div class="th" style="width:1%"></div><div class="td" style="width:0%"></div><div class="ta" style="width:99%"></div></div>
+<div class="tend"><div class="th" style="width:1%"></div><div class="tdiv" style="width:0%"></div><div class="ta" style="width:99%"></div></div>
 <div class="tl"><span><b>1%</b> Jor</span><span>Empate <b>0%</b></span><span>Arg <b>99%</b></span></div>
 <div class="pl"><div class="pr top1"><span class="ps">0-3</span><div class="bw"><div class="b" style="width:34%"></div></div><span class="pp">34%</span><span class="pn">(39)</span></div><div class="pr "><span class="ps">0-4</span><div class="bw"><div class="b" style="width:19%"></div></div><span class="pp">19%</span><span class="pn">(22)</span></div><div class="pr "><span class="ps">0-2</span><div class="bw"><div class="b" style="width:16%"></div></div><span class="pp">16%</span><span class="pn">(19)</span></div><div class="pr "><span class="ps">1-3</span><div class="bw"><div class="b" style="width:9%"></div></div><span class="pp">9%</span><span class="pn">(11)</span></div><div class="pr "><span class="ps">1-4</span><div class="bw"><div class="b" style="width:5%"></div></div><span class="pp">5%</span><span class="pn">(6)</span></div></div></div></div>
 <div class="gp" id="panel_Grupo_K"><div class="mc">
 <div class="mh"><span class="mn">Por-Con</span><span class="mi"> 116 votos</span></div>
-<div class="tend"><div class="th" style="width:97%"></div><div class="td" style="width:3%"></div><div class="ta" style="width:0%"></div></div>
+<div class="tend"><div class="th" style="width:97%"></div><div class="tdiv" style="width:3%"></div><div class="ta" style="width:0%"></div></div>
 <div class="tl"><span><b>97%</b> Por</span><span>Empate <b>3%</b></span><span>Con <b>0%</b></span></div>
 <div class="pl"><div class="pr top1"><span class="ps">3-0</span><div class="bw"><div class="b" style="width:35%"></div></div><span class="pp">35%</span><span class="pn">(41)</span></div><div class="pr "><span class="ps">2-0</span><div class="bw"><div class="b" style="width:31%"></div></div><span class="pp">31%</span><span class="pn">(36)</span></div><div class="pr "><span class="ps">3-1</span><div class="bw"><div class="b" style="width:9%"></div></div><span class="pp">9%</span><span class="pn">(11)</span></div><div class="pr "><span class="ps">2-1</span><div class="bw"><div class="b" style="width:5%"></div></div><span class="pp">5%</span><span class="pn">(6)</span></div><div class="pr "><span class="ps">4-0</span><div class="bw"><div class="b" style="width:5%"></div></div><span class="pp">5%</span><span class="pn">(6)</span></div></div></div><div class="mc">
 <div class="mh"><span class="mn">Uzb-Col</span><span class="mi"> 116 votos</span></div>
-<div class="tend"><div class="th" style="width:0%"></div><div class="td" style="width:4%"></div><div class="ta" style="width:96%"></div></div>
+<div class="tend"><div class="th" style="width:0%"></div><div class="tdiv" style="width:4%"></div><div class="ta" style="width:96%"></div></div>
 <div class="tl"><span><b>0%</b> Uzb</span><span>Empate <b>4%</b></span><span>Col <b>96%</b></span></div>
 <div class="pl"><div class="pr top1"><span class="ps">0-2</span><div class="bw"><div class="b" style="width:40%"></div></div><span class="pp">40%</span><span class="pn">(46)</span></div><div class="pr "><span class="ps">1-2</span><div class="bw"><div class="b" style="width:22%"></div></div><span class="pp">22%</span><span class="pn">(26)</span></div><div class="pr "><span class="ps">1-3</span><div class="bw"><div class="b" style="width:13%"></div></div><span class="pp">13%</span><span class="pn">(15)</span></div><div class="pr "><span class="ps">0-3</span><div class="bw"><div class="b" style="width:12%"></div></div><span class="pp">12%</span><span class="pn">(14)</span></div><div class="pr "><span class="ps">0-1</span><div class="bw"><div class="b" style="width:9%"></div></div><span class="pp">9%</span><span class="pn">(10)</span></div></div></div><div class="mc">
 <div class="mh"><span class="mn">Por-Uzb</span><span class="mi"> 116 votos</span></div>
-<div class="tend"><div class="th" style="width:100%"></div><div class="td" style="width:0%"></div><div class="ta" style="width:0%"></div></div>
+<div class="tend"><div class="th" style="width:100%"></div><div class="tdiv" style="width:0%"></div><div class="ta" style="width:0%"></div></div>
 <div class="tl"><span><b>100%</b> Por</span><span>Empate <b>0%</b></span><span>Uzb <b>0%</b></span></div>
 <div class="pl"><div class="pr top1"><span class="ps">3-0</span><div class="bw"><div class="b" style="width:31%"></div></div><span class="pp">31%</span><span class="pn">(36)</span></div><div class="pr "><span class="ps">2-0</span><div class="bw"><div class="b" style="width:30%"></div></div><span class="pp">30%</span><span class="pn">(35)</span></div><div class="pr "><span class="ps">3-1</span><div class="bw"><div class="b" style="width:11%"></div></div><span class="pp">11%</span><span class="pn">(13)</span></div><div class="pr "><span class="ps">2-1</span><div class="bw"><div class="b" style="width:11%"></div></div><span class="pp">11%</span><span class="pn">(13)</span></div><div class="pr "><span class="ps">4-0</span><div class="bw"><div class="b" style="width:7%"></div></div><span class="pp">7%</span><span class="pn">(8)</span></div></div></div><div class="mc">
 <div class="mh"><span class="mn">Col-Con</span><span class="mi"> 116 votos</span></div>
-<div class="tend"><div class="th" style="width:92%"></div><div class="td" style="width:7%"></div><div class="ta" style="width:1%"></div></div>
+<div class="tend"><div class="th" style="width:92%"></div><div class="tdiv" style="width:7%"></div><div class="ta" style="width:1%"></div></div>
 <div class="tl"><span><b>92%</b> Col</span><span>Empate <b>7%</b></span><span>Con <b>1%</b></span></div>
 <div class="pl"><div class="pr top1"><span class="ps">2-0</span><div class="bw"><div class="b" style="width:29%"></div></div><span class="pp">29%</span><span class="pn">(34)</span></div><div class="pr "><span class="ps">2-1</span><div class="bw"><div class="b" style="width:27%"></div></div><span class="pp">27%</span><span class="pn">(31)</span></div><div class="pr "><span class="ps">1-0</span><div class="bw"><div class="b" style="width:18%"></div></div><span class="pp">18%</span><span class="pn">(21)</span></div><div class="pr "><span class="ps">3-1</span><div class="bw"><div class="b" style="width:10%"></div></div><span class="pp">10%</span><span class="pn">(12)</span></div><div class="pr "><span class="ps">1-1</span><div class="bw"><div class="b" style="width:7%"></div></div><span class="pp">7%</span><span class="pn">(8)</span></div></div></div><div class="mc">
 <div class="mh"><span class="mn">Col-Por</span><span class="mi"> 116 votos</span></div>
-<div class="tend"><div class="th" style="width:9%"></div><div class="td" style="width:51%"></div><div class="ta" style="width:40%"></div></div>
+<div class="tend"><div class="th" style="width:9%"></div><div class="tdiv" style="width:51%"></div><div class="ta" style="width:40%"></div></div>
 <div class="tl"><span><b>9%</b> Col</span><span>Empate <b>51%</b></span><span>Por <b>40%</b></span></div>
 <div class="pl"><div class="pr top1"><span class="ps">1-1</span><div class="bw"><div class="b" style="width:32%"></div></div><span class="pp">32%</span><span class="pn">(37)</span></div><div class="pr "><span class="ps">1-2</span><div class="bw"><div class="b" style="width:25%"></div></div><span class="pp">25%</span><span class="pn">(29)</span></div><div class="pr "><span class="ps">2-2</span><div class="bw"><div class="b" style="width:17%"></div></div><span class="pp">17%</span><span class="pn">(20)</span></div><div class="pr "><span class="ps">2-1</span><div class="bw"><div class="b" style="width:8%"></div></div><span class="pp">8%</span><span class="pn">(9)</span></div><div class="pr "><span class="ps">2-3</span><div class="bw"><div class="b" style="width:5%"></div></div><span class="pp">5%</span><span class="pn">(6)</span></div></div></div><div class="mc">
 <div class="mh"><span class="mn">Con-Uzb</span><span class="mi"> 116 votos</span></div>
-<div class="tend"><div class="th" style="width:40%"></div><div class="td" style="width:34%"></div><div class="ta" style="width:27%"></div></div>
+<div class="tend"><div class="th" style="width:40%"></div><div class="tdiv" style="width:34%"></div><div class="ta" style="width:27%"></div></div>
 <div class="tl"><span><b>40%</b> Con</span><span>Empate <b>34%</b></span><span>Uzb <b>27%</b></span></div>
 <div class="pl"><div class="pr top1"><span class="ps">1-1</span><div class="bw"><div class="b" style="width:24%"></div></div><span class="pp">24%</span><span class="pn">(28)</span></div><div class="pr "><span class="ps">1-0</span><div class="bw"><div class="b" style="width:18%"></div></div><span class="pp">18%</span><span class="pn">(21)</span></div><div class="pr "><span class="ps">2-1</span><div class="bw"><div class="b" style="width:15%"></div></div><span class="pp">15%</span><span class="pn">(17)</span></div><div class="pr "><span class="ps">0-1</span><div class="bw"><div class="b" style="width:12%"></div></div><span class="pp">12%</span><span class="pn">(14)</span></div><div class="pr "><span class="ps">1-2</span><div class="bw"><div class="b" style="width:12%"></div></div><span class="pp">12%</span><span class="pn">(14)</span></div></div></div></div>
 <div class="gp" id="panel_Grupo_L"><div class="mc">
 <div class="mh"><span class="mn">Ing-Cro</span><span class="mi"> 116 votos</span></div>
-<div class="tend"><div class="th" style="width:64%"></div><div class="td" style="width:33%"></div><div class="ta" style="width:3%"></div></div>
+<div class="tend"><div class="th" style="width:64%"></div><div class="tdiv" style="width:33%"></div><div class="ta" style="width:3%"></div></div>
 <div class="tl"><span><b>64%</b> Ing</span><span>Empate <b>33%</b></span><span>Cro <b>3%</b></span></div>
 <div class="pl"><div class="pr top1"><span class="ps">2-1</span><div class="bw"><div class="b" style="width:37%"></div></div><span class="pp">37%</span><span class="pn">(43)</span></div><div class="pr "><span class="ps">1-1</span><div class="bw"><div class="b" style="width:16%"></div></div><span class="pp">16%</span><span class="pn">(19)</span></div><div class="pr "><span class="ps">2-2</span><div class="bw"><div class="b" style="width:16%"></div></div><span class="pp">16%</span><span class="pn">(18)</span></div><div class="pr "><span class="ps">3-1</span><div class="bw"><div class="b" style="width:8%"></div></div><span class="pp">8%</span><span class="pn">(9)</span></div><div class="pr "><span class="ps">2-0</span><div class="bw"><div class="b" style="width:7%"></div></div><span class="pp">7%</span><span class="pn">(8)</span></div></div></div><div class="mc">
 <div class="mh"><span class="mn">Gha-Pan</span><span class="mi"> 116 votos</span></div>
-<div class="tend"><div class="th" style="width:80%"></div><div class="td" style="width:13%"></div><div class="ta" style="width:7%"></div></div>
+<div class="tend"><div class="th" style="width:80%"></div><div class="tdiv" style="width:13%"></div><div class="ta" style="width:7%"></div></div>
 <div class="tl"><span><b>80%</b> Gha</span><span>Empate <b>13%</b></span><span>Pan <b>7%</b></span></div>
 <div class="pl"><div class="pr top1"><span class="ps">2-0</span><div class="bw"><div class="b" style="width:31%"></div></div><span class="pp">31%</span><span class="pn">(36)</span></div><div class="pr "><span class="ps">2-1</span><div class="bw"><div class="b" style="width:21%"></div></div><span class="pp">21%</span><span class="pn">(24)</span></div><div class="pr "><span class="ps">1-0</span><div class="bw"><div class="b" style="width:18%"></div></div><span class="pp">18%</span><span class="pn">(21)</span></div><div class="pr "><span class="ps">1-1</span><div class="bw"><div class="b" style="width:8%"></div></div><span class="pp">8%</span><span class="pn">(9)</span></div><div class="pr "><span class="ps">3-1</span><div class="bw"><div class="b" style="width:5%"></div></div><span class="pp">5%</span><span class="pn">(6)</span></div></div></div><div class="mc">
 <div class="mh"><span class="mn">Ing-Gha</span><span class="mi"> 116 votos</span></div>
-<div class="tend"><div class="th" style="width:95%"></div><div class="td" style="width:5%"></div><div class="ta" style="width:0%"></div></div>
+<div class="tend"><div class="th" style="width:95%"></div><div class="tdiv" style="width:5%"></div><div class="ta" style="width:0%"></div></div>
 <div class="tl"><span><b>95%</b> Ing</span><span>Empate <b>5%</b></span><span>Gha <b>0%</b></span></div>
 <div class="pl"><div class="pr top1"><span class="ps">2-0</span><div class="bw"><div class="b" style="width:28%"></div></div><span class="pp">28%</span><span class="pn">(33)</span></div><div class="pr "><span class="ps">2-1</span><div class="bw"><div class="b" style="width:18%"></div></div><span class="pp">18%</span><span class="pn">(21)</span></div><div class="pr "><span class="ps">3-0</span><div class="bw"><div class="b" style="width:18%"></div></div><span class="pp">18%</span><span class="pn">(21)</span></div><div class="pr "><span class="ps">3-1</span><div class="bw"><div class="b" style="width:17%"></div></div><span class="pp">17%</span><span class="pn">(20)</span></div><div class="pr "><span class="ps">1-0</span><div class="bw"><div class="b" style="width:9%"></div></div><span class="pp">9%</span><span class="pn">(10)</span></div></div></div><div class="mc">
 <div class="mh"><span class="mn">Pan-Cro</span><span class="mi"> 116 votos</span></div>
-<div class="tend"><div class="th" style="width:2%"></div><div class="td" style="width:3%"></div><div class="ta" style="width:95%"></div></div>
+<div class="tend"><div class="th" style="width:2%"></div><div class="tdiv" style="width:3%"></div><div class="ta" style="width:95%"></div></div>
 <div class="tl"><span><b>2%</b> Pan</span><span>Empate <b>3%</b></span><span>Cro <b>95%</b></span></div>
 <div class="pl"><div class="pr top1"><span class="ps">0-2</span><div class="bw"><div class="b" style="width:33%"></div></div><span class="pp">33%</span><span class="pn">(38)</span></div><div class="pr "><span class="ps">0-3</span><div class="bw"><div class="b" style="width:23%"></div></div><span class="pp">23%</span><span class="pn">(27)</span></div><div class="pr "><span class="ps">1-3</span><div class="bw"><div class="b" style="width:12%"></div></div><span class="pp">12%</span><span class="pn">(14)</span></div><div class="pr "><span class="ps">1-2</span><div class="bw"><div class="b" style="width:11%"></div></div><span class="pp">11%</span><span class="pn">(13)</span></div><div class="pr "><span class="ps">0-1</span><div class="bw"><div class="b" style="width:8%"></div></div><span class="pp">8%</span><span class="pn">(9)</span></div></div></div><div class="mc">
 <div class="mh"><span class="mn">Pan-Ing</span><span class="mi"> 116 votos</span></div>
-<div class="tend"><div class="th" style="width:0%"></div><div class="td" style="width:3%"></div><div class="ta" style="width:97%"></div></div>
+<div class="tend"><div class="th" style="width:0%"></div><div class="tdiv" style="width:3%"></div><div class="ta" style="width:97%"></div></div>
 <div class="tl"><span><b>0%</b> Pan</span><span>Empate <b>3%</b></span><span>Ing <b>97%</b></span></div>
 <div class="pl"><div class="pr top1"><span class="ps">0-3</span><div class="bw"><div class="b" style="width:32%"></div></div><span class="pp">32%</span><span class="pn">(37)</span></div><div class="pr "><span class="ps">0-2</span><div class="bw"><div class="b" style="width:20%"></div></div><span class="pp">20%</span><span class="pn">(23)</span></div><div class="pr "><span class="ps">0-4</span><div class="bw"><div class="b" style="width:17%"></div></div><span class="pp">17%</span><span class="pn">(20)</span></div><div class="pr "><span class="ps">1-4</span><div class="bw"><div class="b" style="width:7%"></div></div><span class="pp">7%</span><span class="pn">(8)</span></div><div class="pr "><span class="ps">1-2</span><div class="bw"><div class="b" style="width:7%"></div></div><span class="pp">7%</span><span class="pn">(8)</span></div></div></div><div class="mc">
 <div class="mh"><span class="mn">Cro-Gha</span><span class="mi"> 116 votos</span></div>
-<div class="tend"><div class="th" style="width:78%"></div><div class="td" style="width:21%"></div><div class="ta" style="width:2%"></div></div>
+<div class="tend"><div class="th" style="width:78%"></div><div class="tdiv" style="width:21%"></div><div class="ta" style="width:2%"></div></div>
 <div class="tl"><span><b>78%</b> Cro</span><span>Empate <b>21%</b></span><span>Gha <b>2%</b></span></div>
 <div class="pl"><div class="pr top1"><span class="ps">2-1</span><div class="bw"><div class="b" style="width:37%"></div></div><span class="pp">37%</span><span class="pn">(43)</span></div><div class="pr "><span class="ps">2-0</span><div class="bw"><div class="b" style="width:14%"></div></div><span class="pp">14%</span><span class="pn">(16)</span></div><div class="pr "><span class="ps">1-1</span><div class="bw"><div class="b" style="width:14%"></div></div><span class="pp">14%</span><span class="pn">(16)</span></div><div class="pr "><span class="ps">1-0</span><div class="bw"><div class="b" style="width:11%"></div></div><span class="pp">11%</span><span class="pn">(13)</span></div><div class="pr "><span class="ps">3-1</span><div class="bw"><div class="b" style="width:9%"></div></div><span class="pp">9%</span><span class="pn">(11)</span></div></div></div></div>
-
-  </div>
+</div>
 </div>
 
-<!-- POSICIONES POR GRUPO -->
 <div id="tab-posiciones" class="tab">
-  <div style="padding:10px 14px 4px;background:#0d2137;border-bottom:1px solid #1e3a55">
-    <p style="font-size:.72rem;color:#8ab4d4">% de participantes que apostaron cada marcador por posición en cada grupo</p>
+  <div style="padding:8px 14px;background:#0d2137;border-bottom:1px solid #1e3a55;font-size:.7rem;color:#8ab4d4">
+    % de participantes que predicen cada equipo en cada posición del grupo
   </div>
-  <div id="pos-content"></div>
+  <div class="pos-grp">
+<h3>Grupo A</h3>
+<table>
+<thead><tr><th>Equipo</th><th>🥇 1°</th><th>🥈 2°</th><th>🥉 3°</th><th>4°</th></tr></thead>
+<tbody><tr>
+<td class="tnm">México</td>
+<td><div class="pbar"><div class="pbfill p1f" style="width:104.4px"></div></div><span class="pnum">58%</span></td>
+<td><div class="pbar"><div class="pbfill p2f" style="width:57.6px"></div></div><span class="pnum">32%</span></td>
+<td><div class="pbar"><div class="pbfill p3f" style="width:16.2px"></div></div><span class="pnum">9%</span></td>
+<td><div class="pbar"><div class="pbfill p4f" style="width:3.6px"></div></div><span class="pnum">2%</span></td>
+</tr><tr>
+<td class="tnm">Chequia</td>
+<td><div class="pbar"><div class="pbfill p1f" style="width:39.6px"></div></div><span class="pnum">22%</span></td>
+<td><div class="pbar"><div class="pbfill p2f" style="width:55.800000000000004px"></div></div><span class="pnum">31%</span></td>
+<td><div class="pbar"><div class="pbfill p3f" style="width:52.2px"></div></div><span class="pnum">29%</span></td>
+<td><div class="pbar"><div class="pbfill p4f" style="width:30.6px"></div></div><span class="pnum">17%</span></td>
+</tr><tr>
+<td class="tnm">Corea del Sur</td>
+<td><div class="pbar"><div class="pbfill p1f" style="width:32.4px"></div></div><span class="pnum">18%</span></td>
+<td><div class="pbar"><div class="pbfill p2f" style="width:57.6px"></div></div><span class="pnum">32%</span></td>
+<td><div class="pbar"><div class="pbfill p3f" style="width:64.8px"></div></div><span class="pnum">36%</span></td>
+<td><div class="pbar"><div class="pbfill p4f" style="width:25.2px"></div></div><span class="pnum">14%</span></td>
+</tr><tr>
+<td class="tnm">Sudáfrica</td>
+<td><div class="pbar"><div class="pbfill p1f" style="width:3.6px"></div></div><span class="pnum">2%</span></td>
+<td><div class="pbar"><div class="pbfill p2f" style="width:9.0px"></div></div><span class="pnum">5%</span></td>
+<td><div class="pbar"><div class="pbfill p3f" style="width:46.800000000000004px"></div></div><span class="pnum">26%</span></td>
+<td><div class="pbar"><div class="pbfill p4f" style="width:120.60000000000001px"></div></div><span class="pnum">67%</span></td>
+</tr></tbody>
+</table>
+</div><div class="pos-grp">
+<h3>Grupo B</h3>
+<table>
+<thead><tr><th>Equipo</th><th>🥇 1°</th><th>🥈 2°</th><th>🥉 3°</th><th>4°</th></tr></thead>
+<tbody><tr>
+<td class="tnm">Suiza</td>
+<td><div class="pbar"><div class="pbfill p1f" style="width:156.6px"></div></div><span class="pnum">87%</span></td>
+<td><div class="pbar"><div class="pbfill p2f" style="width:19.8px"></div></div><span class="pnum">11%</span></td>
+<td><div class="pbar"><div class="pbfill p3f" style="width:1.8px"></div></div><span class="pnum">1%</span></td>
+<td><div class="pbar"><div class="pbfill p4f" style="width:1.8px"></div></div><span class="pnum">1%</span></td>
+</tr><tr>
+<td class="tnm">Canadá</td>
+<td><div class="pbar"><div class="pbfill p1f" style="width:18.0px"></div></div><span class="pnum">10%</span></td>
+<td><div class="pbar"><div class="pbfill p2f" style="width:135.0px"></div></div><span class="pnum">75%</span></td>
+<td><div class="pbar"><div class="pbfill p3f" style="width:25.2px"></div></div><span class="pnum">14%</span></td>
+<td><div class="pbar"><div class="pbfill p4f" style="width:1.8px"></div></div><span class="pnum">1%</span></td>
+</tr><tr>
+<td class="tnm">Bosnia</td>
+<td><div class="pbar"><div class="pbfill p1f" style="width:5.4px"></div></div><span class="pnum">3%</span></td>
+<td><div class="pbar"><div class="pbfill p2f" style="width:23.400000000000002px"></div></div><span class="pnum">13%</span></td>
+<td><div class="pbar"><div class="pbfill p3f" style="width:113.4px"></div></div><span class="pnum">63%</span></td>
+<td><div class="pbar"><div class="pbfill p4f" style="width:39.6px"></div></div><span class="pnum">22%</span></td>
+</tr><tr>
+<td class="tnm">Qatar</td>
+<td><div class="pbar"><div class="pbfill p1f" style="width:0.0px"></div></div><span class="pnum">0%</span></td>
+<td><div class="pbar"><div class="pbfill p2f" style="width:1.8px"></div></div><span class="pnum">1%</span></td>
+<td><div class="pbar"><div class="pbfill p3f" style="width:39.6px"></div></div><span class="pnum">22%</span></td>
+<td><div class="pbar"><div class="pbfill p4f" style="width:138.6px"></div></div><span class="pnum">77%</span></td>
+</tr></tbody>
+</table>
+</div><div class="pos-grp">
+<h3>Grupo C</h3>
+<table>
+<thead><tr><th>Equipo</th><th>🥇 1°</th><th>🥈 2°</th><th>🥉 3°</th><th>4°</th></tr></thead>
+<tbody><tr>
+<td class="tnm">Brasil</td>
+<td><div class="pbar"><div class="pbfill p1f" style="width:135.0px"></div></div><span class="pnum">75%</span></td>
+<td><div class="pbar"><div class="pbfill p2f" style="width:43.2px"></div></div><span class="pnum">24%</span></td>
+<td><div class="pbar"><div class="pbfill p3f" style="width:1.8px"></div></div><span class="pnum">1%</span></td>
+<td><div class="pbar"><div class="pbfill p4f" style="width:0.0px"></div></div><span class="pnum">0%</span></td>
+</tr><tr>
+<td class="tnm">Marruecos</td>
+<td><div class="pbar"><div class="pbfill p1f" style="width:45.0px"></div></div><span class="pnum">25%</span></td>
+<td><div class="pbar"><div class="pbfill p2f" style="width:126.0px"></div></div><span class="pnum">70%</span></td>
+<td><div class="pbar"><div class="pbfill p3f" style="width:7.2px"></div></div><span class="pnum">4%</span></td>
+<td><div class="pbar"><div class="pbfill p4f" style="width:1.8px"></div></div><span class="pnum">1%</span></td>
+</tr><tr>
+<td class="tnm">Haití</td>
+<td><div class="pbar"><div class="pbfill p1f" style="width:0.0px"></div></div><span class="pnum">0%</span></td>
+<td><div class="pbar"><div class="pbfill p2f" style="width:0.0px"></div></div><span class="pnum">0%</span></td>
+<td><div class="pbar"><div class="pbfill p3f" style="width:9.0px"></div></div><span class="pnum">5%</span></td>
+<td><div class="pbar"><div class="pbfill p4f" style="width:171.0px"></div></div><span class="pnum">95%</span></td>
+</tr><tr>
+<td class="tnm">Escocia</td>
+<td><div class="pbar"><div class="pbfill p1f" style="width:0.0px"></div></div><span class="pnum">0%</span></td>
+<td><div class="pbar"><div class="pbfill p2f" style="width:10.8px"></div></div><span class="pnum">6%</span></td>
+<td><div class="pbar"><div class="pbfill p3f" style="width:162.0px"></div></div><span class="pnum">90%</span></td>
+<td><div class="pbar"><div class="pbfill p4f" style="width:7.2px"></div></div><span class="pnum">4%</span></td>
+</tr></tbody>
+</table>
+</div><div class="pos-grp">
+<h3>Grupo D</h3>
+<table>
+<thead><tr><th>Equipo</th><th>🥇 1°</th><th>🥈 2°</th><th>🥉 3°</th><th>4°</th></tr></thead>
+<tbody><tr>
+<td class="tnm">EE.UU.</td>
+<td><div class="pbar"><div class="pbfill p1f" style="width:91.8px"></div></div><span class="pnum">51%</span></td>
+<td><div class="pbar"><div class="pbfill p2f" style="width:50.4px"></div></div><span class="pnum">28%</span></td>
+<td><div class="pbar"><div class="pbfill p3f" style="width:30.6px"></div></div><span class="pnum">17%</span></td>
+<td><div class="pbar"><div class="pbfill p4f" style="width:5.4px"></div></div><span class="pnum">3%</span></td>
+</tr><tr>
+<td class="tnm">Turquía</td>
+<td><div class="pbar"><div class="pbfill p1f" style="width:57.6px"></div></div><span class="pnum">32%</span></td>
+<td><div class="pbar"><div class="pbfill p2f" style="width:63.0px"></div></div><span class="pnum">35%</span></td>
+<td><div class="pbar"><div class="pbfill p3f" style="width:43.2px"></div></div><span class="pnum">24%</span></td>
+<td><div class="pbar"><div class="pbfill p4f" style="width:16.2px"></div></div><span class="pnum">9%</span></td>
+</tr><tr>
+<td class="tnm">Paraguay</td>
+<td><div class="pbar"><div class="pbfill p1f" style="width:28.8px"></div></div><span class="pnum">16%</span></td>
+<td><div class="pbar"><div class="pbfill p2f" style="width:55.800000000000004px"></div></div><span class="pnum">31%</span></td>
+<td><div class="pbar"><div class="pbfill p3f" style="width:72.0px"></div></div><span class="pnum">40%</span></td>
+<td><div class="pbar"><div class="pbfill p4f" style="width:25.2px"></div></div><span class="pnum">14%</span></td>
+</tr><tr>
+<td class="tnm">Australia</td>
+<td><div class="pbar"><div class="pbfill p1f" style="width:3.6px"></div></div><span class="pnum">2%</span></td>
+<td><div class="pbar"><div class="pbfill p2f" style="width:9.0px"></div></div><span class="pnum">5%</span></td>
+<td><div class="pbar"><div class="pbfill p3f" style="width:34.2px"></div></div><span class="pnum">19%</span></td>
+<td><div class="pbar"><div class="pbfill p4f" style="width:133.20000000000002px"></div></div><span class="pnum">74%</span></td>
+</tr></tbody>
+</table>
+</div><div class="pos-grp">
+<h3>Grupo E</h3>
+<table>
+<thead><tr><th>Equipo</th><th>🥇 1°</th><th>🥈 2°</th><th>🥉 3°</th><th>4°</th></tr></thead>
+<tbody><tr>
+<td class="tnm">Alemania</td>
+<td><div class="pbar"><div class="pbfill p1f" style="width:174.6px"></div></div><span class="pnum">97%</span></td>
+<td><div class="pbar"><div class="pbfill p2f" style="width:5.4px"></div></div><span class="pnum">3%</span></td>
+<td><div class="pbar"><div class="pbfill p3f" style="width:1.8px"></div></div><span class="pnum">1%</span></td>
+<td><div class="pbar"><div class="pbfill p4f" style="width:0.0px"></div></div><span class="pnum">0%</span></td>
+</tr><tr>
+<td class="tnm">Ecuador</td>
+<td><div class="pbar"><div class="pbfill p1f" style="width:5.4px"></div></div><span class="pnum">3%</span></td>
+<td><div class="pbar"><div class="pbfill p2f" style="width:156.6px"></div></div><span class="pnum">87%</span></td>
+<td><div class="pbar"><div class="pbfill p3f" style="width:16.2px"></div></div><span class="pnum">9%</span></td>
+<td><div class="pbar"><div class="pbfill p4f" style="width:0.0px"></div></div><span class="pnum">0%</span></td>
+</tr><tr>
+<td class="tnm">Curazao</td>
+<td><div class="pbar"><div class="pbfill p1f" style="width:0.0px"></div></div><span class="pnum">0%</span></td>
+<td><div class="pbar"><div class="pbfill p2f" style="width:0.0px"></div></div><span class="pnum">0%</span></td>
+<td><div class="pbar"><div class="pbfill p3f" style="width:14.4px"></div></div><span class="pnum">8%</span></td>
+<td><div class="pbar"><div class="pbfill p4f" style="width:165.6px"></div></div><span class="pnum">92%</span></td>
+</tr><tr>
+<td class="tnm">C. de Marfil</td>
+<td><div class="pbar"><div class="pbfill p1f" style="width:0.0px"></div></div><span class="pnum">0%</span></td>
+<td><div class="pbar"><div class="pbfill p2f" style="width:18.0px"></div></div><span class="pnum">10%</span></td>
+<td><div class="pbar"><div class="pbfill p3f" style="width:147.6px"></div></div><span class="pnum">82%</span></td>
+<td><div class="pbar"><div class="pbfill p4f" style="width:14.4px"></div></div><span class="pnum">8%</span></td>
+</tr></tbody>
+</table>
+</div><div class="pos-grp">
+<h3>Grupo F</h3>
+<table>
+<thead><tr><th>Equipo</th><th>🥇 1°</th><th>🥈 2°</th><th>🥉 3°</th><th>4°</th></tr></thead>
+<tbody><tr>
+<td class="tnm">Países Bajos</td>
+<td><div class="pbar"><div class="pbfill p1f" style="width:129.6px"></div></div><span class="pnum">72%</span></td>
+<td><div class="pbar"><div class="pbfill p2f" style="width:48.6px"></div></div><span class="pnum">27%</span></td>
+<td><div class="pbar"><div class="pbfill p3f" style="width:1.8px"></div></div><span class="pnum">1%</span></td>
+<td><div class="pbar"><div class="pbfill p4f" style="width:1.8px"></div></div><span class="pnum">1%</span></td>
+</tr><tr>
+<td class="tnm">Japón</td>
+<td><div class="pbar"><div class="pbfill p1f" style="width:28.8px"></div></div><span class="pnum">16%</span></td>
+<td><div class="pbar"><div class="pbfill p2f" style="width:84.60000000000001px"></div></div><span class="pnum">47%</span></td>
+<td><div class="pbar"><div class="pbfill p3f" style="width:50.4px"></div></div><span class="pnum">28%</span></td>
+<td><div class="pbar"><div class="pbfill p4f" style="width:16.2px"></div></div><span class="pnum">9%</span></td>
+</tr><tr>
+<td class="tnm">Suecia</td>
+<td><div class="pbar"><div class="pbfill p1f" style="width:23.400000000000002px"></div></div><span class="pnum">13%</span></td>
+<td><div class="pbar"><div class="pbfill p2f" style="width:39.6px"></div></div><span class="pnum">22%</span></td>
+<td><div class="pbar"><div class="pbfill p3f" style="width:95.4px"></div></div><span class="pnum">53%</span></td>
+<td><div class="pbar"><div class="pbfill p4f" style="width:19.8px"></div></div><span class="pnum">11%</span></td>
+</tr><tr>
+<td class="tnm">Túnez</td>
+<td><div class="pbar"><div class="pbfill p1f" style="width:0.0px"></div></div><span class="pnum">0%</span></td>
+<td><div class="pbar"><div class="pbfill p2f" style="width:7.2px"></div></div><span class="pnum">4%</span></td>
+<td><div class="pbar"><div class="pbfill p3f" style="width:30.6px"></div></div><span class="pnum">17%</span></td>
+<td><div class="pbar"><div class="pbfill p4f" style="width:140.4px"></div></div><span class="pnum">78%</span></td>
+</tr></tbody>
+</table>
+</div><div class="pos-grp">
+<h3>Grupo G</h3>
+<table>
+<thead><tr><th>Equipo</th><th>🥇 1°</th><th>🥈 2°</th><th>🥉 3°</th><th>4°</th></tr></thead>
+<tbody><tr>
+<td class="tnm">Bélgica</td>
+<td><div class="pbar"><div class="pbfill p1f" style="width:154.8px"></div></div><span class="pnum">86%</span></td>
+<td><div class="pbar"><div class="pbfill p2f" style="width:19.8px"></div></div><span class="pnum">11%</span></td>
+<td><div class="pbar"><div class="pbfill p3f" style="width:3.6px"></div></div><span class="pnum">2%</span></td>
+<td><div class="pbar"><div class="pbfill p4f" style="width:1.8px"></div></div><span class="pnum">1%</span></td>
+</tr><tr>
+<td class="tnm">Egipto</td>
+<td><div class="pbar"><div class="pbfill p1f" style="width:19.8px"></div></div><span class="pnum">11%</span></td>
+<td><div class="pbar"><div class="pbfill p2f" style="width:109.8px"></div></div><span class="pnum">61%</span></td>
+<td><div class="pbar"><div class="pbfill p3f" style="width:45.0px"></div></div><span class="pnum">25%</span></td>
+<td><div class="pbar"><div class="pbfill p4f" style="width:5.4px"></div></div><span class="pnum">3%</span></td>
+</tr><tr>
+<td class="tnm">Irán</td>
+<td><div class="pbar"><div class="pbfill p1f" style="width:3.6px"></div></div><span class="pnum">2%</span></td>
+<td><div class="pbar"><div class="pbfill p2f" style="width:16.2px"></div></div><span class="pnum">9%</span></td>
+<td><div class="pbar"><div class="pbfill p3f" style="width:70.2px"></div></div><span class="pnum">39%</span></td>
+<td><div class="pbar"><div class="pbfill p4f" style="width:90.0px"></div></div><span class="pnum">50%</span></td>
+</tr><tr>
+<td class="tnm">Nueva Zelanda</td>
+<td><div class="pbar"><div class="pbfill p1f" style="width:1.8px"></div></div><span class="pnum">1%</span></td>
+<td><div class="pbar"><div class="pbfill p2f" style="width:32.4px"></div></div><span class="pnum">18%</span></td>
+<td><div class="pbar"><div class="pbfill p3f" style="width:61.2px"></div></div><span class="pnum">34%</span></td>
+<td><div class="pbar"><div class="pbfill p4f" style="width:84.60000000000001px"></div></div><span class="pnum">47%</span></td>
+</tr></tbody>
+</table>
+</div><div class="pos-grp">
+<h3>Grupo H</h3>
+<table>
+<thead><tr><th>Equipo</th><th>🥇 1°</th><th>🥈 2°</th><th>🥉 3°</th><th>4°</th></tr></thead>
+<tbody><tr>
+<td class="tnm">España</td>
+<td><div class="pbar"><div class="pbfill p1f" style="width:138.6px"></div></div><span class="pnum">77%</span></td>
+<td><div class="pbar"><div class="pbfill p2f" style="width:41.4px"></div></div><span class="pnum">23%</span></td>
+<td><div class="pbar"><div class="pbfill p3f" style="width:0.0px"></div></div><span class="pnum">0%</span></td>
+<td><div class="pbar"><div class="pbfill p4f" style="width:0.0px"></div></div><span class="pnum">0%</span></td>
+</tr><tr>
+<td class="tnm">Uruguay</td>
+<td><div class="pbar"><div class="pbfill p1f" style="width:41.4px"></div></div><span class="pnum">23%</span></td>
+<td><div class="pbar"><div class="pbfill p2f" style="width:135.0px"></div></div><span class="pnum">75%</span></td>
+<td><div class="pbar"><div class="pbfill p3f" style="width:0.0px"></div></div><span class="pnum">0%</span></td>
+<td><div class="pbar"><div class="pbfill p4f" style="width:1.8px"></div></div><span class="pnum">1%</span></td>
+</tr><tr>
+<td class="tnm">Arabia Saudita</td>
+<td><div class="pbar"><div class="pbfill p1f" style="width:0.0px"></div></div><span class="pnum">0%</span></td>
+<td><div class="pbar"><div class="pbfill p2f" style="width:0.0px"></div></div><span class="pnum">0%</span></td>
+<td><div class="pbar"><div class="pbfill p3f" style="width:165.6px"></div></div><span class="pnum">92%</span></td>
+<td><div class="pbar"><div class="pbfill p4f" style="width:14.4px"></div></div><span class="pnum">8%</span></td>
+</tr><tr>
+<td class="tnm">Arabia Saudita</td>
+<td><div class="pbar"><div class="pbfill p1f" style="width:0.0px"></div></div><span class="pnum">0%</span></td>
+<td><div class="pbar"><div class="pbfill p2f" style="width:1.8px"></div></div><span class="pnum">1%</span></td>
+<td><div class="pbar"><div class="pbfill p3f" style="width:0.0px"></div></div><span class="pnum">0%</span></td>
+<td><div class="pbar"><div class="pbfill p4f" style="width:102.60000000000001px"></div></div><span class="pnum">57%</span></td>
+</tr><tr>
+<td class="tnm">Cabo Verde</td>
+<td><div class="pbar"><div class="pbfill p1f" style="width:0.0px"></div></div><span class="pnum">0%</span></td>
+<td><div class="pbar"><div class="pbfill p2f" style="width:1.8px"></div></div><span class="pnum">1%</span></td>
+<td><div class="pbar"><div class="pbfill p3f" style="width:14.4px"></div></div><span class="pnum">8%</span></td>
+<td><div class="pbar"><div class="pbfill p4f" style="width:61.2px"></div></div><span class="pnum">34%</span></td>
+</tr></tbody>
+</table>
+</div><div class="pos-grp">
+<h3>Grupo I</h3>
+<table>
+<thead><tr><th>Equipo</th><th>🥇 1°</th><th>🥈 2°</th><th>🥉 3°</th><th>4°</th></tr></thead>
+<tbody><tr>
+<td class="tnm">Francia</td>
+<td><div class="pbar"><div class="pbfill p1f" style="width:160.20000000000002px"></div></div><span class="pnum">89%</span></td>
+<td><div class="pbar"><div class="pbfill p2f" style="width:16.2px"></div></div><span class="pnum">9%</span></td>
+<td><div class="pbar"><div class="pbfill p3f" style="width:3.6px"></div></div><span class="pnum">2%</span></td>
+<td><div class="pbar"><div class="pbfill p4f" style="width:0.0px"></div></div><span class="pnum">0%</span></td>
+</tr><tr>
+<td class="tnm">Noruega</td>
+<td><div class="pbar"><div class="pbfill p1f" style="width:18.0px"></div></div><span class="pnum">10%</span></td>
+<td><div class="pbar"><div class="pbfill p2f" style="width:122.4px"></div></div><span class="pnum">68%</span></td>
+<td><div class="pbar"><div class="pbfill p3f" style="width:36.0px"></div></div><span class="pnum">20%</span></td>
+<td><div class="pbar"><div class="pbfill p4f" style="width:3.6px"></div></div><span class="pnum">2%</span></td>
+</tr><tr>
+<td class="tnm">Senegal</td>
+<td><div class="pbar"><div class="pbfill p1f" style="width:1.8px"></div></div><span class="pnum">1%</span></td>
+<td><div class="pbar"><div class="pbfill p2f" style="width:39.6px"></div></div><span class="pnum">22%</span></td>
+<td><div class="pbar"><div class="pbfill p3f" style="width:126.0px"></div></div><span class="pnum">70%</span></td>
+<td><div class="pbar"><div class="pbfill p4f" style="width:12.6px"></div></div><span class="pnum">7%</span></td>
+</tr><tr>
+<td class="tnm">Irak</td>
+<td><div class="pbar"><div class="pbfill p1f" style="width:0.0px"></div></div><span class="pnum">0%</span></td>
+<td><div class="pbar"><div class="pbfill p2f" style="width:0.0px"></div></div><span class="pnum">0%</span></td>
+<td><div class="pbar"><div class="pbfill p3f" style="width:16.2px"></div></div><span class="pnum">9%</span></td>
+<td><div class="pbar"><div class="pbfill p4f" style="width:163.8px"></div></div><span class="pnum">91%</span></td>
+</tr></tbody>
+</table>
+</div><div class="pos-grp">
+<h3>Grupo J</h3>
+<table>
+<thead><tr><th>Equipo</th><th>🥇 1°</th><th>🥈 2°</th><th>🥉 3°</th><th>4°</th></tr></thead>
+<tbody><tr>
+<td class="tnm">Argentina</td>
+<td><div class="pbar"><div class="pbfill p1f" style="width:172.8px"></div></div><span class="pnum">96%</span></td>
+<td><div class="pbar"><div class="pbfill p2f" style="width:5.4px"></div></div><span class="pnum">3%</span></td>
+<td><div class="pbar"><div class="pbfill p3f" style="width:1.8px"></div></div><span class="pnum">1%</span></td>
+<td><div class="pbar"><div class="pbfill p4f" style="width:0.0px"></div></div><span class="pnum">0%</span></td>
+</tr><tr>
+<td class="tnm">Australia</td>
+<td><div class="pbar"><div class="pbfill p1f" style="width:5.4px"></div></div><span class="pnum">3%</span></td>
+<td><div class="pbar"><div class="pbfill p2f" style="width:97.2px"></div></div><span class="pnum">54%</span></td>
+<td><div class="pbar"><div class="pbfill p3f" style="width:70.2px"></div></div><span class="pnum">39%</span></td>
+<td><div class="pbar"><div class="pbfill p4f" style="width:7.2px"></div></div><span class="pnum">4%</span></td>
+</tr><tr>
+<td class="tnm">Argelia</td>
+<td><div class="pbar"><div class="pbfill p1f" style="width:3.6px"></div></div><span class="pnum">2%</span></td>
+<td><div class="pbar"><div class="pbfill p2f" style="width:75.60000000000001px"></div></div><span class="pnum">42%</span></td>
+<td><div class="pbar"><div class="pbfill p3f" style="width:91.8px"></div></div><span class="pnum">51%</span></td>
+<td><div class="pbar"><div class="pbfill p4f" style="width:9.0px"></div></div><span class="pnum">5%</span></td>
+</tr><tr>
+<td class="tnm">Jordania</td>
+<td><div class="pbar"><div class="pbfill p1f" style="width:0.0px"></div></div><span class="pnum">0%</span></td>
+<td><div class="pbar"><div class="pbfill p2f" style="width:0.0px"></div></div><span class="pnum">0%</span></td>
+<td><div class="pbar"><div class="pbfill p3f" style="width:16.2px"></div></div><span class="pnum">9%</span></td>
+<td><div class="pbar"><div class="pbfill p4f" style="width:163.8px"></div></div><span class="pnum">91%</span></td>
+</tr></tbody>
+</table>
+</div><div class="pos-grp">
+<h3>Grupo K</h3>
+<table>
+<thead><tr><th>Equipo</th><th>🥇 1°</th><th>🥈 2°</th><th>🥉 3°</th><th>4°</th></tr></thead>
+<tbody><tr>
+<td class="tnm">Portugal</td>
+<td><div class="pbar"><div class="pbfill p1f" style="width:163.8px"></div></div><span class="pnum">91%</span></td>
+<td><div class="pbar"><div class="pbfill p2f" style="width:16.2px"></div></div><span class="pnum">9%</span></td>
+<td><div class="pbar"><div class="pbfill p3f" style="width:0.0px"></div></div><span class="pnum">0%</span></td>
+<td><div class="pbar"><div class="pbfill p4f" style="width:0.0px"></div></div><span class="pnum">0%</span></td>
+</tr><tr>
+<td class="tnm">Colombia</td>
+<td><div class="pbar"><div class="pbfill p1f" style="width:16.2px"></div></div><span class="pnum">9%</span></td>
+<td><div class="pbar"><div class="pbfill p2f" style="width:153.0px"></div></div><span class="pnum">85%</span></td>
+<td><div class="pbar"><div class="pbfill p3f" style="width:9.0px"></div></div><span class="pnum">5%</span></td>
+<td><div class="pbar"><div class="pbfill p4f" style="width:0.0px"></div></div><span class="pnum">0%</span></td>
+</tr><tr>
+<td class="tnm">Austria</td>
+<td><div class="pbar"><div class="pbfill p1f" style="width:0.0px"></div></div><span class="pnum">0%</span></td>
+<td><div class="pbar"><div class="pbfill p2f" style="width:5.4px"></div></div><span class="pnum">3%</span></td>
+<td><div class="pbar"><div class="pbfill p3f" style="width:126.0px"></div></div><span class="pnum">70%</span></td>
+<td><div class="pbar"><div class="pbfill p4f" style="width:48.6px"></div></div><span class="pnum">27%</span></td>
+</tr><tr>
+<td class="tnm">Uzbekistán</td>
+<td><div class="pbar"><div class="pbfill p1f" style="width:0.0px"></div></div><span class="pnum">0%</span></td>
+<td><div class="pbar"><div class="pbfill p2f" style="width:3.6px"></div></div><span class="pnum">2%</span></td>
+<td><div class="pbar"><div class="pbfill p3f" style="width:45.0px"></div></div><span class="pnum">25%</span></td>
+<td><div class="pbar"><div class="pbfill p4f" style="width:131.4px"></div></div><span class="pnum">73%</span></td>
+</tr></tbody>
+</table>
+</div><div class="pos-grp">
+<h3>Grupo L</h3>
+<table>
+<thead><tr><th>Equipo</th><th>🥇 1°</th><th>🥈 2°</th><th>🥉 3°</th><th>4°</th></tr></thead>
+<tbody><tr>
+<td class="tnm">Inglaterra</td>
+<td><div class="pbar"><div class="pbfill p1f" style="width:129.6px"></div></div><span class="pnum">72%</span></td>
+<td><div class="pbar"><div class="pbfill p2f" style="width:50.4px"></div></div><span class="pnum">28%</span></td>
+<td><div class="pbar"><div class="pbfill p3f" style="width:1.8px"></div></div><span class="pnum">1%</span></td>
+<td><div class="pbar"><div class="pbfill p4f" style="width:0.0px"></div></div><span class="pnum">0%</span></td>
+</tr><tr>
+<td class="tnm">Croacia</td>
+<td><div class="pbar"><div class="pbfill p1f" style="width:50.4px"></div></div><span class="pnum">28%</span></td>
+<td><div class="pbar"><div class="pbfill p2f" style="width:122.4px"></div></div><span class="pnum">68%</span></td>
+<td><div class="pbar"><div class="pbfill p3f" style="width:3.6px"></div></div><span class="pnum">2%</span></td>
+<td><div class="pbar"><div class="pbfill p4f" style="width:3.6px"></div></div><span class="pnum">2%</span></td>
+</tr><tr>
+<td class="tnm">Ghana</td>
+<td><div class="pbar"><div class="pbfill p1f" style="width:0.0px"></div></div><span class="pnum">0%</span></td>
+<td><div class="pbar"><div class="pbfill p2f" style="width:5.4px"></div></div><span class="pnum">3%</span></td>
+<td><div class="pbar"><div class="pbfill p3f" style="width:163.8px"></div></div><span class="pnum">91%</span></td>
+<td><div class="pbar"><div class="pbfill p4f" style="width:12.6px"></div></div><span class="pnum">7%</span></td>
+</tr><tr>
+<td class="tnm">Panamá</td>
+<td><div class="pbar"><div class="pbfill p1f" style="width:0.0px"></div></div><span class="pnum">0%</span></td>
+<td><div class="pbar"><div class="pbfill p2f" style="width:3.6px"></div></div><span class="pnum">2%</span></td>
+<td><div class="pbar"><div class="pbfill p3f" style="width:12.6px"></div></div><span class="pnum">7%</span></td>
+<td><div class="pbar"><div class="pbfill p4f" style="width:163.8px"></div></div><span class="pnum">91%</span></td>
+</tr></tbody>
+</table>
+</div>
 </div>
 
 <script>
@@ -548,126 +895,18 @@ function showTab(id,el){
   document.querySelectorAll('.nav a').forEach(a=>a.classList.remove('act'));
   document.getElementById('tab-'+id).classList.add('act');
   el.classList.add('act');
-  if(id==='posiciones') buildPosiciones();
 }
-
 function filterTable(q){
   q=q.toLowerCase();
   document.querySelectorAll('#rank-body tr').forEach(tr=>{
     tr.classList.toggle('hidden',q&&!tr.cells[1].textContent.toLowerCase().includes(q));
   });
 }
-
 function switchGrp(id,btn){
   document.querySelectorAll('.grp-btn').forEach(b=>b.classList.remove('act'));
   document.querySelectorAll('.gp').forEach(p=>p.classList.remove('act'));
   btn.classList.add('act');
   document.getElementById('panel_'+id).classList.add('act');
-}
-
-// Datos de predicciones de posiciones por grupo
-// Extraemos de las predicciones de cada partido cuales equipos ganaron más votos
-const groupTeams = {
-  'A':['Mex','Saf','Kor','Cze'],'B':['Can','Qat','Swi','Bih'],
-  'C':['Bra','Mar','Esc','Hai'],'D':['Usa','Par','Aus','Tur'],
-  'E':['Ale','CM','Ecu','Cur'],'F':['PB','Jap','Tun','Swe'],
-  'G':['Bel','Egi','Ira','NZ'],'H':['Esp','CV','SA','Uru'],
-  'I':['Fra','Sen','Nor','Irq'],'J':['Arg','Alg','Con','Jor'],
-  'K':['Por','Col','Uzb','Con'],'L':['Ing','Cro','Gha','Pan']
-};
-
-// Nombres completos para mostrar
-const teamNames = {
-  'Mex':'México','Saf':'Sudáfrica','Kor':'Corea del Sur','Cze':'Chequia',
-  'Can':'Canadá','Qat':'Qatar','Swi':'Suiza','Bih':'Bosnia',
-  'Bra':'Brasil','Mar':'Marruecos','Esc':'Escocia','Hai':'Haití',
-  'Usa':'EE.UU.','Par':'Paraguay','Aus':'Australia','Tur':'Turquía',
-  'Ale':'Alemania','CM':'Costa de Marfil','Ecu':'Ecuador','Cur':'Curazao',
-  'PB':'Países Bajos','Jap':'Japón','Tun':'Túnez','Swe':'Suecia',
-  'Bel':'Bélgica','Egi':'Egipto','Ira':'Irán','NZ':'Nueva Zelanda',
-  'Esp':'España','CV':'Cabo Verde','SA':'Arabia Saudita','Uru':'Uruguay',
-  'Fra':'Francia','Sen':'Senegal','Nor':'Noruega','Irq':'Irak',
-  'Arg':'Argentina','Alg':'Argelia','Con':'Austria','Jor':'Jordania',
-  'Por':'Portugal','Col':'Colombia','Uzb':'Uzbekistán',
-  'Ing':'Inglaterra','Cro':'Croacia','Gha':'Ghana','Pan':'Panamá'
-};
-
-const PREDS_RAW = {"Felipe Gaitan": {"Ing-Cro": "2-1", "Gha-Pan": "2-0", "Ing-Gha": "3-1", "Pan-Cro": "0-3", "Pan-Ing": "0-3", "Cro-Gha": "2-0"}, "Juan Diego Martinez": {"Ing-Cro": "1-1", "Gha-Pan": "1-0", "Ing-Gha": "2-0", "Pan-Cro": "0-2", "Pan-Ing": "0-3", "Cro-Gha": "1-0"}, "Katerine Hernandez": {"Ing-Cro": "1-1", "Gha-Pan": "2-1", "Ing-Gha": "2-1", "Pan-Cro": "1-2", "Pan-Ing": "0-2", "Cro-Gha": "1-1"}, "Veronica Skinner": {"Ing-Cro": "2-0", "Gha-Pan": "2-0", "Ing-Gha": "3-1", "Pan-Cro": "0-2", "Pan-Ing": "0-3", "Cro-Gha": "2-1"}, "Ferney Ardila": {"Ing-Cro": "2-1", "Gha-Pan": "2-0", "Ing-Gha": "2-0", "Pan-Cro": "0-2", "Pan-Ing": "0-3", "Cro-Gha": "1-0"}, "Alejandro Escallon (hijo)": {"Ing-Cro": "1-0", "Gha-Pan": "2-0", "Ing-Gha": "3-1", "Pan-Cro": "0-2", "Pan-Ing": "0-4", "Cro-Gha": "2-1"}, "Juan Pablo Delgado": {"Ing-Cro": "1-1", "Gha-Pan": "2-1", "Ing-Gha": "3-1", "Pan-Cro": "0-2", "Pan-Ing": "0-3", "Cro-Gha": "1-1"}, "Daniel Escobar": {"Ing-Cro": "2-2", "Gha-Pan": "2-0", "Ing-Gha": "3-0", "Pan-Cro": "0-4", "Pan-Ing": "0-5", "Cro-Gha": "3-1"}, "Alejandro Escallon (papa)": {"Ing-Cro": "2-1", "Gha-Pan": "1-1", "Ing-Gha": "3-0", "Pan-Cro": "0-2", "Pan-Ing": "0-3", "Cro-Gha": "2-0"}, "Felipe Merizalde": {"Ing-Cro": "3-2", "Gha-Pan": "3-1", "Ing-Gha": "3-1", "Pan-Cro": "0-2", "Pan-Ing": "0-1", "Cro-Gha": "2-2"}, "Jairo Rios": {"Ing-Cro": "2-0", "Gha-Pan": "0-0", "Ing-Gha": "2-2", "Pan-Cro": "0-0", "Pan-Ing": "0-0", "Cro-Gha": "2-1"}, "Juan Manuel Matiz": {"Ing-Cro": "3-1", "Gha-Pan": "2-1", "Ing-Gha": "4-0", "Pan-Cro": "0-3", "Pan-Ing": "0-5", "Cro-Gha": "0-0"}, "Ana Maria Perez": {"Ing-Cro": "3-1", "Gha-Pan": "1-0", "Ing-Gha": "2-0", "Pan-Cro": "1-3", "Pan-Ing": "0-2", "Cro-Gha": "2-1"}, "Andres Sarmiento": {"Ing-Cro": "2-2", "Gha-Pan": "2-1", "Ing-Gha": "3-1", "Pan-Cro": "1-3", "Pan-Ing": "0-2", "Cro-Gha": "2-2"}, "Nicolas Reyes": {"Ing-Cro": "2-2", "Gha-Pan": "2-0", "Ing-Gha": "1-0", "Pan-Cro": "0-3", "Pan-Ing": "1-5", "Cro-Gha": "2-0"}, "Jose Pablo Reyes": {"Ing-Cro": "2-1", "Gha-Pan": "2-0", "Ing-Gha": "3-1", "Pan-Cro": "1-3", "Pan-Ing": "1-4", "Cro-Gha": "2-0"}, "Mariana Reyes": {"Ing-Cro": "2-2", "Gha-Pan": "0-0", "Ing-Gha": "2-0", "Pan-Cro": "0-2", "Pan-Ing": "0-2", "Cro-Gha": "2-1"}, "Dayana Cruz": {"Ing-Cro": "2-0", "Gha-Pan": "1-0", "Ing-Gha": "3-0", "Pan-Cro": "0-2", "Pan-Ing": "0-3", "Cro-Gha": "2-0"}, "Daniel Gomez": {"Ing-Cro": "2-1", "Gha-Pan": "2-1", "Ing-Gha": "2-0", "Pan-Cro": "0-2", "Pan-Ing": "0-2", "Cro-Gha": "1-1"}, "Mauricio Quiroga": {"Ing-Cro": "3-1", "Gha-Pan": "2-1", "Ing-Gha": "2-0", "Pan-Cro": "0-2", "Pan-Ing": "0-4", "Cro-Gha": "2-1"}, "Juan Carlos Rebolledo": {"Ing-Cro": "2-1", "Gha-Pan": "2-1", "Ing-Gha": "3-1", "Pan-Cro": "1-3", "Pan-Ing": "1-4", "Cro-Gha": "2-1"}, "Juan Martin Mejia": {"Ing-Cro": "0-1", "Gha-Pan": "0-1", "Ing-Gha": "3-0", "Pan-Cro": "0-3", "Pan-Ing": "0-2", "Cro-Gha": "2-0"}, "Andres Merizalde": {"Ing-Cro": "2-2", "Gha-Pan": "1-0", "Ing-Gha": "1-0", "Pan-Cro": "0-2", "Pan-Ing": "0-2", "Cro-Gha": "1-1"}, "Juliana Silva": {"Ing-Cro": "4-2", "Gha-Pan": "2-1", "Ing-Gha": "3-1", "Pan-Cro": "1-3", "Pan-Ing": "1-4", "Cro-Gha": "3-1"}, "Daniel Pombo": {"Ing-Cro": "1-1", "Gha-Pan": "2-0", "Ing-Gha": "1-0", "Pan-Cro": "0-2", "Pan-Ing": "0-3", "Cro-Gha": "1-0"}, "Jaime Silva": {"Ing-Cro": "2-1", "Gha-Pan": "2-2", "Ing-Gha": "3-1", "Pan-Cro": "1-4", "Pan-Ing": "1-5", "Cro-Gha": "3-1"}, "Juan Felipe Tamayo": {"Ing-Cro": "2-1", "Gha-Pan": "2-0", "Ing-Gha": "2-0", "Pan-Cro": "1-3", "Pan-Ing": "0-4", "Cro-Gha": "2-1"}, "Eduardo Rangel": {"Ing-Cro": "2-1", "Gha-Pan": "1-0", "Ing-Gha": "2-1", "Pan-Cro": "0-2", "Pan-Ing": "0-2", "Cro-Gha": "2-1"}, "Adriana Zauner": {"Ing-Cro": "2-1", "Gha-Pan": "0-1", "Ing-Gha": "3-1", "Pan-Cro": "1-2", "Pan-Ing": "1-2", "Cro-Gha": "2-1"}, "Santiago Mejia": {"Ing-Cro": "1-1", "Gha-Pan": "1-0", "Ing-Gha": "2-1", "Pan-Cro": "0-1", "Pan-Ing": "1-4", "Cro-Gha": "2-1"}, "Andres Olarte": {"Ing-Cro": "2-1", "Gha-Pan": "3-1", "Ing-Gha": "3-0", "Pan-Cro": "1-3", "Pan-Ing": "0-3", "Cro-Gha": "2-1"}, "Juan Manuel Perez": {"Ing-Cro": "1-1", "Gha-Pan": "1-0", "Ing-Gha": "2-0", "Pan-Cro": "0-2", "Pan-Ing": "1-2", "Cro-Gha": "1-1"}, "Pedro Montaño": {"Ing-Cro": "1-1", "Gha-Pan": "1-0", "Ing-Gha": "1-0", "Pan-Cro": "0-1", "Pan-Ing": "1-2", "Cro-Gha": "1-1"}, "Agustin Vejarano": {"Ing-Cro": "3-2", "Gha-Pan": "2-1", "Ing-Gha": "3-0", "Pan-Cro": "0-3", "Pan-Ing": "0-3", "Cro-Gha": "3-1"}, "Sebastian Manzanera": {"Ing-Cro": "4-3", "Gha-Pan": "2-1", "Ing-Gha": "2-0", "Pan-Cro": "1-4", "Pan-Ing": "1-3", "Cro-Gha": "2-1"}, "Andres Silva": {"Ing-Cro": "1-1", "Gha-Pan": "1-1", "Ing-Gha": "3-1", "Pan-Cro": "1-2", "Pan-Ing": "0-2", "Cro-Gha": "2-0"}, "Jaime Mor": {"Ing-Cro": "2-2", "Gha-Pan": "2-0", "Ing-Gha": "2-0", "Pan-Cro": "1-2", "Pan-Ing": "0-3", "Cro-Gha": "2-1"}, "Santiago Acevedo": {"Ing-Cro": "2-1", "Gha-Pan": "1-0", "Ing-Gha": "4-0", "Pan-Cro": "0-2", "Pan-Ing": "0-5", "Cro-Gha": "1-0"}, "Augusto Hernandez": {"Ing-Cro": "2-0", "Gha-Pan": "1-0", "Ing-Gha": "3-0", "Pan-Cro": "0-4", "Pan-Ing": "0-5", "Cro-Gha": "3-1"}, "Juan Jose Olarte": {"Ing-Cro": "1-0", "Gha-Pan": "3-0", "Ing-Gha": "2-0", "Pan-Cro": "0-4", "Pan-Ing": "0-6", "Cro-Gha": "3-1"}, "Juan Roberto Gomez": {"Ing-Cro": "2-1", "Gha-Pan": "2-0", "Ing-Gha": "4-0", "Pan-Cro": "1-3", "Pan-Ing": "0-4", "Cro-Gha": "3-1"}, "Alejandro Acosta": {"Ing-Cro": "2-1", "Gha-Pan": "2-1", "Ing-Gha": "2-1", "Pan-Cro": "0-2", "Pan-Ing": "0-3", "Cro-Gha": "1-0"}, "Alfonso Vejarano": {"Ing-Cro": "3-2", "Gha-Pan": "2-1", "Ing-Gha": "3-0", "Pan-Cro": "0-3", "Pan-Ing": "0-3", "Cro-Gha": "3-1"}, "Joey Borrero": {"Ing-Cro": "3-2", "Gha-Pan": "2-0", "Ing-Gha": "1-1", "Pan-Cro": "1-0", "Pan-Ing": "0-3", "Cro-Gha": "1-1"}, "Mauricio Borrero": {"Ing-Cro": "2-2", "Gha-Pan": "3-1", "Ing-Gha": "2-1", "Pan-Cro": "1-2", "Pan-Ing": "1-3", "Cro-Gha": "2-1"}, "Phyllis Conn": {"Ing-Cro": "2-2", "Gha-Pan": "1-2", "Ing-Gha": "2-1", "Pan-Cro": "2-1", "Pan-Ing": "1-2", "Cro-Gha": "1-2"}, "Rebecca Borrero": {"Ing-Cro": "2-1", "Gha-Pan": "2-1", "Ing-Gha": "1-0", "Pan-Cro": "0-1", "Pan-Ing": "1-1", "Cro-Gha": "0-1"}, "Monica Zauner": {"Ing-Cro": "2-2", "Gha-Pan": "1-2", "Ing-Gha": "2-0", "Pan-Cro": "1-2", "Pan-Ing": "1-3", "Cro-Gha": "3-0"}, "Daniel Mordo": {"Ing-Cro": "2-1", "Gha-Pan": "2-0", "Ing-Gha": "3-0", "Pan-Cro": "0-3", "Pan-Ing": "0-5", "Cro-Gha": "4-1"}, "Daniel Herrera": {"Ing-Cro": "2-2", "Gha-Pan": "2-0", "Ing-Gha": "2-0", "Pan-Cro": "0-3", "Pan-Ing": "0-3", "Cro-Gha": "2-1"}, "Fernando Piñeros": {"Ing-Cro": "1-1", "Gha-Pan": "2-0", "Ing-Gha": "1-1", "Pan-Cro": "0-3", "Pan-Ing": "0-3", "Cro-Gha": "2-1"}, "Javier Ropero": {"Ing-Cro": "1-1", "Gha-Pan": "2-1", "Ing-Gha": "3-0", "Pan-Cro": "1-1", "Pan-Ing": "0-3", "Cro-Gha": "2-1"}, "Ernesto Samper": {"Ing-Cro": "3-1", "Gha-Pan": "2-0", "Ing-Gha": "3-0", "Pan-Cro": "0-3", "Pan-Ing": "0-5", "Cro-Gha": "2-1"}, "Federico Camacho": {"Ing-Cro": "2-2", "Gha-Pan": "1-2", "Ing-Gha": "3-1", "Pan-Cro": "2-2", "Pan-Ing": "0-3", "Cro-Gha": "1-1"}, "Juan Pablo Duran": {"Ing-Cro": "2-1", "Gha-Pan": "3-1", "Ing-Gha": "2-0", "Pan-Cro": "0-3", "Pan-Ing": "0-4", "Cro-Gha": "1-1"}, "Alejandro Arias": {"Ing-Cro": "2-1", "Gha-Pan": "0-0", "Ing-Gha": "4-0", "Pan-Cro": "0-3", "Pan-Ing": "0-4", "Cro-Gha": "3-0"}, "Alejandro Hernandez": {"Ing-Cro": "2-0", "Gha-Pan": "1-1", "Ing-Gha": "3-0", "Pan-Cro": "0-2", "Pan-Ing": "0-3", "Cro-Gha": "2-0"}, "Luis Enrique Bermudez": {"Ing-Cro": "2-1", "Gha-Pan": "2-0", "Ing-Gha": "2-0", "Pan-Cro": "0-1", "Pan-Ing": "0-3", "Cro-Gha": "1-0"}, "Juan Pablo Isaza": {"Ing-Cro": "1-1", "Gha-Pan": "2-0", "Ing-Gha": "2-0", "Pan-Cro": "0-3", "Pan-Ing": "0-3", "Cro-Gha": "2-1"}, "Antonia Quijano": {"Ing-Cro": "2-1", "Gha-Pan": "2-0", "Ing-Gha": "3-0", "Pan-Cro": "1-2", "Pan-Ing": "0-4", "Cro-Gha": "1-1"}, "Ricardo Sarmiento": {"Ing-Cro": "1-1", "Gha-Pan": "2-0", "Ing-Gha": "2-0", "Pan-Cro": "0-3", "Pan-Ing": "0-3", "Cro-Gha": "2-1"}, "Alvaro Acosta": {"Ing-Cro": "2-1", "Gha-Pan": "0-1", "Ing-Gha": "2-0", "Pan-Cro": "1-2", "Pan-Ing": "1-1", "Cro-Gha": "1-1"}, "Andres Cadena": {"Ing-Cro": "2-1", "Gha-Pan": "2-1", "Ing-Gha": "3-1", "Pan-Cro": "0-3", "Pan-Ing": "0-4", "Cro-Gha": "3-0"}, "Enrique Casas": {"Ing-Cro": "1-1", "Gha-Pan": "2-0", "Ing-Gha": "2-1", "Pan-Cro": "0-2", "Pan-Ing": "0-2", "Cro-Gha": "1-0"}, "Alejandro Lisson": {"Ing-Cro": "2-1", "Gha-Pan": "1-0", "Ing-Gha": "1-0", "Pan-Cro": "0-1", "Pan-Ing": "0-2", "Cro-Gha": "1-1"}, "Fabian Morales": {"Ing-Cro": "1-0", "Gha-Pan": "3-0", "Ing-Gha": "2-1", "Pan-Cro": "1-4", "Pan-Ing": "0-3", "Cro-Gha": "1-1"}, "Erika Padilla": {"Ing-Cro": "1-1", "Gha-Pan": "2-0", "Ing-Gha": "2-0", "Pan-Cro": "0-3", "Pan-Ing": "0-4", "Cro-Gha": "1-0"}, "Andrea Mordo": {"Ing-Cro": "3-1", "Gha-Pan": "2-1", "Ing-Gha": "1-0", "Pan-Cro": "1-3", "Pan-Ing": "0-4", "Cro-Gha": "2-2"}, "Pablo Gomez": {"Ing-Cro": "2-1", "Gha-Pan": "3-0", "Ing-Gha": "3-0", "Pan-Cro": "0-3", "Pan-Ing": "0-4", "Cro-Gha": "2-1"}, "Fernando Ortiz": {"Ing-Cro": "2-1", "Gha-Pan": "1-0", "Ing-Gha": "2-1", "Pan-Cro": "0-1", "Pan-Ing": "0-2", "Cro-Gha": "2-2"}, "Armando Benito-Revollo": {"Ing-Cro": "1-1", "Gha-Pan": "2-0", "Ing-Gha": "2-0", "Pan-Cro": "0-1", "Pan-Ing": "0-2", "Cro-Gha": "1-0"}, "Pablo Andrade": {"Ing-Cro": "2-2", "Gha-Pan": "2-0", "Ing-Gha": "3-1", "Pan-Cro": "1-2", "Pan-Ing": "0-2", "Cro-Gha": "2-0"}, "Rodrigo Gonzalez": {"Ing-Cro": "2-1", "Gha-Pan": "1-0", "Ing-Gha": "3-0", "Pan-Cro": "1-3", "Pan-Ing": "0-4", "Cro-Gha": "3-1"}, "Billy Belzner": {"Ing-Cro": "3-0", "Gha-Pan": "2-0", "Ing-Gha": "2-2", "Pan-Cro": "1-3", "Pan-Ing": "0-3", "Cro-Gha": "3-2"}, "Daniel Mor": {"Ing-Cro": "2-2", "Gha-Pan": "2-1", "Ing-Gha": "1-0", "Pan-Cro": "0-2", "Pan-Ing": "0-2", "Cro-Gha": "2-0"}, "Felipe Chalela": {"Ing-Cro": "2-2", "Gha-Pan": "1-1", "Ing-Gha": "1-0", "Pan-Cro": "0-3", "Pan-Ing": "1-4", "Cro-Gha": "2-1"}, "Alberto Fonseca": {"Ing-Cro": "4-3", "Gha-Pan": "1-0", "Ing-Gha": "4-0", "Pan-Cro": "0-3", "Pan-Ing": "0-7", "Cro-Gha": "4-1"}, "Fernando Arana": {"Ing-Cro": "3-1", "Gha-Pan": "2-1", "Ing-Gha": "3-0", "Pan-Cro": "1-1", "Pan-Ing": "0-3", "Cro-Gha": "2-1"}, "Andres Felipe Olarte": {"Ing-Cro": "2-1", "Gha-Pan": "1-0", "Ing-Gha": "2-1", "Pan-Cro": "0-2", "Pan-Ing": "0-1", "Cro-Gha": "1-1"}, "Benjamin Olarte": {"Ing-Cro": "2-2", "Gha-Pan": "0-0", "Ing-Gha": "2-0", "Pan-Cro": "1-2", "Pan-Ing": "0-3", "Cro-Gha": "3-0"}, "Bianca Olarte": {"Ing-Cro": "2-0", "Gha-Pan": "2-0", "Ing-Gha": "3-0", "Pan-Cro": "0-2", "Pan-Ing": "1-2", "Cro-Gha": "2-1"}, "Laura Molina": {"Ing-Cro": "1-1", "Gha-Pan": "1-0", "Ing-Gha": "2-0", "Pan-Cro": "0-2", "Pan-Ing": "0-3", "Cro-Gha": "2-1"}, "Juan Miguel Olarte": {"Ing-Cro": "3-1", "Gha-Pan": "3-0", "Ing-Gha": "2-1", "Pan-Cro": "0-2", "Pan-Ing": "0-4", "Cro-Gha": "2-2"}, "Edith Vargas": {"Ing-Cro": "2-1", "Gha-Pan": "2-1", "Ing-Gha": "3-1", "Pan-Cro": "0-2", "Pan-Ing": "0-3", "Cro-Gha": "2-0"}, "Sinda Mendizabal": {"Ing-Cro": "2-2", "Gha-Pan": "1-1", "Ing-Gha": "2-1", "Pan-Cro": "0-1", "Pan-Ing": "1-2", "Cro-Gha": "2-1"}, "Cristian Ardila": {"Ing-Cro": "2-2", "Gha-Pan": "1-1", "Ing-Gha": "2-0", "Pan-Cro": "0-2", "Pan-Ing": "0-2", "Cro-Gha": "1-0"}, "Alejandro Arbelaez": {"Ing-Cro": "0-1", "Gha-Pan": "3-0", "Ing-Gha": "1-1", "Pan-Cro": "0-4", "Pan-Ing": "0-3", "Cro-Gha": "0-0"}, "Javier Garcia": {"Ing-Cro": "1-1", "Gha-Pan": "2-0", "Ing-Gha": "3-1", "Pan-Cro": "0-3", "Pan-Ing": "0-4", "Cro-Gha": "2-0"}, "Nicolas De Narvaez": {"Ing-Cro": "2-1", "Gha-Pan": "2-0", "Ing-Gha": "2-0", "Pan-Cro": "0-2", "Pan-Ing": "0-2", "Cro-Gha": "1-0"}, "Christian Kling": {"Ing-Cro": "3-2", "Gha-Pan": "2-1", "Ing-Gha": "2-1", "Pan-Cro": "0-3", "Pan-Ing": "0-3", "Cro-Gha": "2-1"}, "Eva Kling": {"Ing-Cro": "3-0", "Gha-Pan": "2-1", "Ing-Gha": "2-0", "Pan-Cro": "0-3", "Pan-Ing": "0-3", "Cro-Gha": "2-1"}, "Daniel Gonzalez": {"Ing-Cro": "3-1", "Gha-Pan": "2-0", "Ing-Gha": "2-1", "Pan-Cro": "0-3", "Pan-Ing": "1-4", "Cro-Gha": "2-2"}, "Alejandro Paez": {"Ing-Cro": "2-1", "Gha-Pan": "4-0", "Ing-Gha": "1-1", "Pan-Cro": "1-3", "Pan-Ing": "0-2", "Cro-Gha": "2-0"}, "Mauricio Posse": {"Ing-Cro": "2-1", "Gha-Pan": "1-0", "Ing-Gha": "2-0", "Pan-Cro": "0-1", "Pan-Ing": "0-2", "Cro-Gha": "1-0"}, "Jorge Tirado": {"Ing-Cro": "1-2", "Gha-Pan": "1-0", "Ing-Gha": "2-0", "Pan-Cro": "0-2", "Pan-Ing": "0-2", "Cro-Gha": "2-1"}, "Erich Riaño": {"Ing-Cro": "3-3", "Gha-Pan": "2-0", "Ing-Gha": "3-0", "Pan-Cro": "0-3", "Pan-Ing": "0-3", "Cro-Gha": "3-1"}, "Mark Mordo": {"Ing-Cro": "2-1", "Gha-Pan": "1-0", "Ing-Gha": "2-0", "Pan-Cro": "1-2", "Pan-Ing": "0-4", "Cro-Gha": "2-1"}, "Luis F. Fracica": {"Ing-Cro": "1-1", "Gha-Pan": "1-1", "Ing-Gha": "2-0", "Pan-Cro": "0-2", "Pan-Ing": "0-2", "Cro-Gha": "2-1"}, "Andres Mejia": {"Ing-Cro": "2-2", "Gha-Pan": "2-0", "Ing-Gha": "2-1", "Pan-Cro": "0-3", "Pan-Ing": "0-4", "Cro-Gha": "2-1"}, "Diego Rios": {"Ing-Cro": "2-1", "Gha-Pan": "1-1", "Ing-Gha": "2-0", "Pan-Cro": "0-2", "Pan-Ing": "0-2", "Cro-Gha": "2-1"}, "Jennie Levitt": {"Ing-Cro": "1-1", "Gha-Pan": "1-2", "Ing-Gha": "3-0", "Pan-Cro": "1-2", "Pan-Ing": "0-2", "Cro-Gha": "2-0"}, "Santiago Urdaneta": {"Ing-Cro": "3-0", "Gha-Pan": "1-2", "Ing-Gha": "2-1", "Pan-Cro": "1-3", "Pan-Ing": "0-3", "Cro-Gha": "2-1"}, "Carlos Vergara": {"Ing-Cro": "2-1", "Gha-Pan": "2-0", "Ing-Gha": "3-0", "Pan-Cro": "1-3", "Pan-Ing": "1-2", "Cro-Gha": "2-1"}, "Diego Perez": {"Ing-Cro": "2-1", "Gha-Pan": "1-1", "Ing-Gha": "3-1", "Pan-Cro": "0-2", "Pan-Ing": "0-4", "Cro-Gha": "2-1"}, "Andres Rodriguez": {"Ing-Cro": "2-0", "Gha-Pan": "3-1", "Ing-Gha": "2-1", "Pan-Cro": "1-2", "Pan-Ing": "1-3", "Cro-Gha": "1-1"}, "Juan Carlos Osorio": {"Ing-Cro": "3-1", "Gha-Pan": "2-1", "Ing-Gha": "2-0", "Pan-Cro": "0-2", "Pan-Ing": "0-4", "Cro-Gha": "2-1"}, "Andres Gamboa": {"Ing-Cro": "2-1", "Gha-Pan": "2-0", "Ing-Gha": "2-0", "Pan-Cro": "0-4", "Pan-Ing": "0-3", "Cro-Gha": "3-1"}, "Camilo Pomares": {"Ing-Cro": "2-1", "Gha-Pan": "2-2", "Ing-Gha": "2-0", "Pan-Cro": "0-2", "Pan-Ing": "1-4", "Cro-Gha": "1-1"}, "Sergio Rodriguez": {"Ing-Cro": "2-1", "Gha-Pan": "1-0", "Ing-Gha": "3-1", "Pan-Cro": "0-2", "Pan-Ing": "1-1", "Cro-Gha": "1-0"}, "Luis Felipe Aparicio": {"Ing-Cro": "1-2", "Gha-Pan": "1-0", "Ing-Gha": "2-1", "Pan-Cro": "0-2", "Pan-Ing": "0-3", "Cro-Gha": "2-1"}, "Alejandro Gonzalez": {"Ing-Cro": "2-1", "Gha-Pan": "2-0", "Ing-Gha": "3-0", "Pan-Cro": "0-2", "Pan-Ing": "0-3", "Cro-Gha": "2-0"}, "Javier Tafur": {"Ing-Cro": "2-1", "Gha-Pan": "2-0", "Ing-Gha": "3-1", "Pan-Cro": "0-3", "Pan-Ing": "0-3", "Cro-Gha": "2-1"}, "Santiago Rendon": {"Ing-Cro": "2-0", "Gha-Pan": "2-1", "Ing-Gha": "1-0", "Pan-Cro": "0-4", "Pan-Ing": "1-4", "Cro-Gha": "2-1"}, "Pablo Andrade-2": {"Ing-Cro": "2-1", "Gha-Pan": "3-1", "Ing-Gha": "2-1", "Pan-Cro": "0-2", "Pan-Ing": "0-4", "Cro-Gha": "2-1"}, "Juan Pedro Mendieta": {"Ing-Cro": "2-1", "Gha-Pan": "2-1", "Ing-Gha": "2-1", "Pan-Cro": "0-2", "Pan-Ing": "1-2", "Cro-Gha": "2-1"}, "Reinaldo Acosta": {"Ing-Cro": "2-1", "Gha-Pan": "2-0", "Ing-Gha": "2-1", "Pan-Cro": "0-3", "Pan-Ing": "0-4", "Cro-Gha": "2-0"}};
-
-// Para cada grupo, calcular qué equipos tienen más votos como "1°, 2°, 3°, 4°"
-// Basado en los partidos: si un participante apostó que equipo X gana todos o la mayoría, se infiere
-// Mejor: mostrar % de victorias predichas por equipo en el grupo
-
-function buildPosiciones(){
-  const cont = document.getElementById('pos-content');
-  if(cont.innerHTML) return; // ya construido
-  
-  let html='';
-  Object.entries(groupTeams).forEach(([grp, teams])=>{
-    // Para cada equipo, contar cuántos participantes lo tienen ganando más partidos (posición 1)
-    // Calculamos puntos de cada equipo en las predicciones de cada participante
-    const teamWins = {};
-    teams.forEach(t=>teamWins[t]=0);
-    
-    // Contar cuántas veces cada equipo aparece como "ganador" en las predicciones
-    // Basado en los partidos del grupo
-    const groupMatchKeys = [];
-    teams.forEach(t1=>teams.forEach(t2=>{
-      if(t1!==t2){
-        const k1=t1+'-'+t2, k2=t2+'-'+t1;
-        groupMatchKeys.push(k1,k2);
-      }
-    }));
-    
-    let totalParts=0;
-    const teamVotes={};
-    teams.forEach(t=>teamVotes[t]=0);
-    
-    Object.values(PREDS_RAW).forEach(preds=>{
-      const teamPts={};
-      teams.forEach(t=>teamPts[t]=0);
-      let hasAny=false;
-      
-      groupMatchKeys.forEach(key=>{
-        if(!preds[key]) return;
-        const [ph,pa]=preds[key].split('-').map(Number);
-        if(isNaN(ph)||isNaN(pa)) return;
-        const [ht,at]=key.split('-');
-        if(!teams.includes(ht)||!teams.includes(at)) return;
-        hasAny=true;
-        if(ph>pa) teamPts[ht]=(teamPts[ht]||0)+3;
-        else if(ph<pa) teamPts[at]=(teamPts[at]||0)+3;
-        else { teamPts[ht]=(teamPts[ht]||0)+1; teamPts[at]=(teamPts[at]||0)+1; }
-      });
-      
-      if(hasAny){
-        totalParts++;
-        const winner=Object.entries(teamPts).sort((a,b)=>b[1]-a[1])[0][0];
-        teamVotes[winner]=(teamVotes[winner]||0)+1;
-      }
-    });
-    
-    const sorted=Object.entries(teamVotes).sort((a,b)=>b[1]-a[1]);
-    const rows=sorted.map(([t,v],i)=>{
-      const pct=totalParts?Math.round(v/totalParts*100):0;
-      const pos=i===0?'🥇':i===1?'🥈':i===2?'🥉':'4°';
-      return `<tr>
-        <td>${pos}</td>
-        <td>${teamNames[t]||t}</td>
-        <td>${v}</td>
-        <td><span>${pct}%</span><span class="pct-bar" style="width:${pct*0.6}px"></span></td>
-      </tr>`;
-    }).join('');
-    
-    html+=`<div class="pos-grp">
-      <h3>Grupo ${grp}</h3>
-      <table>
-        <thead><tr><th>Pos</th><th>Equipo</th><th>Votos</th><th>%</th></tr></thead>
-        <tbody>${rows}</tbody>
-      </table>
-    </div>`;
-  });
-  cont.innerHTML=html;
 }
 </script>
 </body>
