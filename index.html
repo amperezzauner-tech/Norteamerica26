@@ -13,7 +13,7 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;backgrou
 .rbar{background:#132840;padding:7px 14px;font-size:.68rem;color:#8ab4d4;border-bottom:1px solid #1e3a55;overflow-x:auto;white-space:nowrap}
 .rbar b{color:#4cde7a}
 .nav{display:flex;background:#0d2137;border-bottom:2px solid #1e3a55;position:sticky;top:0;z-index:20}
-.nav a{flex:1;display:block;padding:12px 2px;text-align:center;font-size:.72rem;font-weight:700;color:#6a8faa;text-decoration:none;text-transform:uppercase;letter-spacing:.5px;border-bottom:3px solid transparent;cursor:pointer}
+.nav a{flex:1;display:block;padding:10px 2px;text-align:center;font-size:.65rem;font-weight:700;color:#6a8faa;text-decoration:none;text-transform:uppercase;letter-spacing:.4px;border-bottom:3px solid transparent;cursor:pointer}
 .nav a.act{color:#f5d020;border-bottom-color:#f5d020}
 .tab{display:none;padding-bottom:70px}.tab.act{display:block}
 .sb{padding:10px 14px;background:#0d2137;border-bottom:1px solid #1e3a55}
@@ -37,8 +37,7 @@ td{padding:10px 8px;font-size:.88rem}
 .rbadge{background:#1a5c2a;color:#4cde7a;padding:2px 6px;border-radius:6px;font-size:.7rem;font-weight:700;margin-right:4px}
 .tend{display:flex;height:6px;margin:9px 13px 2px;border-radius:3px;overflow:hidden}
 .th{background:#2e86de}.tdiv{background:#8ab4d4}.ta{background:#e74c3c}
-.tl{display:flex;justify-content:space-between;padding:2px 13px 8px;font-size:.7rem;color:#8ab4d4}
-.tl b{color:#fff}
+.tl{display:flex;justify-content:space-between;padding:2px 13px 8px;font-size:.7rem;color:#8ab4d4}.tl b{color:#fff}
 .pl{padding:6px 13px 11px}
 .pr{display:flex;align-items:center;gap:8px;margin-bottom:6px}
 .ps{font-size:.82rem;font-weight:700;min-width:40px}
@@ -60,6 +59,16 @@ td{padding:10px 8px;font-size:.88rem}
 .pbfill{height:100%;border-radius:3px;display:block}
 .p1f{background:#f5d020}.p2f{background:#8ab4d4}.p3f{background:#c8a200}.p4f{background:#3a5a7a}
 .pnum{font-size:.7rem;color:#8ab4d4;margin-left:4px}
+.cat-card{margin:10px 12px;background:#0d2137;border-radius:10px;border:1px solid #1e3a55;overflow:hidden;margin-bottom:10px}
+.cat-card h4{background:#1a3a5c;padding:9px 14px;font-size:.85rem;color:#f5d020;font-weight:700}
+.cat-card table{width:100%}
+.cat-card tbody td{padding:8px 10px;font-size:.82rem;border-bottom:1px solid #1a3050;color:#fff;vertical-align:middle}
+.cat-card tbody tr:last-child td{border-bottom:none}
+.ci{text-align:left;padding-left:12px!important;font-weight:500;min-width:140px}
+.cbar{display:inline-block;height:7px;background:#1e3a55;border-radius:3px;width:120px;vertical-align:middle;overflow:hidden}
+.cbfill{height:100%;background:#c8a200;border-radius:3px;display:block}
+.cpct{text-align:right;color:#f5d020;font-weight:700;font-size:.8rem;min-width:38px;padding-right:4px}
+.ccnt{text-align:right;color:#6a8faa;font-size:.72rem;padding-right:10px}
 </style>
 </head>
 <body>
@@ -72,12 +81,12 @@ td{padding:10px 8px;font-size:.88rem}
   <a class="act" onclick="showTab('ranking',this)">Ranking</a>
   <a onclick="showTab('preds',this)">Predicciones</a>
   <a onclick="showTab('posiciones',this)">Posiciones</a>
+  <a onclick="showTab('campeones',this)">Campeones</a>
 </div>
 <div id="tab-ranking" class="tab act">
   <div class="sb"><input type="text" placeholder="🔍 Buscar participante..." oninput="filterTable(this.value)"></div>
-  <table>
-    <thead><tr><th>#</th><th>Participante</th><th>Pts</th></tr></thead>
-    <tbody id="rank-body"><tr><td>1</td><td>🥇 Alejandro Lisson</td><td>46</td></tr>
+  <table><thead><tr><th>#</th><th>Participante</th><th>Pts</th></tr></thead>
+  <tbody id="rank-body"><tr><td>1</td><td>🥇 Alejandro Lisson</td><td>46</td></tr>
 <tr><td>2</td><td>🥈 Juan Jose Olarte</td><td>42</td></tr>
 <tr><td>3</td><td>🥉 Fabian Morales</td><td>41</td></tr>
 <tr><td>4</td><td> Andres Merizalde</td><td>40</td></tr>
@@ -193,8 +202,7 @@ td{padding:10px 8px;font-size:.88rem}
 <tr><td>114</td><td> Alejandro Arbelaez</td><td>16</td></tr>
 <tr><td>115</td><td> Nicolas De Narvaez</td><td>16</td></tr>
 <tr><td>116</td><td> Rebecca Borrero</td><td>16</td></tr>
-</tbody>
-  </table>
+</tbody></table>
 </div>
 <div id="tab-preds" class="tab">
   <div class="gb"><button class="grp-btn act" onclick="switchGrp('Grupo_A',this)">A</button>
@@ -516,372 +524,577 @@ td{padding:10px 8px;font-size:.88rem}
   <div style="padding:8px 14px;background:#0d2137;border-bottom:1px solid #1e3a55;font-size:.7rem;color:#8ab4d4">
     % de participantes que predicen cada equipo en cada posición del grupo
   </div>
-  <div class="pos-grp">
-<h3>Grupo A</h3>
-<table>
-<thead><tr><th>Equipo</th><th>🥇 1°</th><th>🥈 2°</th><th>🥉 3°</th><th>4°</th></tr></thead>
-<tbody><tr>
-<td class="tnm">México</td>
-<td><div class="pbar"><div class="pbfill p1f" style="width:104.4px"></div></div><span class="pnum">58%</span></td>
-<td><div class="pbar"><div class="pbfill p2f" style="width:57.6px"></div></div><span class="pnum">32%</span></td>
-<td><div class="pbar"><div class="pbfill p3f" style="width:16.2px"></div></div><span class="pnum">9%</span></td>
-<td><div class="pbar"><div class="pbfill p4f" style="width:3.6px"></div></div><span class="pnum">2%</span></td>
+  <div class="pos-grp"><h3>Grupo A</h3><table><thead><tr><th>Equipo</th><th>🥇 1°</th><th>🥈 2°</th><th>🥉 3°</th><th>4°</th></tr></thead><tbody><tr><td class="tnm">México</td><td><div class="pbar"><div class="pbfill p1f" style="width:142.20000000000002px"></div></div><span class="pnum">79%</span></td><td><div class="pbar"><div class="pbfill p2f" style="width:27.0px"></div></div><span class="pnum">15%</span></td><td><div class="pbar"><div class="pbfill p3f" style="width:9.0px"></div></div><span class="pnum">5%</span></td><td><div class="pbar"><div class="pbfill p4f" style="width:1.8px"></div></div><span class="pnum">1%</span></td></tr><tr><td class="tnm">Corea del Sur</td><td><div class="pbar"><div class="pbfill p1f" style="width:18.0px"></div></div><span class="pnum">10%</span></td><td><div class="pbar"><div class="pbfill p2f" style="width:82.8px"></div></div><span class="pnum">46%</span></td><td><div class="pbar"><div class="pbfill p3f" style="width:63.0px"></div></div><span class="pnum">35%</span></td><td><div class="pbar"><div class="pbfill p4f" style="width:16.2px"></div></div><span class="pnum">9%</span></td></tr><tr><td class="tnm">Chequia</td><td><div class="pbar"><div class="pbfill p1f" style="width:16.2px"></div></div><span class="pnum">9%</span></td><td><div class="pbar"><div class="pbfill p2f" style="width:61.2px"></div></div><span class="pnum">34%</span></td><td><div class="pbar"><div class="pbfill p3f" style="width:70.2px"></div></div><span class="pnum">39%</span></td><td><div class="pbar"><div class="pbfill p4f" style="width:30.6px"></div></div><span class="pnum">17%</span></td></tr><tr><td class="tnm">Sudáfrica</td><td><div class="pbar"><div class="pbfill p1f" style="width:1.8px"></div></div><span class="pnum">1%</span></td><td><div class="pbar"><div class="pbfill p2f" style="width:9.0px"></div></div><span class="pnum">5%</span></td><td><div class="pbar"><div class="pbfill p3f" style="width:37.800000000000004px"></div></div><span class="pnum">21%</span></td><td><div class="pbar"><div class="pbfill p4f" style="width:131.4px"></div></div><span class="pnum">73%</span></td></tr></tbody></table></div><div class="pos-grp"><h3>Grupo B</h3><table><thead><tr><th>Equipo</th><th>🥇 1°</th><th>🥈 2°</th><th>🥉 3°</th><th>4°</th></tr></thead><tbody><tr><td class="tnm">Suiza</td><td><div class="pbar"><div class="pbfill p1f" style="width:106.2px"></div></div><span class="pnum">59%</span></td><td><div class="pbar"><div class="pbfill p2f" style="width:63.0px"></div></div><span class="pnum">35%</span></td><td><div class="pbar"><div class="pbfill p3f" style="width:9.0px"></div></div><span class="pnum">5%</span></td><td><div class="pbar"><div class="pbfill p4f" style="width:1.8px"></div></div><span class="pnum">1%</span></td></tr><tr><td class="tnm">Canadá</td><td><div class="pbar"><div class="pbfill p1f" style="width:50.4px"></div></div><span class="pnum">28%</span></td><td><div class="pbar"><div class="pbfill p2f" style="width:86.4px"></div></div><span class="pnum">48%</span></td><td><div class="pbar"><div class="pbfill p3f" style="width:39.6px"></div></div><span class="pnum">22%</span></td><td><div class="pbar"><div class="pbfill p4f" style="width:1.8px"></div></div><span class="pnum">1%</span></td></tr><tr><td class="tnm">Bosnia</td><td><div class="pbar"><div class="pbfill p1f" style="width:23.400000000000002px"></div></div><span class="pnum">13%</span></td><td><div class="pbar"><div class="pbfill p2f" style="width:28.8px"></div></div><span class="pnum">16%</span></td><td><div class="pbar"><div class="pbfill p3f" style="width:108.0px"></div></div><span class="pnum">60%</span></td><td><div class="pbar"><div class="pbfill p4f" style="width:19.8px"></div></div><span class="pnum">11%</span></td></tr><tr><td class="tnm">Qatar</td><td><div class="pbar"><div class="pbfill p1f" style="width:0.0px"></div></div><span class="pnum">0%</span></td><td><div class="pbar"><div class="pbfill p2f" style="width:1.8px"></div></div><span class="pnum">1%</span></td><td><div class="pbar"><div class="pbfill p3f" style="width:21.6px"></div></div><span class="pnum">12%</span></td><td><div class="pbar"><div class="pbfill p4f" style="width:156.6px"></div></div><span class="pnum">87%</span></td></tr></tbody></table></div><div class="pos-grp"><h3>Grupo C</h3><table><thead><tr><th>Equipo</th><th>🥇 1°</th><th>🥈 2°</th><th>🥉 3°</th><th>4°</th></tr></thead><tbody><tr><td class="tnm">Brasil</td><td><div class="pbar"><div class="pbfill p1f" style="width:135.0px"></div></div><span class="pnum">75%</span></td><td><div class="pbar"><div class="pbfill p2f" style="width:43.2px"></div></div><span class="pnum">24%</span></td><td><div class="pbar"><div class="pbfill p3f" style="width:1.8px"></div></div><span class="pnum">1%</span></td><td><div class="pbar"><div class="pbfill p4f" style="width:0.0px"></div></div><span class="pnum">0%</span></td></tr><tr><td class="tnm">Marruecos</td><td><div class="pbar"><div class="pbfill p1f" style="width:43.2px"></div></div><span class="pnum">24%</span></td><td><div class="pbar"><div class="pbfill p2f" style="width:95.4px"></div></div><span class="pnum">53%</span></td><td><div class="pbar"><div class="pbfill p3f" style="width:39.6px"></div></div><span class="pnum">22%</span></td><td><div class="pbar"><div class="pbfill p4f" style="width:1.8px"></div></div><span class="pnum">1%</span></td></tr><tr><td class="tnm">Escocia</td><td><div class="pbar"><div class="pbfill p1f" style="width:1.8px"></div></div><span class="pnum">1%</span></td><td><div class="pbar"><div class="pbfill p2f" style="width:39.6px"></div></div><span class="pnum">22%</span></td><td><div class="pbar"><div class="pbfill p3f" style="width:129.6px"></div></div><span class="pnum">72%</span></td><td><div class="pbar"><div class="pbfill p4f" style="width:7.2px"></div></div><span class="pnum">4%</span></td></tr><tr><td class="tnm">Haití</td><td><div class="pbar"><div class="pbfill p1f" style="width:0.0px"></div></div><span class="pnum">0%</span></td><td><div class="pbar"><div class="pbfill p2f" style="width:0.0px"></div></div><span class="pnum">0%</span></td><td><div class="pbar"><div class="pbfill p3f" style="width:9.0px"></div></div><span class="pnum">5%</span></td><td><div class="pbar"><div class="pbfill p4f" style="width:171.0px"></div></div><span class="pnum">95%</span></td></tr></tbody></table></div><div class="pos-grp"><h3>Grupo D</h3><table><thead><tr><th>Equipo</th><th>🥇 1°</th><th>🥈 2°</th><th>🥉 3°</th><th>4°</th></tr></thead><tbody><tr><td class="tnm">EE.UU.</td><td><div class="pbar"><div class="pbfill p1f" style="width:73.8px"></div></div><span class="pnum">41%</span></td><td><div class="pbar"><div class="pbfill p2f" style="width:50.4px"></div></div><span class="pnum">28%</span></td><td><div class="pbar"><div class="pbfill p3f" style="width:41.4px"></div></div><span class="pnum">23%</span></td><td><div class="pbar"><div class="pbfill p4f" style="width:14.4px"></div></div><span class="pnum">8%</span></td></tr><tr><td class="tnm">Turquía</td><td><div class="pbar"><div class="pbfill p1f" style="width:50.4px"></div></div><span class="pnum">28%</span></td><td><div class="pbar"><div class="pbfill p2f" style="width:61.2px"></div></div><span class="pnum">34%</span></td><td><div class="pbar"><div class="pbfill p3f" style="width:52.2px"></div></div><span class="pnum">29%</span></td><td><div class="pbar"><div class="pbfill p4f" style="width:16.2px"></div></div><span class="pnum">9%</span></td></tr><tr><td class="tnm">Paraguay</td><td><div class="pbar"><div class="pbfill p1f" style="width:50.4px"></div></div><span class="pnum">28%</span></td><td><div class="pbar"><div class="pbfill p2f" style="width:63.0px"></div></div><span class="pnum">35%</span></td><td><div class="pbar"><div class="pbfill p3f" style="width:48.6px"></div></div><span class="pnum">27%</span></td><td><div class="pbar"><div class="pbfill p4f" style="width:18.0px"></div></div><span class="pnum">10%</span></td></tr><tr><td class="tnm">Australia</td><td><div class="pbar"><div class="pbfill p1f" style="width:5.4px"></div></div><span class="pnum">3%</span></td><td><div class="pbar"><div class="pbfill p2f" style="width:5.4px"></div></div><span class="pnum">3%</span></td><td><div class="pbar"><div class="pbfill p3f" style="width:37.800000000000004px"></div></div><span class="pnum">21%</span></td><td><div class="pbar"><div class="pbfill p4f" style="width:131.4px"></div></div><span class="pnum">73%</span></td></tr></tbody></table></div><div class="pos-grp"><h3>Grupo E</h3><table><thead><tr><th>Equipo</th><th>🥇 1°</th><th>🥈 2°</th><th>🥉 3°</th><th>4°</th></tr></thead><tbody><tr><td class="tnm">Alemania</td><td><div class="pbar"><div class="pbfill p1f" style="width:172.8px"></div></div><span class="pnum">96%</span></td><td><div class="pbar"><div class="pbfill p2f" style="width:5.4px"></div></div><span class="pnum">3%</span></td><td><div class="pbar"><div class="pbfill p3f" style="width:1.8px"></div></div><span class="pnum">1%</span></td><td><div class="pbar"><div class="pbfill p4f" style="width:0.0px"></div></div><span class="pnum">0%</span></td></tr><tr><td class="tnm">Ecuador</td><td><div class="pbar"><div class="pbfill p1f" style="width:5.4px"></div></div><span class="pnum">3%</span></td><td><div class="pbar"><div class="pbfill p2f" style="width:135.0px"></div></div><span class="pnum">75%</span></td><td><div class="pbar"><div class="pbfill p3f" style="width:39.6px"></div></div><span class="pnum">22%</span></td><td><div class="pbar"><div class="pbfill p4f" style="width:0.0px"></div></div><span class="pnum">0%</span></td></tr><tr><td class="tnm">C. de Marfil</td><td><div class="pbar"><div class="pbfill p1f" style="width:3.6px"></div></div><span class="pnum">2%</span></td><td><div class="pbar"><div class="pbfill p2f" style="width:39.6px"></div></div><span class="pnum">22%</span></td><td><div class="pbar"><div class="pbfill p3f" style="width:133.20000000000002px"></div></div><span class="pnum">74%</span></td><td><div class="pbar"><div class="pbfill p4f" style="width:5.4px"></div></div><span class="pnum">3%</span></td></tr><tr><td class="tnm">Curazao</td><td><div class="pbar"><div class="pbfill p1f" style="width:0.0px"></div></div><span class="pnum">0%</span></td><td><div class="pbar"><div class="pbfill p2f" style="width:0.0px"></div></div><span class="pnum">0%</span></td><td><div class="pbar"><div class="pbfill p3f" style="width:5.4px"></div></div><span class="pnum">3%</span></td><td><div class="pbar"><div class="pbfill p4f" style="width:174.6px"></div></div><span class="pnum">97%</span></td></tr></tbody></table></div><div class="pos-grp"><h3>Grupo F</h3><table><thead><tr><th>Equipo</th><th>🥇 1°</th><th>🥈 2°</th><th>🥉 3°</th><th>4°</th></tr></thead><tbody><tr><td class="tnm">Países Bajos</td><td><div class="pbar"><div class="pbfill p1f" style="width:165.6px"></div></div><span class="pnum">92%</span></td><td><div class="pbar"><div class="pbfill p2f" style="width:12.6px"></div></div><span class="pnum">7%</span></td><td><div class="pbar"><div class="pbfill p3f" style="width:1.8px"></div></div><span class="pnum">1%</span></td><td><div class="pbar"><div class="pbfill p4f" style="width:0.0px"></div></div><span class="pnum">0%</span></td></tr><tr><td class="tnm">Japón</td><td><div class="pbar"><div class="pbfill p1f" style="width:9.0px"></div></div><span class="pnum">5%</span></td><td><div class="pbar"><div class="pbfill p2f" style="width:106.2px"></div></div><span class="pnum">59%</span></td><td><div class="pbar"><div class="pbfill p3f" style="width:57.6px"></div></div><span class="pnum">32%</span></td><td><div class="pbar"><div class="pbfill p4f" style="width:7.2px"></div></div><span class="pnum">4%</span></td></tr><tr><td class="tnm">Suecia</td><td><div class="pbar"><div class="pbfill p1f" style="width:5.4px"></div></div><span class="pnum">3%</span></td><td><div class="pbar"><div class="pbfill p2f" style="width:61.2px"></div></div><span class="pnum">34%</span></td><td><div class="pbar"><div class="pbfill p3f" style="width:109.8px"></div></div><span class="pnum">61%</span></td><td><div class="pbar"><div class="pbfill p4f" style="width:3.6px"></div></div><span class="pnum">2%</span></td></tr><tr><td class="tnm">Túnez</td><td><div class="pbar"><div class="pbfill p1f" style="width:0.0px"></div></div><span class="pnum">0%</span></td><td><div class="pbar"><div class="pbfill p2f" style="width:0.0px"></div></div><span class="pnum">0%</span></td><td><div class="pbar"><div class="pbfill p3f" style="width:10.8px"></div></div><span class="pnum">6%</span></td><td><div class="pbar"><div class="pbfill p4f" style="width:169.20000000000002px"></div></div><span class="pnum">94%</span></td></tr></tbody></table></div><div class="pos-grp"><h3>Grupo G</h3><table><thead><tr><th>Equipo</th><th>🥇 1°</th><th>🥈 2°</th><th>🥉 3°</th><th>4°</th></tr></thead><tbody><tr><td class="tnm">Bélgica</td><td><div class="pbar"><div class="pbfill p1f" style="width:154.8px"></div></div><span class="pnum">86%</span></td><td><div class="pbar"><div class="pbfill p2f" style="width:16.2px"></div></div><span class="pnum">9%</span></td><td><div class="pbar"><div class="pbfill p3f" style="width:5.4px"></div></div><span class="pnum">3%</span></td><td><div class="pbar"><div class="pbfill p4f" style="width:1.8px"></div></div><span class="pnum">1%</span></td></tr><tr><td class="tnm">Egipto</td><td><div class="pbar"><div class="pbfill p1f" style="width:19.8px"></div></div><span class="pnum">11%</span></td><td><div class="pbar"><div class="pbfill p2f" style="width:129.6px"></div></div><span class="pnum">72%</span></td><td><div class="pbar"><div class="pbfill p3f" style="width:25.2px"></div></div><span class="pnum">14%</span></td><td><div class="pbar"><div class="pbfill p4f" style="width:5.4px"></div></div><span class="pnum">3%</span></td></tr><tr><td class="tnm">Irán</td><td><div class="pbar"><div class="pbfill p1f" style="width:3.6px"></div></div><span class="pnum">2%</span></td><td><div class="pbar"><div class="pbfill p2f" style="width:19.8px"></div></div><span class="pnum">11%</span></td><td><div class="pbar"><div class="pbfill p3f" style="width:111.60000000000001px"></div></div><span class="pnum">62%</span></td><td><div class="pbar"><div class="pbfill p4f" style="width:45.0px"></div></div><span class="pnum">25%</span></td></tr><tr><td class="tnm">Nueva Zelanda</td><td><div class="pbar"><div class="pbfill p1f" style="width:1.8px"></div></div><span class="pnum">1%</span></td><td><div class="pbar"><div class="pbfill p2f" style="width:12.6px"></div></div><span class="pnum">7%</span></td><td><div class="pbar"><div class="pbfill p3f" style="width:37.800000000000004px"></div></div><span class="pnum">21%</span></td><td><div class="pbar"><div class="pbfill p4f" style="width:129.6px"></div></div><span class="pnum">72%</span></td></tr></tbody></table></div><div class="pos-grp"><h3>Grupo H</h3><table><thead><tr><th>Equipo</th><th>🥇 1°</th><th>🥈 2°</th><th>🥉 3°</th><th>4°</th></tr></thead><tbody><tr><td class="tnm">España</td><td><div class="pbar"><div class="pbfill p1f" style="width:138.6px"></div></div><span class="pnum">77%</span></td><td><div class="pbar"><div class="pbfill p2f" style="width:41.4px"></div></div><span class="pnum">23%</span></td><td><div class="pbar"><div class="pbfill p3f" style="width:0.0px"></div></div><span class="pnum">0%</span></td><td><div class="pbar"><div class="pbfill p4f" style="width:0.0px"></div></div><span class="pnum">0%</span></td></tr><tr><td class="tnm">Uruguay</td><td><div class="pbar"><div class="pbfill p1f" style="width:41.4px"></div></div><span class="pnum">23%</span></td><td><div class="pbar"><div class="pbfill p2f" style="width:135.0px"></div></div><span class="pnum">75%</span></td><td><div class="pbar"><div class="pbfill p3f" style="width:1.8px"></div></div><span class="pnum">1%</span></td><td><div class="pbar"><div class="pbfill p4f" style="width:0.0px"></div></div><span class="pnum">0%</span></td></tr><tr><td class="tnm">Arabia Saudita</td><td><div class="pbar"><div class="pbfill p1f" style="width:0.0px"></div></div><span class="pnum">0%</span></td><td><div class="pbar"><div class="pbfill p2f" style="width:0.0px"></div></div><span class="pnum">0%</span></td><td><div class="pbar"><div class="pbfill p3f" style="width:163.8px"></div></div><span class="pnum">91%</span></td><td><div class="pbar"><div class="pbfill p4f" style="width:16.2px"></div></div><span class="pnum">9%</span></td></tr><tr><td class="tnm">Arabia Saudita</td><td><div class="pbar"><div class="pbfill p1f" style="width:0.0px"></div></div><span class="pnum">0%</span></td><td><div class="pbar"><div class="pbfill p2f" style="width:1.8px"></div></div><span class="pnum">1%</span></td><td><div class="pbar"><div class="pbfill p3f" style="width:0.0px"></div></div><span class="pnum">0%</span></td><td><div class="pbar"><div class="pbfill p4f" style="width:102.60000000000001px"></div></div><span class="pnum">57%</span></td></tr><tr><td class="tnm">Cabo Verde</td><td><div class="pbar"><div class="pbfill p1f" style="width:0.0px"></div></div><span class="pnum">0%</span></td><td><div class="pbar"><div class="pbfill p2f" style="width:1.8px"></div></div><span class="pnum">1%</span></td><td><div class="pbar"><div class="pbfill p3f" style="width:14.4px"></div></div><span class="pnum">8%</span></td><td><div class="pbar"><div class="pbfill p4f" style="width:61.2px"></div></div><span class="pnum">34%</span></td></tr></tbody></table></div><div class="pos-grp"><h3>Grupo I</h3><table><thead><tr><th>Equipo</th><th>🥇 1°</th><th>🥈 2°</th><th>🥉 3°</th><th>4°</th></tr></thead><tbody><tr><td class="tnm">Francia</td><td><div class="pbar"><div class="pbfill p1f" style="width:160.20000000000002px"></div></div><span class="pnum">89%</span></td><td><div class="pbar"><div class="pbfill p2f" style="width:16.2px"></div></div><span class="pnum">9%</span></td><td><div class="pbar"><div class="pbfill p3f" style="width:3.6px"></div></div><span class="pnum">2%</span></td><td><div class="pbar"><div class="pbfill p4f" style="width:0.0px"></div></div><span class="pnum">0%</span></td></tr><tr><td class="tnm">Noruega</td><td><div class="pbar"><div class="pbfill p1f" style="width:18.0px"></div></div><span class="pnum">10%</span></td><td><div class="pbar"><div class="pbfill p2f" style="width:122.4px"></div></div><span class="pnum">68%</span></td><td><div class="pbar"><div class="pbfill p3f" style="width:36.0px"></div></div><span class="pnum">20%</span></td><td><div class="pbar"><div class="pbfill p4f" style="width:3.6px"></div></div><span class="pnum">2%</span></td></tr><tr><td class="tnm">Senegal</td><td><div class="pbar"><div class="pbfill p1f" style="width:1.8px"></div></div><span class="pnum">1%</span></td><td><div class="pbar"><div class="pbfill p2f" style="width:39.6px"></div></div><span class="pnum">22%</span></td><td><div class="pbar"><div class="pbfill p3f" style="width:136.8px"></div></div><span class="pnum">76%</span></td><td><div class="pbar"><div class="pbfill p4f" style="width:1.8px"></div></div><span class="pnum">1%</span></td></tr><tr><td class="tnm">Irak</td><td><div class="pbar"><div class="pbfill p1f" style="width:0.0px"></div></div><span class="pnum">0%</span></td><td><div class="pbar"><div class="pbfill p2f" style="width:0.0px"></div></div><span class="pnum">0%</span></td><td><div class="pbar"><div class="pbfill p3f" style="width:5.4px"></div></div><span class="pnum">3%</span></td><td><div class="pbar"><div class="pbfill p4f" style="width:174.6px"></div></div><span class="pnum">97%</span></td></tr></tbody></table></div><div class="pos-grp"><h3>Grupo J</h3><table><thead><tr><th>Equipo</th><th>🥇 1°</th><th>🥈 2°</th><th>🥉 3°</th><th>4°</th></tr></thead><tbody><tr><td class="tnm">Argentina</td><td><div class="pbar"><div class="pbfill p1f" style="width:180.0px"></div></div><span class="pnum">100%</span></td><td><div class="pbar"><div class="pbfill p2f" style="width:0.0px"></div></div><span class="pnum">0%</span></td><td><div class="pbar"><div class="pbfill p3f" style="width:0.0px"></div></div><span class="pnum">0%</span></td><td><div class="pbar"><div class="pbfill p4f" style="width:0.0px"></div></div><span class="pnum">0%</span></td></tr><tr><td class="tnm">Argelia</td><td><div class="pbar"><div class="pbfill p1f" style="width:0.0px"></div></div><span class="pnum">0%</span></td><td><div class="pbar"><div class="pbfill p2f" style="width:79.2px"></div></div><span class="pnum">44%</span></td><td><div class="pbar"><div class="pbfill p3f" style="width:91.8px"></div></div><span class="pnum">51%</span></td><td><div class="pbar"><div class="pbfill p4f" style="width:9.0px"></div></div><span class="pnum">5%</span></td></tr><tr><td class="tnm">Australia</td><td><div class="pbar"><div class="pbfill p1f" style="width:0.0px"></div></div><span class="pnum">0%</span></td><td><div class="pbar"><div class="pbfill p2f" style="width:100.8px"></div></div><span class="pnum">56%</span></td><td><div class="pbar"><div class="pbfill p3f" style="width:75.60000000000001px"></div></div><span class="pnum">42%</span></td><td><div class="pbar"><div class="pbfill p4f" style="width:3.6px"></div></div><span class="pnum">2%</span></td></tr><tr><td class="tnm">Jordania</td><td><div class="pbar"><div class="pbfill p1f" style="width:0.0px"></div></div><span class="pnum">0%</span></td><td><div class="pbar"><div class="pbfill p2f" style="width:0.0px"></div></div><span class="pnum">0%</span></td><td><div class="pbar"><div class="pbfill p3f" style="width:12.6px"></div></div><span class="pnum">7%</span></td><td><div class="pbar"><div class="pbfill p4f" style="width:167.4px"></div></div><span class="pnum">93%</span></td></tr></tbody></table></div><div class="pos-grp"><h3>Grupo K</h3><table><thead><tr><th>Equipo</th><th>🥇 1°</th><th>🥈 2°</th><th>🥉 3°</th><th>4°</th></tr></thead><tbody><tr><td class="tnm">Portugal</td><td><div class="pbar"><div class="pbfill p1f" style="width:163.8px"></div></div><span class="pnum">91%</span></td><td><div class="pbar"><div class="pbfill p2f" style="width:16.2px"></div></div><span class="pnum">9%</span></td><td><div class="pbar"><div class="pbfill p3f" style="width:0.0px"></div></div><span class="pnum">0%</span></td><td><div class="pbar"><div class="pbfill p4f" style="width:0.0px"></div></div><span class="pnum">0%</span></td></tr><tr><td class="tnm">Colombia</td><td><div class="pbar"><div class="pbfill p1f" style="width:16.2px"></div></div><span class="pnum">9%</span></td><td><div class="pbar"><div class="pbfill p2f" style="width:153.0px"></div></div><span class="pnum">85%</span></td><td><div class="pbar"><div class="pbfill p3f" style="width:9.0px"></div></div><span class="pnum">5%</span></td><td><div class="pbar"><div class="pbfill p4f" style="width:0.0px"></div></div><span class="pnum">0%</span></td></tr><tr><td class="tnm">Austria</td><td><div class="pbar"><div class="pbfill p1f" style="width:0.0px"></div></div><span class="pnum">0%</span></td><td><div class="pbar"><div class="pbfill p2f" style="width:5.4px"></div></div><span class="pnum">3%</span></td><td><div class="pbar"><div class="pbfill p3f" style="width:126.0px"></div></div><span class="pnum">70%</span></td><td><div class="pbar"><div class="pbfill p4f" style="width:48.6px"></div></div><span class="pnum">27%</span></td></tr><tr><td class="tnm">Uzbekistán</td><td><div class="pbar"><div class="pbfill p1f" style="width:0.0px"></div></div><span class="pnum">0%</span></td><td><div class="pbar"><div class="pbfill p2f" style="width:3.6px"></div></div><span class="pnum">2%</span></td><td><div class="pbar"><div class="pbfill p3f" style="width:45.0px"></div></div><span class="pnum">25%</span></td><td><div class="pbar"><div class="pbfill p4f" style="width:131.4px"></div></div><span class="pnum">73%</span></td></tr></tbody></table></div><div class="pos-grp"><h3>Grupo L</h3><table><thead><tr><th>Equipo</th><th>🥇 1°</th><th>🥈 2°</th><th>🥉 3°</th><th>4°</th></tr></thead><tbody><tr><td class="tnm">Inglaterra</td><td><div class="pbar"><div class="pbfill p1f" style="width:172.8px"></div></div><span class="pnum">96%</span></td><td><div class="pbar"><div class="pbfill p2f" style="width:5.4px"></div></div><span class="pnum">3%</span></td><td><div class="pbar"><div class="pbfill p3f" style="width:1.8px"></div></div><span class="pnum">1%</span></td><td><div class="pbar"><div class="pbfill p4f" style="width:0.0px"></div></div><span class="pnum">0%</span></td></tr><tr><td class="tnm">Croacia</td><td><div class="pbar"><div class="pbfill p1f" style="width:7.2px"></div></div><span class="pnum">4%</span></td><td><div class="pbar"><div class="pbfill p2f" style="width:144.0px"></div></div><span class="pnum">80%</span></td><td><div class="pbar"><div class="pbfill p3f" style="width:25.2px"></div></div><span class="pnum">14%</span></td><td><div class="pbar"><div class="pbfill p4f" style="width:3.6px"></div></div><span class="pnum">2%</span></td></tr><tr><td class="tnm">Ghana</td><td><div class="pbar"><div class="pbfill p1f" style="width:0.0px"></div></div><span class="pnum">0%</span></td><td><div class="pbar"><div class="pbfill p2f" style="width:25.2px"></div></div><span class="pnum">14%</span></td><td><div class="pbar"><div class="pbfill p3f" style="width:142.20000000000002px"></div></div><span class="pnum">79%</span></td><td><div class="pbar"><div class="pbfill p4f" style="width:12.6px"></div></div><span class="pnum">7%</span></td></tr><tr><td class="tnm">Panamá</td><td><div class="pbar"><div class="pbfill p1f" style="width:0.0px"></div></div><span class="pnum">0%</span></td><td><div class="pbar"><div class="pbfill p2f" style="width:5.4px"></div></div><span class="pnum">3%</span></td><td><div class="pbar"><div class="pbfill p3f" style="width:10.8px"></div></div><span class="pnum">6%</span></td><td><div class="pbar"><div class="pbfill p4f" style="width:163.8px"></div></div><span class="pnum">91%</span></td></tr></tbody></table></div>
+</div>
+<div id="tab-campeones" class="tab">
+  <div style="padding:8px 14px;background:#0d2137;border-bottom:1px solid #1e3a55;font-size:.7rem;color:#8ab4d4">
+    % de participantes que apostaron por cada selección o jugador
+  </div>
+  <div class="cat-card">
+<h4>🏆 Campeón</h4>
+<table><tbody><tr>
+<td class="ci">🥇 Francia</td>
+<td><div class="cbar"><div class="cbfill" style="width:61px"></div></div></td>
+<td class="cpct">34%</td>
+<td class="ccnt">(39)</td>
 </tr><tr>
-<td class="tnm">Corea del Sur</td>
-<td><div class="pbar"><div class="pbfill p1f" style="width:39.6px"></div></div><span class="pnum">22%</span></td>
-<td><div class="pbar"><div class="pbfill p2f" style="width:59.4px"></div></div><span class="pnum">33%</span></td>
-<td><div class="pbar"><div class="pbfill p3f" style="width:55.800000000000004px"></div></div><span class="pnum">31%</span></td>
-<td><div class="pbar"><div class="pbfill p4f" style="width:25.2px"></div></div><span class="pnum">14%</span></td>
+<td class="ci">🥈 España</td>
+<td><div class="cbar"><div class="cbfill" style="width:40px"></div></div></td>
+<td class="cpct">22%</td>
+<td class="ccnt">(26)</td>
 </tr><tr>
-<td class="tnm">Chequia</td>
-<td><div class="pbar"><div class="pbfill p1f" style="width:32.4px"></div></div><span class="pnum">18%</span></td>
-<td><div class="pbar"><div class="pbfill p2f" style="width:54.0px"></div></div><span class="pnum">30%</span></td>
-<td><div class="pbar"><div class="pbfill p3f" style="width:61.2px"></div></div><span class="pnum">34%</span></td>
-<td><div class="pbar"><div class="pbfill p4f" style="width:30.6px"></div></div><span class="pnum">17%</span></td>
+<td class="ci">🥉 Portugal</td>
+<td><div class="cbar"><div class="cbfill" style="width:31px"></div></div></td>
+<td class="cpct">17%</td>
+<td class="ccnt">(20)</td>
 </tr><tr>
-<td class="tnm">Sudáfrica</td>
-<td><div class="pbar"><div class="pbfill p1f" style="width:3.6px"></div></div><span class="pnum">2%</span></td>
-<td><div class="pbar"><div class="pbfill p2f" style="width:9.0px"></div></div><span class="pnum">5%</span></td>
-<td><div class="pbar"><div class="pbfill p3f" style="width:46.800000000000004px"></div></div><span class="pnum">26%</span></td>
-<td><div class="pbar"><div class="pbfill p4f" style="width:120.60000000000001px"></div></div><span class="pnum">67%</span></td>
-</tr></tbody>
-</table>
-</div><div class="pos-grp">
-<h3>Grupo B</h3>
-<table>
-<thead><tr><th>Equipo</th><th>🥇 1°</th><th>🥈 2°</th><th>🥉 3°</th><th>4°</th></tr></thead>
-<tbody><tr>
-<td class="tnm">Suiza</td>
-<td><div class="pbar"><div class="pbfill p1f" style="width:106.2px"></div></div><span class="pnum">59%</span></td>
-<td><div class="pbar"><div class="pbfill p2f" style="width:63.0px"></div></div><span class="pnum">35%</span></td>
-<td><div class="pbar"><div class="pbfill p3f" style="width:9.0px"></div></div><span class="pnum">5%</span></td>
-<td><div class="pbar"><div class="pbfill p4f" style="width:1.8px"></div></div><span class="pnum">1%</span></td>
+<td class="ci"> Argentina</td>
+<td><div class="cbar"><div class="cbfill" style="width:13px"></div></div></td>
+<td class="cpct">7%</td>
+<td class="ccnt">(8)</td>
 </tr><tr>
-<td class="tnm">Canadá</td>
-<td><div class="pbar"><div class="pbfill p1f" style="width:50.4px"></div></div><span class="pnum">28%</span></td>
-<td><div class="pbar"><div class="pbfill p2f" style="width:86.4px"></div></div><span class="pnum">48%</span></td>
-<td><div class="pbar"><div class="pbfill p3f" style="width:39.6px"></div></div><span class="pnum">22%</span></td>
-<td><div class="pbar"><div class="pbfill p4f" style="width:1.8px"></div></div><span class="pnum">1%</span></td>
+<td class="ci"> Inglaterra</td>
+<td><div class="cbar"><div class="cbfill" style="width:11px"></div></div></td>
+<td class="cpct">6%</td>
+<td class="ccnt">(7)</td>
 </tr><tr>
-<td class="tnm">Bosnia</td>
-<td><div class="pbar"><div class="pbfill p1f" style="width:23.400000000000002px"></div></div><span class="pnum">13%</span></td>
-<td><div class="pbar"><div class="pbfill p2f" style="width:28.8px"></div></div><span class="pnum">16%</span></td>
-<td><div class="pbar"><div class="pbfill p3f" style="width:108.0px"></div></div><span class="pnum">60%</span></td>
-<td><div class="pbar"><div class="pbfill p4f" style="width:19.8px"></div></div><span class="pnum">11%</span></td>
+<td class="ci"> Alemania</td>
+<td><div class="cbar"><div class="cbfill" style="width:9px"></div></div></td>
+<td class="cpct">5%</td>
+<td class="ccnt">(6)</td>
 </tr><tr>
-<td class="tnm">Qatar</td>
-<td><div class="pbar"><div class="pbfill p1f" style="width:0.0px"></div></div><span class="pnum">0%</span></td>
-<td><div class="pbar"><div class="pbfill p2f" style="width:1.8px"></div></div><span class="pnum">1%</span></td>
-<td><div class="pbar"><div class="pbfill p3f" style="width:21.6px"></div></div><span class="pnum">12%</span></td>
-<td><div class="pbar"><div class="pbfill p4f" style="width:156.6px"></div></div><span class="pnum">87%</span></td>
-</tr></tbody>
-</table>
-</div><div class="pos-grp">
-<h3>Grupo C</h3>
-<table>
-<thead><tr><th>Equipo</th><th>🥇 1°</th><th>🥈 2°</th><th>🥉 3°</th><th>4°</th></tr></thead>
-<tbody><tr>
-<td class="tnm">Brasil</td>
-<td><div class="pbar"><div class="pbfill p1f" style="width:135.0px"></div></div><span class="pnum">75%</span></td>
-<td><div class="pbar"><div class="pbfill p2f" style="width:45.0px"></div></div><span class="pnum">25%</span></td>
-<td><div class="pbar"><div class="pbfill p3f" style="width:0.0px"></div></div><span class="pnum">0%</span></td>
-<td><div class="pbar"><div class="pbfill p4f" style="width:0.0px"></div></div><span class="pnum">0%</span></td>
+<td class="ci"> P. Bajos</td>
+<td><div class="cbar"><div class="cbfill" style="width:9px"></div></div></td>
+<td class="cpct">5%</td>
+<td class="ccnt">(6)</td>
 </tr><tr>
-<td class="tnm">Marruecos</td>
-<td><div class="pbar"><div class="pbfill p1f" style="width:45.0px"></div></div><span class="pnum">25%</span></td>
-<td><div class="pbar"><div class="pbfill p2f" style="width:126.0px"></div></div><span class="pnum">70%</span></td>
-<td><div class="pbar"><div class="pbfill p3f" style="width:7.2px"></div></div><span class="pnum">4%</span></td>
-<td><div class="pbar"><div class="pbfill p4f" style="width:1.8px"></div></div><span class="pnum">1%</span></td>
+<td class="ci"> Brasil</td>
+<td><div class="cbar"><div class="cbfill" style="width:5px"></div></div></td>
+<td class="cpct">3%</td>
+<td class="ccnt">(3)</td>
 </tr><tr>
-<td class="tnm">Haití</td>
-<td><div class="pbar"><div class="pbfill p1f" style="width:0.0px"></div></div><span class="pnum">0%</span></td>
-<td><div class="pbar"><div class="pbfill p2f" style="width:0.0px"></div></div><span class="pnum">0%</span></td>
-<td><div class="pbar"><div class="pbfill p3f" style="width:9.0px"></div></div><span class="pnum">5%</span></td>
-<td><div class="pbar"><div class="pbfill p4f" style="width:171.0px"></div></div><span class="pnum">95%</span></td>
+<td class="ci"> Colombia</td>
+<td><div class="cbar"><div class="cbfill" style="width:2px"></div></div></td>
+<td class="cpct">1%</td>
+<td class="ccnt">(1)</td>
+</tr></tbody></table>
+</div><div class="cat-card">
+<h4>🥈 Subcampeón</h4>
+<table><tbody><tr>
+<td class="ci">🥇 Portugal</td>
+<td><div class="cbar"><div class="cbfill" style="width:36px"></div></div></td>
+<td class="cpct">20%</td>
+<td class="ccnt">(23)</td>
 </tr><tr>
-<td class="tnm">Escocia</td>
-<td><div class="pbar"><div class="pbfill p1f" style="width:0.0px"></div></div><span class="pnum">0%</span></td>
-<td><div class="pbar"><div class="pbfill p2f" style="width:9.0px"></div></div><span class="pnum">5%</span></td>
-<td><div class="pbar"><div class="pbfill p3f" style="width:163.8px"></div></div><span class="pnum">91%</span></td>
-<td><div class="pbar"><div class="pbfill p4f" style="width:7.2px"></div></div><span class="pnum">4%</span></td>
-</tr></tbody>
-</table>
-</div><div class="pos-grp">
-<h3>Grupo D</h3>
-<table>
-<thead><tr><th>Equipo</th><th>🥇 1°</th><th>🥈 2°</th><th>🥉 3°</th><th>4°</th></tr></thead>
-<tbody><tr>
-<td class="tnm">EE.UU.</td>
-<td><div class="pbar"><div class="pbfill p1f" style="width:106.2px"></div></div><span class="pnum">59%</span></td>
-<td><div class="pbar"><div class="pbfill p2f" style="width:41.4px"></div></div><span class="pnum">23%</span></td>
-<td><div class="pbar"><div class="pbfill p3f" style="width:27.0px"></div></div><span class="pnum">15%</span></td>
-<td><div class="pbar"><div class="pbfill p4f" style="width:5.4px"></div></div><span class="pnum">3%</span></td>
+<td class="ci">🥈 Inglaterra</td>
+<td><div class="cbar"><div class="cbfill" style="width:32px"></div></div></td>
+<td class="cpct">18%</td>
+<td class="ccnt">(21)</td>
 </tr><tr>
-<td class="tnm">Turquía</td>
-<td><div class="pbar"><div class="pbfill p1f" style="width:39.6px"></div></div><span class="pnum">22%</span></td>
-<td><div class="pbar"><div class="pbfill p2f" style="width:61.2px"></div></div><span class="pnum">34%</span></td>
-<td><div class="pbar"><div class="pbfill p3f" style="width:50.4px"></div></div><span class="pnum">28%</span></td>
-<td><div class="pbar"><div class="pbfill p4f" style="width:28.8px"></div></div><span class="pnum">16%</span></td>
+<td class="ci">🥉 España</td>
+<td><div class="cbar"><div class="cbfill" style="width:32px"></div></div></td>
+<td class="cpct">18%</td>
+<td class="ccnt">(21)</td>
 </tr><tr>
-<td class="tnm">Paraguay</td>
-<td><div class="pbar"><div class="pbfill p1f" style="width:28.8px"></div></div><span class="pnum">16%</span></td>
-<td><div class="pbar"><div class="pbfill p2f" style="width:64.8px"></div></div><span class="pnum">36%</span></td>
-<td><div class="pbar"><div class="pbfill p3f" style="width:63.0px"></div></div><span class="pnum">35%</span></td>
-<td><div class="pbar"><div class="pbfill p4f" style="width:21.6px"></div></div><span class="pnum">12%</span></td>
+<td class="ci"> Argentina</td>
+<td><div class="cbar"><div class="cbfill" style="width:29px"></div></div></td>
+<td class="cpct">16%</td>
+<td class="ccnt">(18)</td>
 </tr><tr>
-<td class="tnm">Australia</td>
-<td><div class="pbar"><div class="pbfill p1f" style="width:5.4px"></div></div><span class="pnum">3%</span></td>
-<td><div class="pbar"><div class="pbfill p2f" style="width:12.6px"></div></div><span class="pnum">7%</span></td>
-<td><div class="pbar"><div class="pbfill p3f" style="width:39.6px"></div></div><span class="pnum">22%</span></td>
-<td><div class="pbar"><div class="pbfill p4f" style="width:122.4px"></div></div><span class="pnum">68%</span></td>
-</tr></tbody>
-</table>
-</div><div class="pos-grp">
-<h3>Grupo E</h3>
-<table>
-<thead><tr><th>Equipo</th><th>🥇 1°</th><th>🥈 2°</th><th>🥉 3°</th><th>4°</th></tr></thead>
-<tbody><tr>
-<td class="tnm">Alemania</td>
-<td><div class="pbar"><div class="pbfill p1f" style="width:140.4px"></div></div><span class="pnum">78%</span></td>
-<td><div class="pbar"><div class="pbfill p2f" style="width:37.800000000000004px"></div></div><span class="pnum">21%</span></td>
-<td><div class="pbar"><div class="pbfill p3f" style="width:1.8px"></div></div><span class="pnum">1%</span></td>
-<td><div class="pbar"><div class="pbfill p4f" style="width:0.0px"></div></div><span class="pnum">0%</span></td>
+<td class="ci"> Francia</td>
+<td><div class="cbar"><div class="cbfill" style="width:22px"></div></div></td>
+<td class="cpct">12%</td>
+<td class="ccnt">(14)</td>
 </tr><tr>
-<td class="tnm">Ecuador</td>
-<td><div class="pbar"><div class="pbfill p1f" style="width:37.800000000000004px"></div></div><span class="pnum">21%</span></td>
-<td><div class="pbar"><div class="pbfill p2f" style="width:126.0px"></div></div><span class="pnum">70%</span></td>
-<td><div class="pbar"><div class="pbfill p3f" style="width:16.2px"></div></div><span class="pnum">9%</span></td>
-<td><div class="pbar"><div class="pbfill p4f" style="width:0.0px"></div></div><span class="pnum">0%</span></td>
+<td class="ci"> Brasil</td>
+<td><div class="cbar"><div class="cbfill" style="width:16px"></div></div></td>
+<td class="cpct">9%</td>
+<td class="ccnt">(11)</td>
 </tr><tr>
-<td class="tnm">C. de Marfil</td>
-<td><div class="pbar"><div class="pbfill p1f" style="width:1.8px"></div></div><span class="pnum">1%</span></td>
-<td><div class="pbar"><div class="pbfill p2f" style="width:16.2px"></div></div><span class="pnum">9%</span></td>
-<td><div class="pbar"><div class="pbfill p3f" style="width:147.6px"></div></div><span class="pnum">82%</span></td>
-<td><div class="pbar"><div class="pbfill p4f" style="width:14.4px"></div></div><span class="pnum">8%</span></td>
+<td class="ci"> Colombia</td>
+<td><div class="cbar"><div class="cbfill" style="width:5px"></div></div></td>
+<td class="cpct">3%</td>
+<td class="ccnt">(4)</td>
 </tr><tr>
-<td class="tnm">Curazao</td>
-<td><div class="pbar"><div class="pbfill p1f" style="width:0.0px"></div></div><span class="pnum">0%</span></td>
-<td><div class="pbar"><div class="pbfill p2f" style="width:0.0px"></div></div><span class="pnum">0%</span></td>
-<td><div class="pbar"><div class="pbfill p3f" style="width:14.4px"></div></div><span class="pnum">8%</span></td>
-<td><div class="pbar"><div class="pbfill p4f" style="width:165.6px"></div></div><span class="pnum">92%</span></td>
-</tr></tbody>
-</table>
-</div><div class="pos-grp">
-<h3>Grupo F</h3>
-<table>
-<thead><tr><th>Equipo</th><th>🥇 1°</th><th>🥈 2°</th><th>🥉 3°</th><th>4°</th></tr></thead>
-<tbody><tr>
-<td class="tnm">Países Bajos</td>
-<td><div class="pbar"><div class="pbfill p1f" style="width:129.6px"></div></div><span class="pnum">72%</span></td>
-<td><div class="pbar"><div class="pbfill p2f" style="width:48.6px"></div></div><span class="pnum">27%</span></td>
-<td><div class="pbar"><div class="pbfill p3f" style="width:3.6px"></div></div><span class="pnum">2%</span></td>
-<td><div class="pbar"><div class="pbfill p4f" style="width:0.0px"></div></div><span class="pnum">0%</span></td>
+<td class="ci"> P. Bajos</td>
+<td><div class="cbar"><div class="cbfill" style="width:4px"></div></div></td>
+<td class="cpct">2%</td>
+<td class="ccnt">(2)</td>
 </tr><tr>
-<td class="tnm">Japón</td>
-<td><div class="pbar"><div class="pbfill p1f" style="width:28.8px"></div></div><span class="pnum">16%</span></td>
-<td><div class="pbar"><div class="pbfill p2f" style="width:86.4px"></div></div><span class="pnum">48%</span></td>
-<td><div class="pbar"><div class="pbfill p3f" style="width:57.6px"></div></div><span class="pnum">32%</span></td>
-<td><div class="pbar"><div class="pbfill p4f" style="width:7.2px"></div></div><span class="pnum">4%</span></td>
+<td class="ci"> Alemania</td>
+<td><div class="cbar"><div class="cbfill" style="width:2px"></div></div></td>
+<td class="cpct">1%</td>
+<td class="ccnt">(1)</td>
 </tr><tr>
-<td class="tnm">Suecia</td>
-<td><div class="pbar"><div class="pbfill p1f" style="width:23.400000000000002px"></div></div><span class="pnum">13%</span></td>
-<td><div class="pbar"><div class="pbfill p2f" style="width:45.0px"></div></div><span class="pnum">25%</span></td>
-<td><div class="pbar"><div class="pbfill p3f" style="width:108.0px"></div></div><span class="pnum">60%</span></td>
-<td><div class="pbar"><div class="pbfill p4f" style="width:3.6px"></div></div><span class="pnum">2%</span></td>
+<td class="ci"> Noruega</td>
+<td><div class="cbar"><div class="cbfill" style="width:2px"></div></div></td>
+<td class="cpct">1%</td>
+<td class="ccnt">(1)</td>
+</tr></tbody></table>
+</div><div class="cat-card">
+<h4>🥉 Tercer Puesto</h4>
+<table><tbody><tr>
+<td class="ci">🥇 España</td>
+<td><div class="cbar"><div class="cbfill" style="width:67px"></div></div></td>
+<td class="cpct">37%</td>
+<td class="ccnt">(43)</td>
 </tr><tr>
-<td class="tnm">Túnez</td>
-<td><div class="pbar"><div class="pbfill p1f" style="width:0.0px"></div></div><span class="pnum">0%</span></td>
-<td><div class="pbar"><div class="pbfill p2f" style="width:0.0px"></div></div><span class="pnum">0%</span></td>
-<td><div class="pbar"><div class="pbfill p3f" style="width:10.8px"></div></div><span class="pnum">6%</span></td>
-<td><div class="pbar"><div class="pbfill p4f" style="width:169.20000000000002px"></div></div><span class="pnum">94%</span></td>
-</tr></tbody>
-</table>
-</div><div class="pos-grp">
-<h3>Grupo G</h3>
-<table>
-<thead><tr><th>Equipo</th><th>🥇 1°</th><th>🥈 2°</th><th>🥉 3°</th><th>4°</th></tr></thead>
-<tbody><tr>
-<td class="tnm">Bélgica</td>
-<td><div class="pbar"><div class="pbfill p1f" style="width:171.0px"></div></div><span class="pnum">95%</span></td>
-<td><div class="pbar"><div class="pbfill p2f" style="width:5.4px"></div></div><span class="pnum">3%</span></td>
-<td><div class="pbar"><div class="pbfill p3f" style="width:3.6px"></div></div><span class="pnum">2%</span></td>
-<td><div class="pbar"><div class="pbfill p4f" style="width:1.8px"></div></div><span class="pnum">1%</span></td>
+<td class="ci">🥈 Francia</td>
+<td><div class="cbar"><div class="cbfill" style="width:47px"></div></div></td>
+<td class="cpct">26%</td>
+<td class="ccnt">(30)</td>
 </tr><tr>
-<td class="tnm">Egipto</td>
-<td><div class="pbar"><div class="pbfill p1f" style="width:5.4px"></div></div><span class="pnum">3%</span></td>
-<td><div class="pbar"><div class="pbfill p2f" style="width:126.0px"></div></div><span class="pnum">70%</span></td>
-<td><div class="pbar"><div class="pbfill p3f" style="width:45.0px"></div></div><span class="pnum">25%</span></td>
-<td><div class="pbar"><div class="pbfill p4f" style="width:5.4px"></div></div><span class="pnum">3%</span></td>
+<td class="ci">🥉 Brasil</td>
+<td><div class="cbar"><div class="cbfill" style="width:16px"></div></div></td>
+<td class="cpct">9%</td>
+<td class="ccnt">(10)</td>
 </tr><tr>
-<td class="tnm">Irán</td>
-<td><div class="pbar"><div class="pbfill p1f" style="width:3.6px"></div></div><span class="pnum">2%</span></td>
-<td><div class="pbar"><div class="pbfill p2f" style="width:16.2px"></div></div><span class="pnum">9%</span></td>
-<td><div class="pbar"><div class="pbfill p3f" style="width:70.2px"></div></div><span class="pnum">39%</span></td>
-<td><div class="pbar"><div class="pbfill p4f" style="width:90.0px"></div></div><span class="pnum">50%</span></td>
+<td class="ci"> Argentina</td>
+<td><div class="cbar"><div class="cbfill" style="width:11px"></div></div></td>
+<td class="cpct">6%</td>
+<td class="ccnt">(7)</td>
 </tr><tr>
-<td class="tnm">Nueva Zelanda</td>
-<td><div class="pbar"><div class="pbfill p1f" style="width:1.8px"></div></div><span class="pnum">1%</span></td>
-<td><div class="pbar"><div class="pbfill p2f" style="width:32.4px"></div></div><span class="pnum">18%</span></td>
-<td><div class="pbar"><div class="pbfill p3f" style="width:61.2px"></div></div><span class="pnum">34%</span></td>
-<td><div class="pbar"><div class="pbfill p4f" style="width:84.60000000000001px"></div></div><span class="pnum">47%</span></td>
-</tr></tbody>
-</table>
-</div><div class="pos-grp">
-<h3>Grupo H</h3>
-<table>
-<thead><tr><th>Equipo</th><th>🥇 1°</th><th>🥈 2°</th><th>🥉 3°</th><th>4°</th></tr></thead>
-<tbody><tr>
-<td class="tnm">España</td>
-<td><div class="pbar"><div class="pbfill p1f" style="width:174.6px"></div></div><span class="pnum">97%</span></td>
-<td><div class="pbar"><div class="pbfill p2f" style="width:5.4px"></div></div><span class="pnum">3%</span></td>
-<td><div class="pbar"><div class="pbfill p3f" style="width:0.0px"></div></div><span class="pnum">0%</span></td>
-<td><div class="pbar"><div class="pbfill p4f" style="width:0.0px"></div></div><span class="pnum">0%</span></td>
+<td class="ci"> Inglaterra</td>
+<td><div class="cbar"><div class="cbfill" style="width:7px"></div></div></td>
+<td class="cpct">4%</td>
+<td class="ccnt">(5)</td>
 </tr><tr>
-<td class="tnm">Uruguay</td>
-<td><div class="pbar"><div class="pbfill p1f" style="width:5.4px"></div></div><span class="pnum">3%</span></td>
-<td><div class="pbar"><div class="pbfill p2f" style="width:172.8px"></div></div><span class="pnum">96%</span></td>
-<td><div class="pbar"><div class="pbfill p3f" style="width:0.0px"></div></div><span class="pnum">0%</span></td>
-<td><div class="pbar"><div class="pbfill p4f" style="width:1.8px"></div></div><span class="pnum">1%</span></td>
+<td class="ci"> Portugal</td>
+<td><div class="cbar"><div class="cbfill" style="width:7px"></div></div></td>
+<td class="cpct">4%</td>
+<td class="ccnt">(5)</td>
 </tr><tr>
-<td class="tnm">Arabia Saudita</td>
-<td><div class="pbar"><div class="pbfill p1f" style="width:0.0px"></div></div><span class="pnum">0%</span></td>
-<td><div class="pbar"><div class="pbfill p2f" style="width:1.8px"></div></div><span class="pnum">1%</span></td>
-<td><div class="pbar"><div class="pbfill p3f" style="width:5.4px"></div></div><span class="pnum">3%</span></td>
-<td><div class="pbar"><div class="pbfill p4f" style="width:109.8px"></div></div><span class="pnum">61%</span></td>
+<td class="ci"> Alemania</td>
+<td><div class="cbar"><div class="cbfill" style="width:5px"></div></div></td>
+<td class="cpct">3%</td>
+<td class="ccnt">(4)</td>
 </tr><tr>
-<td class="tnm">Arabia Saudita</td>
-<td><div class="pbar"><div class="pbfill p1f" style="width:0.0px"></div></div><span class="pnum">0%</span></td>
-<td><div class="pbar"><div class="pbfill p2f" style="width:0.0px"></div></div><span class="pnum">0%</span></td>
-<td><div class="pbar"><div class="pbfill p3f" style="width:160.20000000000002px"></div></div><span class="pnum">89%</span></td>
-<td><div class="pbar"><div class="pbfill p4f" style="width:5.4px"></div></div><span class="pnum">3%</span></td>
+<td class="ci"> Colombia</td>
+<td><div class="cbar"><div class="cbfill" style="width:5px"></div></div></td>
+<td class="cpct">3%</td>
+<td class="ccnt">(3)</td>
 </tr><tr>
-<td class="tnm">Cabo Verde</td>
-<td><div class="pbar"><div class="pbfill p1f" style="width:0.0px"></div></div><span class="pnum">0%</span></td>
-<td><div class="pbar"><div class="pbfill p2f" style="width:1.8px"></div></div><span class="pnum">1%</span></td>
-<td><div class="pbar"><div class="pbfill p3f" style="width:14.4px"></div></div><span class="pnum">8%</span></td>
-<td><div class="pbar"><div class="pbfill p4f" style="width:61.2px"></div></div><span class="pnum">34%</span></td>
-</tr></tbody>
-</table>
-</div><div class="pos-grp">
-<h3>Grupo I</h3>
-<table>
-<thead><tr><th>Equipo</th><th>🥇 1°</th><th>🥈 2°</th><th>🥉 3°</th><th>4°</th></tr></thead>
-<tbody><tr>
-<td class="tnm">Francia</td>
-<td><div class="pbar"><div class="pbfill p1f" style="width:160.20000000000002px"></div></div><span class="pnum">89%</span></td>
-<td><div class="pbar"><div class="pbfill p2f" style="width:18.0px"></div></div><span class="pnum">10%</span></td>
-<td><div class="pbar"><div class="pbfill p3f" style="width:1.8px"></div></div><span class="pnum">1%</span></td>
-<td><div class="pbar"><div class="pbfill p4f" style="width:0.0px"></div></div><span class="pnum">0%</span></td>
+<td class="ci"> P. Bajos</td>
+<td><div class="cbar"><div class="cbfill" style="width:5px"></div></div></td>
+<td class="cpct">3%</td>
+<td class="ccnt">(3)</td>
 </tr><tr>
-<td class="tnm">Noruega</td>
-<td><div class="pbar"><div class="pbfill p1f" style="width:18.0px"></div></div><span class="pnum">10%</span></td>
-<td><div class="pbar"><div class="pbfill p2f" style="width:120.60000000000001px"></div></div><span class="pnum">67%</span></td>
-<td><div class="pbar"><div class="pbfill p3f" style="width:36.0px"></div></div><span class="pnum">20%</span></td>
-<td><div class="pbar"><div class="pbfill p4f" style="width:5.4px"></div></div><span class="pnum">3%</span></td>
+<td class="ci"> Ecuador</td>
+<td><div class="cbar"><div class="cbfill" style="width:4px"></div></div></td>
+<td class="cpct">2%</td>
+<td class="ccnt">(2)</td>
 </tr><tr>
-<td class="tnm">Senegal</td>
-<td><div class="pbar"><div class="pbfill p1f" style="width:1.8px"></div></div><span class="pnum">1%</span></td>
-<td><div class="pbar"><div class="pbfill p2f" style="width:39.6px"></div></div><span class="pnum">22%</span></td>
-<td><div class="pbar"><div class="pbfill p3f" style="width:127.8px"></div></div><span class="pnum">71%</span></td>
-<td><div class="pbar"><div class="pbfill p4f" style="width:12.6px"></div></div><span class="pnum">7%</span></td>
+<td class="ci"> Croacia</td>
+<td><div class="cbar"><div class="cbfill" style="width:2px"></div></div></td>
+<td class="cpct">1%</td>
+<td class="ccnt">(1)</td>
 </tr><tr>
-<td class="tnm">Irak</td>
-<td><div class="pbar"><div class="pbfill p1f" style="width:0.0px"></div></div><span class="pnum">0%</span></td>
-<td><div class="pbar"><div class="pbfill p2f" style="width:1.8px"></div></div><span class="pnum">1%</span></td>
-<td><div class="pbar"><div class="pbfill p3f" style="width:16.2px"></div></div><span class="pnum">9%</span></td>
-<td><div class="pbar"><div class="pbfill p4f" style="width:163.8px"></div></div><span class="pnum">91%</span></td>
-</tr></tbody>
-</table>
-</div><div class="pos-grp">
-<h3>Grupo J</h3>
-<table>
-<thead><tr><th>Equipo</th><th>🥇 1°</th><th>🥈 2°</th><th>🥉 3°</th><th>4°</th></tr></thead>
-<tbody><tr>
-<td class="tnm">Argentina</td>
-<td><div class="pbar"><div class="pbfill p1f" style="width:180.0px"></div></div><span class="pnum">100%</span></td>
-<td><div class="pbar"><div class="pbfill p2f" style="width:0.0px"></div></div><span class="pnum">0%</span></td>
-<td><div class="pbar"><div class="pbfill p3f" style="width:0.0px"></div></div><span class="pnum">0%</span></td>
-<td><div class="pbar"><div class="pbfill p4f" style="width:0.0px"></div></div><span class="pnum">0%</span></td>
+<td class="ci"> Noruega</td>
+<td><div class="cbar"><div class="cbfill" style="width:2px"></div></div></td>
+<td class="cpct">1%</td>
+<td class="ccnt">(1)</td>
 </tr><tr>
-<td class="tnm">Australia</td>
-<td><div class="pbar"><div class="pbfill p1f" style="width:0.0px"></div></div><span class="pnum">0%</span></td>
-<td><div class="pbar"><div class="pbfill p2f" style="width:147.6px"></div></div><span class="pnum">82%</span></td>
-<td><div class="pbar"><div class="pbfill p3f" style="width:28.8px"></div></div><span class="pnum">16%</span></td>
-<td><div class="pbar"><div class="pbfill p4f" style="width:3.6px"></div></div><span class="pnum">2%</span></td>
+<td class="ci"> Uruguay</td>
+<td><div class="cbar"><div class="cbfill" style="width:2px"></div></div></td>
+<td class="cpct">1%</td>
+<td class="ccnt">(1)</td>
 </tr><tr>
-<td class="tnm">Jordania</td>
-<td><div class="pbar"><div class="pbfill p1f" style="width:0.0px"></div></div><span class="pnum">0%</span></td>
-<td><div class="pbar"><div class="pbfill p2f" style="width:1.8px"></div></div><span class="pnum">1%</span></td>
-<td><div class="pbar"><div class="pbfill p3f" style="width:46.800000000000004px"></div></div><span class="pnum">26%</span></td>
-<td><div class="pbar"><div class="pbfill p4f" style="width:131.4px"></div></div><span class="pnum">73%</span></td>
+<td class="ci"> Marruecos</td>
+<td><div class="cbar"><div class="cbfill" style="width:2px"></div></div></td>
+<td class="cpct">1%</td>
+<td class="ccnt">(1)</td>
+</tr></tbody></table>
+</div><div class="cat-card">
+<h4>4️⃣ Cuarto Puesto</h4>
+<table><tbody><tr>
+<td class="ci">🥇 Brasil</td>
+<td><div class="cbar"><div class="cbfill" style="width:40px"></div></div></td>
+<td class="cpct">22%</td>
+<td class="ccnt">(26)</td>
 </tr><tr>
-<td class="tnm">Argelia</td>
-<td><div class="pbar"><div class="pbfill p1f" style="width:0.0px"></div></div><span class="pnum">0%</span></td>
-<td><div class="pbar"><div class="pbfill p2f" style="width:30.6px"></div></div><span class="pnum">17%</span></td>
-<td><div class="pbar"><div class="pbfill p3f" style="width:104.4px"></div></div><span class="pnum">58%</span></td>
-<td><div class="pbar"><div class="pbfill p4f" style="width:45.0px"></div></div><span class="pnum">25%</span></td>
-</tr></tbody>
-</table>
-</div><div class="pos-grp">
-<h3>Grupo K</h3>
-<table>
-<thead><tr><th>Equipo</th><th>🥇 1°</th><th>🥈 2°</th><th>🥉 3°</th><th>4°</th></tr></thead>
-<tbody><tr>
-<td class="tnm">Colombia</td>
-<td><div class="pbar"><div class="pbfill p1f" style="width:99.0px"></div></div><span class="pnum">55%</span></td>
-<td><div class="pbar"><div class="pbfill p2f" style="width:77.4px"></div></div><span class="pnum">43%</span></td>
-<td><div class="pbar"><div class="pbfill p3f" style="width:3.6px"></div></div><span class="pnum">2%</span></td>
-<td><div class="pbar"><div class="pbfill p4f" style="width:0.0px"></div></div><span class="pnum">0%</span></td>
+<td class="ci">🥈 Inglaterra</td>
+<td><div class="cbar"><div class="cbfill" style="width:34px"></div></div></td>
+<td class="cpct">19%</td>
+<td class="ccnt">(22)</td>
 </tr><tr>
-<td class="tnm">Portugal</td>
-<td><div class="pbar"><div class="pbfill p1f" style="width:81.0px"></div></div><span class="pnum">45%</span></td>
-<td><div class="pbar"><div class="pbfill p2f" style="width:99.0px"></div></div><span class="pnum">55%</span></td>
-<td><div class="pbar"><div class="pbfill p3f" style="width:0.0px"></div></div><span class="pnum">0%</span></td>
-<td><div class="pbar"><div class="pbfill p4f" style="width:0.0px"></div></div><span class="pnum">0%</span></td>
+<td class="ci">🥉 Argentina</td>
+<td><div class="cbar"><div class="cbfill" style="width:31px"></div></div></td>
+<td class="cpct">17%</td>
+<td class="ccnt">(20)</td>
 </tr><tr>
-<td class="tnm">Austria</td>
-<td><div class="pbar"><div class="pbfill p1f" style="width:0.0px"></div></div><span class="pnum">0%</span></td>
-<td><div class="pbar"><div class="pbfill p2f" style="width:3.6px"></div></div><span class="pnum">2%</span></td>
-<td><div class="pbar"><div class="pbfill p3f" style="width:129.6px"></div></div><span class="pnum">72%</span></td>
-<td><div class="pbar"><div class="pbfill p4f" style="width:48.6px"></div></div><span class="pnum">27%</span></td>
+<td class="ci"> España</td>
+<td><div class="cbar"><div class="cbfill" style="width:18px"></div></div></td>
+<td class="cpct">10%</td>
+<td class="ccnt">(12)</td>
 </tr><tr>
-<td class="tnm">Uzbekistán</td>
-<td><div class="pbar"><div class="pbfill p1f" style="width:0.0px"></div></div><span class="pnum">0%</span></td>
-<td><div class="pbar"><div class="pbfill p2f" style="width:0.0px"></div></div><span class="pnum">0%</span></td>
-<td><div class="pbar"><div class="pbfill p3f" style="width:48.6px"></div></div><span class="pnum">27%</span></td>
-<td><div class="pbar"><div class="pbfill p4f" style="width:131.4px"></div></div><span class="pnum">73%</span></td>
-</tr></tbody>
-</table>
-</div><div class="pos-grp">
-<h3>Grupo L</h3>
-<table>
-<thead><tr><th>Equipo</th><th>🥇 1°</th><th>🥈 2°</th><th>🥉 3°</th><th>4°</th></tr></thead>
-<tbody><tr>
-<td class="tnm">Inglaterra</td>
-<td><div class="pbar"><div class="pbfill p1f" style="width:172.8px"></div></div><span class="pnum">96%</span></td>
-<td><div class="pbar"><div class="pbfill p2f" style="width:5.4px"></div></div><span class="pnum">3%</span></td>
-<td><div class="pbar"><div class="pbfill p3f" style="width:1.8px"></div></div><span class="pnum">1%</span></td>
-<td><div class="pbar"><div class="pbfill p4f" style="width:0.0px"></div></div><span class="pnum">0%</span></td>
+<td class="ci"> Portugal</td>
+<td><div class="cbar"><div class="cbfill" style="width:16px"></div></div></td>
+<td class="cpct">9%</td>
+<td class="ccnt">(11)</td>
 </tr><tr>
-<td class="tnm">Croacia</td>
-<td><div class="pbar"><div class="pbfill p1f" style="width:7.2px"></div></div><span class="pnum">4%</span></td>
-<td><div class="pbar"><div class="pbfill p2f" style="width:144.0px"></div></div><span class="pnum">80%</span></td>
-<td><div class="pbar"><div class="pbfill p3f" style="width:25.2px"></div></div><span class="pnum">14%</span></td>
-<td><div class="pbar"><div class="pbfill p4f" style="width:3.6px"></div></div><span class="pnum">2%</span></td>
+<td class="ci"> Francia</td>
+<td><div class="cbar"><div class="cbfill" style="width:11px"></div></div></td>
+<td class="cpct">6%</td>
+<td class="ccnt">(7)</td>
 </tr><tr>
-<td class="tnm">Panamá</td>
-<td><div class="pbar"><div class="pbfill p1f" style="width:0.0px"></div></div><span class="pnum">0%</span></td>
-<td><div class="pbar"><div class="pbfill p2f" style="width:5.4px"></div></div><span class="pnum">3%</span></td>
-<td><div class="pbar"><div class="pbfill p3f" style="width:30.6px"></div></div><span class="pnum">17%</span></td>
-<td><div class="pbar"><div class="pbfill p4f" style="width:144.0px"></div></div><span class="pnum">80%</span></td>
+<td class="ci"> Colombia</td>
+<td><div class="cbar"><div class="cbfill" style="width:5px"></div></div></td>
+<td class="cpct">3%</td>
+<td class="ccnt">(4)</td>
 </tr><tr>
-<td class="tnm">Ghana</td>
-<td><div class="pbar"><div class="pbfill p1f" style="width:0.0px"></div></div><span class="pnum">0%</span></td>
-<td><div class="pbar"><div class="pbfill p2f" style="width:25.2px"></div></div><span class="pnum">14%</span></td>
-<td><div class="pbar"><div class="pbfill p3f" style="width:122.4px"></div></div><span class="pnum">68%</span></td>
-<td><div class="pbar"><div class="pbfill p4f" style="width:32.4px"></div></div><span class="pnum">18%</span></td>
-</tr></tbody>
-</table>
+<td class="ci"> Alemania</td>
+<td><div class="cbar"><div class="cbfill" style="width:5px"></div></div></td>
+<td class="cpct">3%</td>
+<td class="ccnt">(3)</td>
+</tr><tr>
+<td class="ci"> Noruega</td>
+<td><div class="cbar"><div class="cbfill" style="width:5px"></div></div></td>
+<td class="cpct">3%</td>
+<td class="ccnt">(3)</td>
+</tr><tr>
+<td class="ci"> P. Bajos</td>
+<td><div class="cbar"><div class="cbfill" style="width:5px"></div></div></td>
+<td class="cpct">3%</td>
+<td class="ccnt">(3)</td>
+</tr><tr>
+<td class="ci"> Belgica</td>
+<td><div class="cbar"><div class="cbfill" style="width:4px"></div></div></td>
+<td class="cpct">2%</td>
+<td class="ccnt">(2)</td>
+</tr><tr>
+<td class="ci"> Ecuador</td>
+<td><div class="cbar"><div class="cbfill" style="width:2px"></div></div></td>
+<td class="cpct">1%</td>
+<td class="ccnt">(1)</td>
+</tr><tr>
+<td class="ci"> Australia</td>
+<td><div class="cbar"><div class="cbfill" style="width:2px"></div></div></td>
+<td class="cpct">1%</td>
+<td class="ccnt">(1)</td>
+</tr><tr>
+<td class="ci"> Marruecos</td>
+<td><div class="cbar"><div class="cbfill" style="width:2px"></div></div></td>
+<td class="cpct">1%</td>
+<td class="ccnt">(1)</td>
+</tr></tbody></table>
+</div><div class="cat-card">
+<h4>👟 Botín de Oro</h4>
+<table><tbody><tr>
+<td class="ci">🥇 Kylian Mbappe</td>
+<td><div class="cbar"><div class="cbfill" style="width:92px"></div></div></td>
+<td class="cpct">51%</td>
+<td class="ccnt">(59)</td>
+</tr><tr>
+<td class="ci">🥈 Harry Kane</td>
+<td><div class="cbar"><div class="cbfill" style="width:38px"></div></div></td>
+<td class="cpct">21%</td>
+<td class="ccnt">(24)</td>
+</tr><tr>
+<td class="ci">🥉 Lamine Yamal</td>
+<td><div class="cbar"><div class="cbfill" style="width:16px"></div></div></td>
+<td class="cpct">9%</td>
+<td class="ccnt">(10)</td>
+</tr><tr>
+<td class="ci"> Erling Haaland</td>
+<td><div class="cbar"><div class="cbfill" style="width:5px"></div></div></td>
+<td class="cpct">3%</td>
+<td class="ccnt">(4)</td>
+</tr><tr>
+<td class="ci"> Cristiano Ronaldo</td>
+<td><div class="cbar"><div class="cbfill" style="width:5px"></div></div></td>
+<td class="cpct">3%</td>
+<td class="ccnt">(3)</td>
+</tr><tr>
+<td class="ci"> Ferran Torres</td>
+<td><div class="cbar"><div class="cbfill" style="width:5px"></div></div></td>
+<td class="cpct">3%</td>
+<td class="ccnt">(3)</td>
+</tr><tr>
+<td class="ci"> Ousmane Dembele</td>
+<td><div class="cbar"><div class="cbfill" style="width:4px"></div></div></td>
+<td class="cpct">2%</td>
+<td class="ccnt">(2)</td>
+</tr><tr>
+<td class="ci"> Luis Diaz</td>
+<td><div class="cbar"><div class="cbfill" style="width:4px"></div></div></td>
+<td class="cpct">2%</td>
+<td class="ccnt">(2)</td>
+</tr><tr>
+<td class="ci"> Michael Olise</td>
+<td><div class="cbar"><div class="cbfill" style="width:4px"></div></div></td>
+<td class="cpct">2%</td>
+<td class="ccnt">(2)</td>
+</tr><tr>
+<td class="ci"> Lionel Messi</td>
+<td><div class="cbar"><div class="cbfill" style="width:2px"></div></div></td>
+<td class="cpct">1%</td>
+<td class="ccnt">(1)</td>
+</tr></tbody></table>
+</div><div class="cat-card">
+<h4>👟 Botín de Plata</h4>
+<table><tbody><tr>
+<td class="ci">🥇 Harry Kane</td>
+<td><div class="cbar"><div class="cbfill" style="width:56px"></div></div></td>
+<td class="cpct">31%</td>
+<td class="ccnt">(36)</td>
+</tr><tr>
+<td class="ci">🥈 Kylian Mbappe</td>
+<td><div class="cbar"><div class="cbfill" style="width:40px"></div></div></td>
+<td class="cpct">22%</td>
+<td class="ccnt">(26)</td>
+</tr><tr>
+<td class="ci">🥉 Lamine Yamal</td>
+<td><div class="cbar"><div class="cbfill" style="width:16px"></div></div></td>
+<td class="cpct">9%</td>
+<td class="ccnt">(11)</td>
+</tr><tr>
+<td class="ci"> Vinicius Jr.</td>
+<td><div class="cbar"><div class="cbfill" style="width:14px"></div></div></td>
+<td class="cpct">8%</td>
+<td class="ccnt">(9)</td>
+</tr><tr>
+<td class="ci"> Julian Alvarez</td>
+<td><div class="cbar"><div class="cbfill" style="width:5px"></div></div></td>
+<td class="cpct">3%</td>
+<td class="ccnt">(4)</td>
+</tr><tr>
+<td class="ci"> Cristiano Ronaldo</td>
+<td><div class="cbar"><div class="cbfill" style="width:5px"></div></div></td>
+<td class="cpct">3%</td>
+<td class="ccnt">(4)</td>
+</tr><tr>
+<td class="ci"> Erling Haaland</td>
+<td><div class="cbar"><div class="cbfill" style="width:5px"></div></div></td>
+<td class="cpct">3%</td>
+<td class="ccnt">(4)</td>
+</tr><tr>
+<td class="ci"> Lionel Messi</td>
+<td><div class="cbar"><div class="cbfill" style="width:5px"></div></div></td>
+<td class="cpct">3%</td>
+<td class="ccnt">(4)</td>
+</tr><tr>
+<td class="ci"> Luis Diaz</td>
+<td><div class="cbar"><div class="cbfill" style="width:5px"></div></div></td>
+<td class="cpct">3%</td>
+<td class="ccnt">(3)</td>
+</tr><tr>
+<td class="ci"> Lautaro Martinez</td>
+<td><div class="cbar"><div class="cbfill" style="width:4px"></div></div></td>
+<td class="cpct">2%</td>
+<td class="ccnt">(2)</td>
+</tr></tbody></table>
+</div><div class="cat-card">
+<h4>👟 Botín de Bronce</h4>
+<table><tbody><tr>
+<td class="ci">🥇 Lamine Yamal</td>
+<td><div class="cbar"><div class="cbfill" style="width:23px"></div></div></td>
+<td class="cpct">13%</td>
+<td class="ccnt">(15)</td>
+</tr><tr>
+<td class="ci">🥈 Julian Alvarez</td>
+<td><div class="cbar"><div class="cbfill" style="width:22px"></div></div></td>
+<td class="cpct">12%</td>
+<td class="ccnt">(14)</td>
+</tr><tr>
+<td class="ci">🥉 Harry Kane</td>
+<td><div class="cbar"><div class="cbfill" style="width:22px"></div></div></td>
+<td class="cpct">12%</td>
+<td class="ccnt">(14)</td>
+</tr><tr>
+<td class="ci"> Cristiano Ronaldo</td>
+<td><div class="cbar"><div class="cbfill" style="width:20px"></div></div></td>
+<td class="cpct">11%</td>
+<td class="ccnt">(13)</td>
+</tr><tr>
+<td class="ci"> Erling Haaland</td>
+<td><div class="cbar"><div class="cbfill" style="width:16px"></div></div></td>
+<td class="cpct">9%</td>
+<td class="ccnt">(11)</td>
+</tr><tr>
+<td class="ci"> Vinicius Jr</td>
+<td><div class="cbar"><div class="cbfill" style="width:13px"></div></div></td>
+<td class="cpct">7%</td>
+<td class="ccnt">(8)</td>
+</tr><tr>
+<td class="ci"> Kylian Mbappe</td>
+<td><div class="cbar"><div class="cbfill" style="width:9px"></div></div></td>
+<td class="cpct">5%</td>
+<td class="ccnt">(6)</td>
+</tr><tr>
+<td class="ci"> Lionel Messi</td>
+<td><div class="cbar"><div class="cbfill" style="width:9px"></div></div></td>
+<td class="cpct">5%</td>
+<td class="ccnt">(6)</td>
+</tr><tr>
+<td class="ci"> Mikel Oyarzabal</td>
+<td><div class="cbar"><div class="cbfill" style="width:5px"></div></div></td>
+<td class="cpct">3%</td>
+<td class="ccnt">(4)</td>
+</tr><tr>
+<td class="ci"> Luis Diaz</td>
+<td><div class="cbar"><div class="cbfill" style="width:5px"></div></div></td>
+<td class="cpct">3%</td>
+<td class="ccnt">(4)</td>
+</tr></tbody></table>
+</div><div class="cat-card">
+<h4>⚽ Balón de Oro</h4>
+<table><tbody><tr>
+<td class="ci">🥇 Lamine Yamal</td>
+<td><div class="cbar"><div class="cbfill" style="width:58px"></div></div></td>
+<td class="cpct">32%</td>
+<td class="ccnt">(37)</td>
+</tr><tr>
+<td class="ci">🥈 Kylian Mbappe</td>
+<td><div class="cbar"><div class="cbfill" style="width:41px"></div></div></td>
+<td class="cpct">23%</td>
+<td class="ccnt">(27)</td>
+</tr><tr>
+<td class="ci">🥉 Harry Kane</td>
+<td><div class="cbar"><div class="cbfill" style="width:13px"></div></div></td>
+<td class="cpct">7%</td>
+<td class="ccnt">(8)</td>
+</tr><tr>
+<td class="ci"> Bruno Fernandes</td>
+<td><div class="cbar"><div class="cbfill" style="width:9px"></div></div></td>
+<td class="cpct">5%</td>
+<td class="ccnt">(6)</td>
+</tr><tr>
+<td class="ci"> Michael Olise</td>
+<td><div class="cbar"><div class="cbfill" style="width:7px"></div></div></td>
+<td class="cpct">4%</td>
+<td class="ccnt">(5)</td>
+</tr><tr>
+<td class="ci"> Cristiano Ronaldo</td>
+<td><div class="cbar"><div class="cbfill" style="width:7px"></div></div></td>
+<td class="cpct">4%</td>
+<td class="ccnt">(5)</td>
+</tr><tr>
+<td class="ci"> Ousmane Dembele</td>
+<td><div class="cbar"><div class="cbfill" style="width:5px"></div></div></td>
+<td class="cpct">3%</td>
+<td class="ccnt">(4)</td>
+</tr><tr>
+<td class="ci"> Lionel Messi</td>
+<td><div class="cbar"><div class="cbfill" style="width:5px"></div></div></td>
+<td class="cpct">3%</td>
+<td class="ccnt">(4)</td>
+</tr><tr>
+<td class="ci"> Pedri</td>
+<td><div class="cbar"><div class="cbfill" style="width:5px"></div></div></td>
+<td class="cpct">3%</td>
+<td class="ccnt">(3)</td>
+</tr><tr>
+<td class="ci"> Vitinha</td>
+<td><div class="cbar"><div class="cbfill" style="width:5px"></div></div></td>
+<td class="cpct">3%</td>
+<td class="ccnt">(3)</td>
+</tr></tbody></table>
+</div><div class="cat-card">
+<h4>⚽ Balón de Plata</h4>
+<table><tbody><tr>
+<td class="ci">🥇 Kylian Mbappe</td>
+<td><div class="cbar"><div class="cbfill" style="width:31px"></div></div></td>
+<td class="cpct">17%</td>
+<td class="ccnt">(20)</td>
+</tr><tr>
+<td class="ci">🥈 Lamine Yamal</td>
+<td><div class="cbar"><div class="cbfill" style="width:23px"></div></div></td>
+<td class="cpct">13%</td>
+<td class="ccnt">(15)</td>
+</tr><tr>
+<td class="ci">🥉 Harry Kane</td>
+<td><div class="cbar"><div class="cbfill" style="width:22px"></div></div></td>
+<td class="cpct">12%</td>
+<td class="ccnt">(14)</td>
+</tr><tr>
+<td class="ci"> Lionel Messi</td>
+<td><div class="cbar"><div class="cbfill" style="width:13px"></div></div></td>
+<td class="cpct">7%</td>
+<td class="ccnt">(8)</td>
+</tr><tr>
+<td class="ci"> Luis Diaz</td>
+<td><div class="cbar"><div class="cbfill" style="width:13px"></div></div></td>
+<td class="cpct">7%</td>
+<td class="ccnt">(8)</td>
+</tr><tr>
+<td class="ci"> Vitinha</td>
+<td><div class="cbar"><div class="cbfill" style="width:13px"></div></div></td>
+<td class="cpct">7%</td>
+<td class="ccnt">(8)</td>
+</tr><tr>
+<td class="ci"> Cristiano Ronaldo</td>
+<td><div class="cbar"><div class="cbfill" style="width:9px"></div></div></td>
+<td class="cpct">5%</td>
+<td class="ccnt">(6)</td>
+</tr><tr>
+<td class="ci"> Ousmane Dembele</td>
+<td><div class="cbar"><div class="cbfill" style="width:7px"></div></div></td>
+<td class="cpct">4%</td>
+<td class="ccnt">(5)</td>
+</tr><tr>
+<td class="ci"> Jude Bellingham</td>
+<td><div class="cbar"><div class="cbfill" style="width:5px"></div></div></td>
+<td class="cpct">3%</td>
+<td class="ccnt">(4)</td>
+</tr><tr>
+<td class="ci"> Vinicius Jr</td>
+<td><div class="cbar"><div class="cbfill" style="width:5px"></div></div></td>
+<td class="cpct">3%</td>
+<td class="ccnt">(4)</td>
+</tr></tbody></table>
+</div><div class="cat-card">
+<h4>⚽ Balón de Bronce</h4>
+<table><tbody><tr>
+<td class="ci">🥇 Lamine Yamal</td>
+<td><div class="cbar"><div class="cbfill" style="width:29px"></div></div></td>
+<td class="cpct">16%</td>
+<td class="ccnt">(19)</td>
+</tr><tr>
+<td class="ci">🥈 Kylian Mbappe</td>
+<td><div class="cbar"><div class="cbfill" style="width:23px"></div></div></td>
+<td class="cpct">13%</td>
+<td class="ccnt">(15)</td>
+</tr><tr>
+<td class="ci">🥉 Luis Diaz</td>
+<td><div class="cbar"><div class="cbfill" style="width:16px"></div></div></td>
+<td class="cpct">9%</td>
+<td class="ccnt">(10)</td>
+</tr><tr>
+<td class="ci"> Lionel Messi</td>
+<td><div class="cbar"><div class="cbfill" style="width:14px"></div></div></td>
+<td class="cpct">8%</td>
+<td class="ccnt">(9)</td>
+</tr><tr>
+<td class="ci"> Harry Kane</td>
+<td><div class="cbar"><div class="cbfill" style="width:11px"></div></div></td>
+<td class="cpct">6%</td>
+<td class="ccnt">(7)</td>
+</tr><tr>
+<td class="ci"> Vinicius Jr.</td>
+<td><div class="cbar"><div class="cbfill" style="width:11px"></div></div></td>
+<td class="cpct">6%</td>
+<td class="ccnt">(7)</td>
+</tr><tr>
+<td class="ci"> Vitinha</td>
+<td><div class="cbar"><div class="cbfill" style="width:9px"></div></div></td>
+<td class="cpct">5%</td>
+<td class="ccnt">(6)</td>
+</tr><tr>
+<td class="ci"> Pedri</td>
+<td><div class="cbar"><div class="cbfill" style="width:7px"></div></div></td>
+<td class="cpct">4%</td>
+<td class="ccnt">(5)</td>
+</tr><tr>
+<td class="ci"> Michael Olise</td>
+<td><div class="cbar"><div class="cbfill" style="width:5px"></div></div></td>
+<td class="cpct">3%</td>
+<td class="ccnt">(4)</td>
+</tr><tr>
+<td class="ci"> Bruno Fernandes</td>
+<td><div class="cbar"><div class="cbfill" style="width:5px"></div></div></td>
+<td class="cpct">3%</td>
+<td class="ccnt">(4)</td>
+</tr></tbody></table>
 </div>
 </div>
 <script>
