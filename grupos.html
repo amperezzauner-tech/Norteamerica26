@@ -1,0 +1,898 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>👥 Grupos Privados — Polla FIFA 2026</title>
+
+<!-- ══════════════════════════════════════════════════════
+     FIREBASE SDK (v10 modular via CDN)
+     Reemplaza los valores de firebaseConfig con los tuyos
+     de: Firebase Console → tu proyecto → Configuración
+══════════════════════════════════════════════════════ -->
+<script type="module">
+import { initializeApp }             from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
+import { getFirestore, collection, doc, getDoc, getDocs, setDoc,
+         updateDoc, deleteDoc, onSnapshot, arrayUnion, arrayRemove,
+         serverTimestamp, query, where }
+  from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
+import { getAuth, signInAnonymously, onAuthStateChanged }
+  from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
+
+// ─────────────────────────────────────────────────────────────────────────────
+// 🔧 PEGA AQUÍ TU CONFIGURACIÓN DE FIREBASE
+// Firebase Console → tu proyecto → ⚙️ Configuración → Tus apps → SDK config
+// ─────────────────────────────────────────────────────────────────────────────
+const firebaseConfig = {
+  apiKey:            "PEGA_TU_API_KEY",
+  authDomain:        "PEGA_TU_AUTH_DOMAIN",
+  projectId:         "PEGA_TU_PROJECT_ID",
+  storageBucket:     "PEGA_TU_STORAGE_BUCKET",
+  messagingSenderId: "PEGA_TU_MESSAGING_SENDER_ID",
+  appId:             "PEGA_TU_APP_ID",
+};
+// ─────────────────────────────────────────────────────────────────────────────
+
+const app  = initializeApp(firebaseConfig);
+const db   = getFirestore(app);
+const auth = getAuth(app);
+
+// ════════════════════════════════════════════════════════════════════════════
+// DATOS GLOBALES — participantes y puntajes
+// Actualizar cada vez que Claude regenere el HTML con nuevos resultados
+// ════════════════════════════════════════════════════════════════════════════
+const PARTICIPANTS = [
+  "Fabian Morales","Juliana Silva","Alejandro Lisson","Andres Merizalde",
+  "Carlos Vergara","Eduardo Rangel","Andres Gamboa","Reinaldo Acosta",
+  "Ana Maria Perez","Mark Mordo","Felipe Chalela","Jennie Levitt",
+  "Nicolas Reyes","Christian Kling","Rodrigo Gonzalez","Juan Carlos Rebolledo",
+  "Ernesto Samper","Fernando Arana","Juan Roberto Gomez","Veronica Skinner",
+  "Daniel Gomez","Juan Diego Martinez","Pablo Andrade","Pablo Andrade 2",
+  "Andres Sarmiento","Juan Jose Olarte","Benjamin Olarte","Pablo Gomez",
+  "Alejandro Gonzalez","Andres Felipe Olarte","Edith Vargas","Enrique Casas",
+  "Andres Mejia","Antonia Quijano","Eva Kling","Joey Borrero",
+  "Agustin Vejarano","Alfonso Vejarano","Ferney Ardila","Ricardo Sarmiento",
+  "Daniel Mor","Jaime Mor","Alberto Fonseca","Alejandro Hernandez",
+  "Daniel Escobar","Mauricio Quiroga","Sebastian Manzanera","Augusto Hernandez",
+  "Billy Belzner","Juan Martin Mejia","Mauricio Posse","Daniel Gonzalez",
+  "Jaime Silva","Javier Ropero","Juan Miguel Olarte","Nicolas De Narvaez",
+  "Andres Cadena","Armando Benito Revollo","Diego Perez","Mauricio Borrero",
+  "Alvaro Acosta","Andres Silva","Bianca Olarte","Daniel Mordo","Diego Rios",
+  "Juan Pablo Duran","Felipe Merizalde","Jorge Tirado","Luis Felipe Aparicio",
+  "Dayana Cruz","Laura Molina","Andrea Mordo","Daniel Pombo","Federico Camacho",
+  "Santiago Rendon","Camilo Pomares","Cristian Ardila","Jose Pablo Reyes",
+  "Monica Zauner","Javier Tafur","Luis Francisco Fracica","Santiago Urdaneta",
+  "Juan Carlos Osorio","Luis Enrique Bermudez","Phyllis Conn","Alejandro Arias",
+  "Felipe Gaitan","Fernando Ortiz","Andres Olarte","Juan Pablo Delgado",
+  "Katerin Hernandez","Adriana Zauner","Erika Padilla","Jairo Rios",
+  "Alejandro Escallon Papa","Andres Rodriguez","Daniel Herrera","Erich Riano",
+  "Mariana Reyes","Sergio Rodriguez","Juan Manuel Matiz","Santiago Acevedo",
+  "Sinda Mendizabal","Alejandro Escallon Hijo","Javier Garcia","Santiago Mejia",
+  "Alejandro Arbelaez","Alejandro Paez","Juan Manuel Perez","Pedro Montano",
+  "Rebecca Borrero","Fernando Pineros","Alejandro Gonzalex",
+];
+
+const GLOBAL_SCORES = {
+  "Fabian Morales":115,"Juliana Silva":115,"Alejandro Lisson":113,
+  "Andres Merizalde":113,"Carlos Vergara":109,"Eduardo Rangel":109,
+  "Andres Gamboa":107,"Reinaldo Acosta":107,"Ana Maria Perez":106,
+  "Mark Mordo":106,"Felipe Chalela":104,"Jennie Levitt":103,
+  "Nicolas Reyes":103,"Christian Kling":102,"Rodrigo Gonzalez":102,
+  "Juan Carlos Rebolledo":101,"Ernesto Samper":98,"Fernando Arana":97,
+  "Juan Roberto Gomez":100,"Veronica Skinner":101,"Daniel Gomez":103,
+  "Juan Diego Martinez":99,"Pablo Andrade":96,"Pablo Andrade 2":98,
+  "Andres Sarmiento":99,"Juan Jose Olarte":98,"Benjamin Olarte":94,
+  "Pablo Gomez":98,"Alejandro Gonzalez":96,"Andres Felipe Olarte":97,
+  "Edith Vargas":96,"Enrique Casas":100,"Andres Mejia":95,
+  "Antonia Quijano":99,"Eva Kling":94,"Joey Borrero":94,
+  "Agustin Vejarano":91,"Alfonso Vejarano":91,"Ferney Ardila":95,
+  "Ricardo Sarmiento":95,"Daniel Mor":94,"Jaime Mor":97,
+  "Alberto Fonseca":89,"Alejandro Hernandez":93,"Daniel Escobar":92,
+  "Mauricio Quiroga":92,"Sebastian Manzanera":92,"Augusto Hernandez":87,
+  "Billy Belzner":95,"Juan Martin Mejia":91,"Mauricio Posse":90,
+  "Daniel Gonzalez":91,"Jaime Silva":89,"Javier Ropero":89,
+  "Juan Miguel Olarte":94,"Nicolas De Narvaez":94,"Andres Cadena":90,
+  "Armando Benito Revollo":90,"Diego Perez":93,"Mauricio Borrero":89,
+  "Alvaro Acosta":84,"Andres Silva":89,"Bianca Olarte":89,"Daniel Mordo":87,
+  "Diego Rios":89,"Juan Pablo Duran":85,"Felipe Merizalde":88,
+  "Jorge Tirado":91,"Luis Felipe Aparicio":86,"Dayana Cruz":86,
+  "Laura Molina":85,"Andrea Mordo":88,"Daniel Pombo":83,
+  "Federico Camacho":81,"Santiago Rendon":85,"Camilo Pomares":86,
+  "Cristian Ardila":84,"Jose Pablo Reyes":87,"Monica Zauner":82,
+  "Javier Tafur":82,"Luis Francisco Fracica":83,"Santiago Urdaneta":86,
+  "Juan Carlos Osorio":85,"Luis Enrique Bermudez":85,"Phyllis Conn":88,
+  "Alejandro Arias":78,"Felipe Gaitan":80,"Fernando Ortiz":84,
+  "Andres Olarte":79,"Juan Pablo Delgado":83,"Katerin Hernandez":92,
+  "Adriana Zauner":78,"Erika Padilla":82,"Jairo Rios":75,
+  "Alejandro Escallon Papa":73,"Andres Rodriguez":81,"Daniel Herrera":76,
+  "Erich Riano":81,"Mariana Reyes":74,"Sergio Rodriguez":78,
+  "Juan Manuel Matiz":77,"Santiago Acevedo":79,"Sinda Mendizabal":71,
+  "Alejandro Escallon Hijo":74,"Javier Garcia":77,"Santiago Mejia":66,
+  "Alejandro Arbelaez":68,"Alejandro Paez":69,"Juan Manuel Perez":62,
+  "Pedro Montano":61,"Rebecca Borrero":69,"Fernando Pineros":65,
+  "Alejandro Gonzalex":0,
+};
+
+const SIDE_BETS = [
+  {id:"champion",   label:"🏆 Campeón del Mundial",            type:"team"},
+  {id:"runner_up",  label:"🥈 Subcampeón",                     type:"team"},
+  {id:"third",      label:"🥉 Tercer puesto",                   type:"team"},
+  {id:"top_scorer", label:"👟 Botín de Oro (máximo goleador)",  type:"player"},
+  {id:"ballon",     label:"⭐ Balón de Oro (mejor jugador)",    type:"player"},
+  {id:"grp_A_1st",  label:"Grupo A — 1er lugar",               type:"team"},
+  {id:"grp_A_last", label:"Grupo A — Último lugar",            type:"team"},
+  {id:"grp_B_1st",  label:"Grupo B — 1er lugar",               type:"team"},
+  {id:"grp_B_last", label:"Grupo B — Último lugar",            type:"team"},
+  {id:"grp_C_1st",  label:"Grupo C — 1er lugar",               type:"team"},
+  {id:"grp_F_1st",  label:"Grupo F — 1er lugar",               type:"team"},
+  {id:"grp_L_1st",  label:"Grupo L — 1er lugar",               type:"team"},
+];
+
+// ════════════════════════════════════════════════════════════════════════════
+// APP STATE
+// ════════════════════════════════════════════════════════════════════════════
+const state = {
+  uid:           null,   // Firebase anonymous UID
+  currentUser:   null,   // Nombre del participante seleccionado
+  grupos:        [],     // Grupos cargados de Firestore
+  activeGroupId: null,
+  unsubscribe:   null,   // Listener Firestore activo
+};
+
+// ════════════════════════════════════════════════════════════════════════════
+// HELPERS
+// ════════════════════════════════════════════════════════════════════════════
+function genId() {
+  return Math.random().toString(36).slice(2,8).toUpperCase();
+}
+function $(id) { return document.getElementById(id); }
+
+function showToast(msg, color="#4cde7a") {
+  let t = document.getElementById("toast");
+  if (!t) {
+    t = document.createElement("div");
+    t.id = "toast";
+    t.style.cssText = "position:fixed;bottom:24px;left:50%;transform:translateX(-50%);" +
+      "padding:10px 20px;border-radius:20px;font-size:.78rem;font-weight:700;" +
+      "z-index:999;transition:opacity .3s;pointer-events:none";
+    document.body.appendChild(t);
+  }
+  t.textContent = msg;
+  t.style.background = color;
+  t.style.color = color==="#4cde7a"?"#000":"#fff";
+  t.style.opacity = "1";
+  clearTimeout(t._timer);
+  t._timer = setTimeout(()=>t.style.opacity="0", 2500);
+}
+
+function setLoading(el, on) {
+  if (!el) return;
+  el.disabled = on;
+  el.style.opacity = on ? ".5" : "1";
+}
+
+// ════════════════════════════════════════════════════════════════════════════
+// FIRESTORE HELPERS
+// Estructura de la base de datos:
+//   /grupos/{grupoId}
+//     name, code, createdBy, createdAt,
+//     members: [{name, role, joinedAt}],
+//     sideBets: [betId, ...],
+//     betResults: {betId: winner},
+//     memberBets: {participantName: {betId: value}}
+// ════════════════════════════════════════════════════════════════════════════
+
+// Escuchar grupos en tiempo real donde el usuario es miembro
+function subscribeToGrupos(userName) {
+  // Cancelar listener anterior si existe
+  if (state.unsubscribe) state.unsubscribe();
+
+  const q = query(
+    collection(db, "grupos"),
+    where("memberNames", "array-contains", userName)
+  );
+
+  state.unsubscribe = onSnapshot(q, (snap) => {
+    state.grupos = snap.docs.map(d => ({id: d.id, ...d.data()}));
+    // Re-render lista si estamos en esa pantalla
+    if ($("screen-list").classList.contains("act")) renderList();
+    // Re-render detalle si estamos en ese grupo
+    if ($("screen-detail").classList.contains("act")) {
+      const g = state.grupos.find(g=>g.id===state.activeGroupId);
+      if (g) renderDetail(g);
+    }
+  }, (err) => {
+    console.error("Firestore error:", err);
+    showToast("Error de conexión", "#e74c3c");
+  });
+}
+
+async function fsCreateGroup(groupData) {
+  const ref = doc(collection(db, "grupos"));
+  await setDoc(ref, {
+    ...groupData,
+    id: ref.id,
+    createdAt: serverTimestamp(),
+  });
+  return ref.id;
+}
+
+async function fsUpdateGroup(groupId, data) {
+  await updateDoc(doc(db, "grupos", groupId), data);
+}
+
+async function fsGetGroupByCode(code) {
+  const q = query(collection(db, "grupos"), where("code","==",code));
+  const snap = await getDocs(q);
+  if (snap.empty) return null;
+  return {id: snap.docs[0].id, ...snap.docs[0].data()};
+}
+
+// ════════════════════════════════════════════════════════════════════════════
+// SCREEN NAVIGATION
+// ════════════════════════════════════════════════════════════════════════════
+function goScreen(name, g) {
+  document.querySelectorAll(".screen").forEach(s=>s.classList.remove("act"));
+  $("screen-"+name).classList.add("act");
+
+  const titles = {
+    login:  ["👥 Grupos Privados", "Polla FIFA 2026"],
+    list:   ["👥 Grupos Privados", state.currentUser||""],
+    create: ["Crear grupo", "Elige nombre y participantes"],
+    detail: [g?.name||"Grupo", g ? "Código: "+g.code : ""],
+  };
+  const [t,s] = titles[name]||["",""];
+  $("hdr-title").textContent = t;
+  $("hdr-sub").textContent   = s;
+
+  if (name==="create") renderCreate();
+  if (name==="detail" && g) renderDetail(g);
+}
+
+function switchDetailTab(id, btn) {
+  document.querySelectorAll(".tab-nav button").forEach(b=>b.classList.remove("act"));
+  document.querySelectorAll(".tab-panel").forEach(p=>p.classList.remove("act"));
+  btn.classList.add("act");
+  $("detail-"+id).classList.add("act");
+}
+
+// ════════════════════════════════════════════════════════════════════════════
+// LOGIN
+// ════════════════════════════════════════════════════════════════════════════
+function filterLogin(q) {
+  const list = $("login-list");
+  const filtered = PARTICIPANTS.filter(p=>p.toLowerCase().includes(q.toLowerCase()));
+  list.innerHTML = filtered.map(p=>`
+    <div class="participant-item" onclick="selectUser('${p.replace(/'/g,"\'")}')">
+      <span>${p}</span>
+      <span style="color:#6a8faa;font-size:.72rem">${GLOBAL_SCORES[p]||0} pts</span>
+    </div>`).join("");
+}
+
+function selectUser(name) {
+  state.currentUser = name;
+  // Save name locally so next visit skips login
+  try { localStorage.setItem("polla2026_user", name); } catch(e) {}
+  subscribeToGrupos(name);
+  goScreen("list");
+}
+
+// ════════════════════════════════════════════════════════════════════════════
+// GROUP LIST
+// ════════════════════════════════════════════════════════════════════════════
+function renderList() {
+  const me = state.currentUser;
+
+  if (state.grupos.length===0) {
+    $("my-groups-list").innerHTML = `<div class="empty">Aún no perteneces a ningún grupo.<br>¡Crea uno o únete con un código!</div>`;
+  } else {
+    $("my-groups-list").innerHTML = state.grupos.map(g=>{
+      const isAdmin = g.members.find(m=>m.name===me)?.role==="admin";
+      const ranked  = [...(g.members||[])].sort((a,b)=>(GLOBAL_SCORES[b.name]||0)-(GLOBAL_SCORES[a.name]||0));
+      const myRank  = ranked.findIndex(m=>m.name===me)+1;
+      return `<div class="group-card" onclick="openGroup('${g.id}')">
+        <div class="group-card-hdr">
+          <div>
+            <span style="font-weight:700;font-size:.95rem">${g.name}</span>
+            ${isAdmin?'<span class="badge badge-gold" style="margin-left:6px">Admin</span>':''}
+          </div>
+          <span class="code-tag">${g.code}</span>
+        </div>
+        <div class="group-stats">
+          <div class="group-stat"><div class="group-stat-val">#${myRank}</div><div class="group-stat-lbl">Tu posición</div></div>
+          <div class="group-stat"><div class="group-stat-val">${GLOBAL_SCORES[me]||0}</div><div class="group-stat-lbl">Tus puntos</div></div>
+          <div class="group-stat"><div class="group-stat-val">${(g.members||[]).length}</div><div class="group-stat-lbl">Miembros</div></div>
+          ${g.sideBets?.length?`<div class="group-stat"><div class="group-stat-val" style="color:#4cde7a">${g.sideBets.length}</div><div class="group-stat-lbl">Apuestas</div></div>`:''}
+        </div>
+      </div>`;
+    }).join("");
+  }
+}
+
+// Unirse por código
+async function joinByCode() {
+  const code = $("join-code").value.trim().toUpperCase();
+  const errEl = $("join-err");
+  const btn = $("join-btn");
+  if (!code) return;
+  setLoading(btn, true);
+  try {
+    const g = await fsGetGroupByCode(code);
+    if (!g) { errEl.textContent="❌ Código no encontrado."; errEl.style.display="block"; return; }
+    if ((g.members||[]).some(m=>m.name===state.currentUser)) {
+      errEl.textContent="Ya eres miembro de este grupo."; errEl.style.display="block"; return;
+    }
+    const newMember = {name:state.currentUser, role:"member", joinedAt:new Date().toISOString()};
+    await fsUpdateGroup(g.id, {
+      members:     arrayUnion(newMember),
+      memberNames: arrayUnion(state.currentUser),
+    });
+    $("join-code").value="";
+    errEl.style.display="none";
+    showToast("✅ Te uniste a ""+g.name+""");
+  } catch(e) {
+    errEl.textContent="❌ Error: "+e.message; errEl.style.display="block";
+  } finally { setLoading(btn, false); }
+}
+
+function openGroup(id) {
+  state.activeGroupId = id;
+  const g = state.grupos.find(g=>g.id===id);
+  if (g) goScreen("detail", g);
+}
+
+// ════════════════════════════════════════════════════════════════════════════
+// CREATE GROUP
+// ════════════════════════════════════════════════════════════════════════════
+let selectedMembers = [];
+let selectedBets    = [];
+
+function renderCreate() {
+  selectedMembers = [state.currentUser];
+  selectedBets    = [];
+
+  $("side-bets-list").innerHTML = SIDE_BETS.map(b=>`
+    <div style="display:flex;align-items:center;gap:10px;padding:8px 0;border-bottom:1px solid #1e3a55">
+      <div class="chk" id="chk-${b.id}" onclick="toggleBet('${b.id}')"></div>
+      <span style="font-size:.82rem">${b.label}</span>
+    </div>`).join("");
+
+  renderMemberSelect("");
+  $("new-group-name").value = "";
+  $("create-err").style.display = "none";
+}
+
+function filterMembers(q) { renderMemberSelect(q); }
+
+function renderMemberSelect(q) {
+  $("member-count-label").textContent = selectedMembers.length+" seleccionados";
+  const others = PARTICIPANTS.filter(p=>p!==state.currentUser&&p.toLowerCase().includes(q.toLowerCase()));
+  $("member-select-list").innerHTML =
+    `<div style="display:flex;align-items:center;gap:10px;padding:8px 0;border-bottom:1px solid #1e3a55">
+       <div class="chk on">✓</div>
+       <span style="font-size:.82rem">${state.currentUser}</span>
+       <span class="badge badge-gold" style="margin-left:auto">Tú · Admin</span>
+     </div>` +
+    others.map(p=>{
+      const on = selectedMembers.includes(p);
+      return `<div style="display:flex;align-items:center;gap:10px;padding:8px 0;border-bottom:1px solid #1e3a55">
+        <div class="chk ${on?"on":""}" onclick="toggleMember('${p.replace(/'/g,"\'")}')">
+          ${on?"✓":""}
+        </div>
+        <span style="font-size:.82rem">${p}</span>
+        <span style="color:#6a8faa;font-size:.7rem;margin-left:auto">${GLOBAL_SCORES[p]||0} pts</span>
+      </div>`;
+    }).join("");
+}
+
+function toggleMember(name) {
+  selectedMembers = selectedMembers.includes(name)
+    ? selectedMembers.filter(m=>m!==name)
+    : [...selectedMembers, name];
+  renderMemberSelect($("member-search").value);
+}
+
+function toggleBet(id) {
+  selectedBets = selectedBets.includes(id)
+    ? selectedBets.filter(b=>b!==id)
+    : [...selectedBets, id];
+  const el = $("chk-"+id);
+  el.className = "chk "+(selectedBets.includes(id)?"on":"");
+  el.textContent = selectedBets.includes(id)?"✓":"";
+}
+
+async function createGroup() {
+  const name   = $("new-group-name").value.trim();
+  const errEl  = $("create-err");
+  const btn    = $("create-btn");
+  if (!name) { errEl.textContent="❌ Ponle un nombre al grupo."; errEl.style.display="block"; return; }
+  if (selectedMembers.length<2) { errEl.textContent="❌ Agrega al menos un participante."; errEl.style.display="block"; return; }
+
+  setLoading(btn, true);
+  try {
+    const groupData = {
+      code:        genId().slice(0,6),
+      name,
+      createdBy:   state.currentUser,
+      members:     selectedMembers.map(n=>({name:n, role:n===state.currentUser?"admin":"member", joinedAt:new Date().toISOString()})),
+      memberNames: selectedMembers,   // array plano para queries de Firestore
+      sideBets:    selectedBets,
+      memberBets:  {},
+      betResults:  {},
+    };
+    const newId = await fsCreateGroup(groupData);
+    state.activeGroupId = newId;
+    // El listener onSnapshot actualizará state.grupos automáticamente
+    // Esperamos un tick para que llegue
+    await new Promise(r=>setTimeout(r,600));
+    const g = state.grupos.find(g=>g.id===newId) || {...groupData, id:newId};
+    showToast("✅ Grupo ""+name+"" creado");
+    goScreen("detail", g);
+  } catch(e) {
+    errEl.textContent="❌ Error: "+e.message; errEl.style.display="block";
+  } finally { setLoading(btn, false); }
+}
+
+// ════════════════════════════════════════════════════════════════════════════
+// GROUP DETAIL
+// ════════════════════════════════════════════════════════════════════════════
+function renderDetail(g) {
+  const me      = state.currentUser;
+  const isAdmin = (g.members||[]).find(m=>m.name===me)?.role==="admin";
+
+  $("hdr-title").textContent = g.name;
+  $("hdr-sub").textContent   = "Código: "+g.code;
+
+  const betsBtn = $("tab-bets-btn");
+  betsBtn.style.display = g.sideBets?.length>0 ? "block" : "none";
+
+  renderGroupRanking(g, me);
+  renderGroupMembers(g, me, isAdmin);
+  if (g.sideBets?.length>0) renderGroupBets(g, me, isAdmin);
+}
+
+// ── Ranking ──
+function renderGroupRanking(g, me) {
+  const ranked = [...(g.members||[])].sort((a,b)=>(GLOBAL_SCORES[b.name]||0)-(GLOBAL_SCORES[a.name]||0));
+  const medals = ["🥇","🥈","🥉"];
+  $("group-rank-table").innerHTML = `
+    <table class="rank-table">
+      <thead><tr>
+        <th style="text-align:center;width:36px">#</th>
+        <th>Participante</th>
+        <th style="text-align:right;padding-right:12px">Pts</th>
+      </tr></thead>
+      <tbody>${ranked.map((m,i)=>`
+        <tr class="${m.name===me?"me-row":""}">
+          <td style="text-align:center;color:#8ab4d4;font-size:.75rem">${medals[i]||i+1}</td>
+          <td style="padding-left:12px">${m.name}
+            ${m.name===me?'<span style="color:#6a8faa;font-size:.7rem"> (tú)</span>':''}
+            ${m.role==="admin"?'<span style="color:#f5d020;font-size:.65rem"> ★</span>':''}
+          </td>
+          <td style="text-align:right;padding-right:12px;color:#f5d020;font-weight:700">${GLOBAL_SCORES[m.name]||0}</td>
+        </tr>`).join("")}
+      </tbody>
+    </table>`;
+}
+
+// ── Miembros ──
+function renderGroupMembers(g, me, isAdmin) {
+  $("add-member-section").innerHTML = isAdmin ? `
+    <button class="btn btn-primary btn-full" style="margin-bottom:12px"
+      onclick="toggleAddMemberForm('${g.id}')">➕ Agregar participante</button>
+    <div id="add-member-form" style="display:none;margin-bottom:12px">
+      <div class="card"><div class="card-body">
+        <input type="text" id="add-member-search" placeholder="🔍 Buscar..."
+          oninput="renderAddMemberList('${g.id}',this.value)" style="margin-bottom:8px">
+        <div id="add-member-list" style="max-height:200px;overflow-y:auto"></div>
+      </div></div>
+    </div>` : "";
+
+  $("members-list-detail").innerHTML = (g.members||[]).map(m=>`
+    <div class="member-row">
+      <div>
+        <div style="font-size:.88rem;font-weight:600">${m.name}
+          ${m.name===me?' <span style="color:#6a8faa;font-size:.7rem">(tú)</span>':''}
+        </div>
+        <div style="font-size:.7rem;color:#6a8faa;margin-top:2px">
+          ${m.role==="admin"?"★ Administrador":"Participante"}
+          · Unido ${new Date(m.joinedAt).toLocaleDateString("es-CO")}
+        </div>
+      </div>
+      <div style="display:flex;gap:6px">
+        ${isAdmin&&m.name!==me&&m.role!=="admin"
+          ?`<button class="btn btn-ghost btn-sm" onclick="promoteMember('${g.id}','${m.name.replace(/'/g,"\'")}')">★ Admin</button>`:""}
+        ${isAdmin&&m.name!==me
+          ?`<button class="btn btn-danger btn-sm" onclick="removeMember('${g.id}','${m.name.replace(/'/g,"\'")}')">✕</button>`:""}
+      </div>
+    </div>`).join("");
+
+  $("leave-section").innerHTML = !isAdmin
+    ? `<button class="btn btn-danger btn-full" onclick="leaveGroup('${g.id}')">Salir del grupo</button>`
+    : "";
+}
+
+function toggleAddMemberForm(gid) {
+  const f = $("add-member-form");
+  f.style.display = f.style.display==="none" ? "block" : "none";
+  if (f.style.display==="block") renderAddMemberList(gid,"");
+}
+
+function renderAddMemberList(gid, q) {
+  const g = state.grupos.find(g=>g.id===gid);
+  if (!g) return;
+  const available = PARTICIPANTS.filter(p=>
+    !(g.memberNames||[]).includes(p) && p.toLowerCase().includes(q.toLowerCase())
+  );
+  $("add-member-list").innerHTML = available.length===0
+    ? '<div class="empty">Sin más participantes disponibles</div>'
+    : available.map(p=>`
+        <div style="display:flex;justify-content:space-between;align-items:center;padding:7px 0;border-bottom:1px solid #1e3a55">
+          <span style="font-size:.82rem">${p}</span>
+          <button class="btn btn-green btn-sm" onclick="addMember('${gid}','${p.replace(/'/g,"\'")}')">Agregar</button>
+        </div>`).join("");
+}
+
+async function addMember(gid, name) {
+  const g = state.grupos.find(g=>g.id===gid);
+  if (!g) return;
+  const newMember = {name, role:"member", joinedAt:new Date().toISOString()};
+  await fsUpdateGroup(gid, {
+    members:     arrayUnion(newMember),
+    memberNames: arrayUnion(name),
+  });
+  showToast("✅ "+name+" agregado");
+}
+
+async function removeMember(gid, name) {
+  if (!confirm("¿Eliminar a "+name+" del grupo?")) return;
+  const g = state.grupos.find(g=>g.id===gid);
+  if (!g) return;
+  const member = g.members.find(m=>m.name===name);
+  if (!member) return;
+  await fsUpdateGroup(gid, {
+    members:     arrayRemove(member),
+    memberNames: arrayRemove(name),
+  });
+  showToast("✅ "+name+" eliminado");
+}
+
+async function promoteMember(gid, name) {
+  const g = state.grupos.find(g=>g.id===gid);
+  if (!g) return;
+  // Must remove old member object and re-add with new role
+  const oldMember = g.members.find(m=>m.name===name);
+  if (!oldMember) return;
+  const newMember = {...oldMember, role:"admin"};
+  await fsUpdateGroup(gid, { members: arrayRemove(oldMember) });
+  await fsUpdateGroup(gid, { members: arrayUnion(newMember) });
+  showToast("✅ "+name+" es ahora admin");
+}
+
+async function leaveGroup(gid) {
+  if (!confirm("¿Seguro que quieres salir del grupo?")) return;
+  const g = state.grupos.find(g=>g.id===gid);
+  if (!g) return;
+  const me = g.members.find(m=>m.name===state.currentUser);
+  if (!me) return;
+  await fsUpdateGroup(gid, {
+    members:     arrayRemove(me),
+    memberNames: arrayRemove(state.currentUser),
+  });
+  goScreen("list");
+  showToast("Saliste del grupo");
+}
+
+// ── Apuestas ──
+function renderGroupBets(g, me, isAdmin) {
+  const betResults = g.betResults||{};
+  const memberBets = g.memberBets||{};
+  const myBets     = memberBets[me]||{};
+
+  $("bets-list").innerHTML = (g.sideBets||[]).map(betId=>{
+    const bet    = SIDE_BETS.find(b=>b.id===betId);
+    if (!bet) return "";
+    const winner = betResults[betId];
+    const preds  = Object.entries(memberBets)
+      .map(([n,bets])=>({name:n,pred:bets[betId]}))
+      .filter(p=>p.pred);
+    const counts = {};
+    preds.forEach(p=>{ counts[p.pred]=(counts[p.pred]||0)+1; });
+    const sorted = Object.entries(counts).sort((a,b)=>b[1]-a[1]);
+    const total  = preds.length||1;
+
+    return `<div class="card" style="margin-bottom:10px">
+      <div class="card-hdr" style="display:flex;justify-content:space-between;align-items:center">
+        <span style="color:#f5d020;font-weight:700;font-size:.82rem">${bet.label}</span>
+        ${winner
+          ?`<span class="badge badge-green">✅ ${winner}</span>`
+          :`<span class="badge badge-blue">${preds.length}/${(g.members||[]).length}</span>`}
+      </div>
+      <div class="card-body">
+        ${preds.length===0?'<div class="empty">Nadie ha registrado su apuesta aún</div>'
+          :sorted.map(([pred,cnt])=>{
+            const w = Math.round(100*cnt/total);
+            const isWin = winner===pred;
+            return `<div style="margin-bottom:7px;display:flex;align-items:center;gap:8px">
+              <span style="min-width:110px;font-size:.8rem;color:${isWin?"#4cde7a":"#fff"};font-weight:${isWin?700:400}">${pred}${isWin?" ✅":""}</span>
+              <div style="flex:1;height:7px;background:#1e3a55;border-radius:3px;overflow:hidden">
+                <div style="height:100%;width:${w}%;background:${isWin?"#4cde7a":"#c8a200"};border-radius:3px"></div>
+              </div>
+              <span style="color:#f5d020;font-size:.75rem;min-width:20px">${cnt}</span>
+            </div>`;}).join("")}
+        ${isAdmin&&!winner&&sorted.length>0?`
+          <div style="margin-top:10px;border-top:1px solid #1e3a55;padding-top:10px">
+            <div style="font-size:.7rem;color:#6a8faa;margin-bottom:6px">Definir ganador:</div>
+            <div style="display:flex;flex-wrap:wrap;gap:6px">
+              ${sorted.map(([pred])=>`
+                <button class="btn btn-ghost btn-sm"
+                  onclick="setWinner('${g.id}','${betId}','${pred.replace(/'/g,"\'")}')">
+                  ${pred}
+                </button>`).join("")}
+            </div>
+          </div>`:""}
+      </div>
+    </div>`;
+  }).join("");
+
+  $("my-bets-form").innerHTML = `
+    <div class="card" style="margin-top:4px">
+      <div class="card-hdr"><span style="color:#f5d020;font-weight:700;font-size:.82rem">✏️ Mis apuestas</span></div>
+      <div class="card-body">
+        ${(g.sideBets||[]).map(betId=>{
+          const bet = SIDE_BETS.find(b=>b.id===betId);
+          if (!bet) return "";
+          const val = (myBets[betId]||"").replace(/"/g,"&quot;");
+          return `<div style="margin-bottom:12px">
+            <div style="font-size:.7rem;color:#8ab4d4;text-transform:uppercase;letter-spacing:.5px;margin-bottom:5px">${bet.label}</div>
+            <input type="text" id="mybet-${betId}" value="${val}"
+              placeholder="${bet.type==="team"?"Nombre del equipo...":"Nombre del jugador..."}">
+          </div>`;
+        }).join("")}
+        <div id="bet-save-msg" style="display:none;color:#4cde7a;font-size:.75rem;margin-bottom:6px">✅ Guardado</div>
+        <button class="btn btn-primary btn-full" onclick="saveMyBets('${g.id}')">Guardar mis apuestas</button>
+      </div>
+    </div>`;
+}
+
+async function setWinner(gid, betId, pred) {
+  await fsUpdateGroup(gid, {[`betResults.${betId}`]: pred});
+  showToast("✅ Ganador definido: "+pred);
+}
+
+async function saveMyBets(gid) {
+  const g = state.grupos.find(g=>g.id===gid);
+  if (!g) return;
+  const bets = {};
+  (g.sideBets||[]).forEach(betId=>{
+    const el = $("mybet-"+betId);
+    if (el&&el.value.trim()) bets[betId]=el.value.trim();
+  });
+  const key = `memberBets.${state.currentUser.replace(/\./g,"_").replace(/ /g,"_")}`;
+  await fsUpdateGroup(gid, {[key]: bets});
+  const msg = $("bet-save-msg");
+  msg.style.display="block";
+  setTimeout(()=>msg.style.display="none",2000);
+  showToast("✅ Apuestas guardadas");
+}
+
+// ════════════════════════════════════════════════════════════════════════════
+// INIT — Auth anónima → login
+// ════════════════════════════════════════════════════════════════════════════
+onAuthStateChanged(auth, async (user) => {
+  if (!user) {
+    await signInAnonymously(auth);
+    return;
+  }
+  state.uid = user.uid;
+
+  // Revisar si ya se había seleccionado un nombre antes
+  const saved = localStorage.getItem("polla2026_user");
+  if (saved && PARTICIPANTS.includes(saved)) {
+    // Auto-login silencioso
+    state.currentUser = saved;
+    subscribeToGrupos(saved);
+    goScreen("list");
+  } else {
+    goScreen("login");
+    filterLogin("");
+  }
+});
+
+// Exponer funciones globales que el HTML llama con onclick
+Object.assign(window, {
+  filterLogin, selectUser,
+  joinByCode, openGroup,
+  filterMembers, toggleMember, toggleBet, createGroup,
+  switchDetailTab, openGroup,
+  toggleAddMemberForm, renderAddMemberList, addMember, removeMember, promoteMember, leaveGroup,
+  setWinner, saveMyBets,
+  goScreen,
+  logoutUser: ()=>{
+    state.currentUser=null;
+    if(state.unsubscribe) state.unsubscribe();
+    try{localStorage.removeItem("polla2026_user");}catch(e){}
+    goScreen("login");
+    filterLogin("");
+  }
+});
+</script>
+
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;background:#0a1628;color:#fff;min-height:100vh}
+.hdr{background:#0d2137;padding:13px 16px;border-bottom:3px solid #c8a200;display:flex;justify-content:space-between;align-items:center;position:sticky;top:0;z-index:30}
+.hdr-title{font-size:.95rem;font-weight:700;color:#f5d020}
+.hdr-sub{font-size:.65rem;color:#8ab4d4;margin-top:2px}
+.back-btn{background:#132840;border:1px solid #1e3a55;color:#8ab4d4;border-radius:8px;padding:5px 12px;font-size:.72rem;cursor:pointer;text-decoration:none;display:flex;align-items:center;gap:5px}
+.content{padding-bottom:80px}
+.card{background:#0d2137;border:1px solid #1e3a55;border-radius:12px;overflow:hidden;margin-bottom:10px}
+.card-hdr{background:#1a3a5c;padding:11px 16px;border-bottom:1px solid #1e3a55}
+.card-body{padding:12px 14px}
+input[type=text],input[type=password]{width:100%;padding:9px 14px;border-radius:8px;border:1px solid #2a5070;background:#132840;color:#fff;font-size:.85rem;outline:none}
+input::placeholder{color:#6a8faa}
+.btn{border:none;border-radius:8px;font-weight:700;cursor:pointer;transition:opacity .15s}
+.btn:disabled{opacity:.4;cursor:not-allowed}
+.btn-primary{background:#c8a200;color:#000;padding:10px 20px;font-size:.82rem}
+.btn-sm{padding:5px 12px;font-size:.72rem}
+.btn-ghost{background:transparent;color:#8ab4d4;border:1px solid #2a5070;padding:5px 12px;font-size:.72rem}
+.btn-danger{background:#5c1a1a;color:#e74c3c;padding:5px 12px;font-size:.72rem}
+.btn-green{background:#4cde7a;color:#000;padding:5px 12px;font-size:.72rem}
+.btn-full{width:100%;padding:12px;font-size:.85rem}
+.badge{display:inline-block;border-radius:6px;padding:2px 8px;font-size:.68rem;font-weight:700}
+.badge-gold{background:#c8a20022;color:#f5d020;border:1px solid #c8a20044}
+.badge-blue{background:#2e86de22;color:#8ab4d4;border:1px solid #2e86de44}
+.badge-green{background:#4cde7a22;color:#4cde7a;border:1px solid #4cde7a44}
+.tab-nav{display:flex;background:#0d2137;border-bottom:2px solid #1e3a55}
+.tab-nav button{flex:1;padding:10px 4px;border:none;background:transparent;cursor:pointer;font-size:.68rem;font-weight:700;text-transform:uppercase;letter-spacing:.4px;color:#6a8faa;border-bottom:3px solid transparent}
+.tab-nav button.act{color:#f5d020;border-bottom-color:#f5d020}
+.tab-panel{display:none}.tab-panel.act{display:block}
+.rank-table{width:100%;border-collapse:collapse}
+.rank-table thead th{background:#1a3a5c;padding:9px 8px;font-size:.65rem;text-transform:uppercase;color:#8ab4d4;border-bottom:2px solid #c8a200}
+.rank-table tbody td{padding:10px 8px;font-size:.88rem;border-bottom:1px solid #132840}
+.me-row{background:#0d2a3d!important}
+.screen{display:none}.screen.act{display:block}
+.login-wrap{max-width:420px;margin:30px auto;padding:0 16px}
+.participant-item{padding:9px 12px;border-radius:8px;cursor:pointer;font-size:.85rem;margin-bottom:4px;background:#132840;border:1px solid #1e3a55;display:flex;justify-content:space-between;align-items:center}
+.participant-item:hover{background:#1a3a5c}
+.group-card{background:#0d2137;border:1px solid #1e3a55;border-radius:12px;overflow:hidden;margin-bottom:10px;cursor:pointer}
+.group-card:hover{border-color:#c8a200}
+.group-card-hdr{background:#1a3a5c;padding:11px 14px;display:flex;justify-content:space-between;align-items:center}
+.group-stats{display:flex;gap:16px;padding:10px 14px}
+.group-stat{text-align:center}
+.group-stat-val{color:#f5d020;font-weight:700;font-size:1.1rem}
+.group-stat-lbl{color:#6a8faa;font-size:.62rem}
+.member-row{display:flex;justify-content:space-between;align-items:center;padding:10px 0;border-bottom:1px solid #1e3a55}
+.member-row:last-child{border-bottom:none}
+.code-tag{background:#132840;color:#f5d020;padding:3px 10px;border-radius:6px;font-family:monospace;letter-spacing:2px;font-size:.88rem}
+.chk{width:20px;height:20px;border-radius:4px;border:2px solid #2a5070;background:transparent;cursor:pointer;flex-shrink:0;display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:700}
+.chk.on{background:#c8a200;border-color:#c8a200;color:#000}
+.empty{color:#6a8faa;font-size:.82rem;padding:12px 0;text-align:center}
+.err{color:#e74c3c;font-size:.75rem;margin-top:6px}
+</style>
+</head>
+<body>
+
+<div class="hdr">
+  <div>
+    <div class="hdr-title" id="hdr-title">👥 Grupos Privados</div>
+    <div class="hdr-sub" id="hdr-sub">Polla FIFA 2026</div>
+  </div>
+  <div style="display:flex;gap:8px;align-items:center">
+    <button onclick="logoutUser()" id="logout-btn" style="display:none;background:#132840;border:1px solid #1e3a55;color:#6a8faa;border-radius:6px;padding:4px 10px;font-size:.68rem;cursor:pointer">Cambiar</button>
+    <a href="index.html" class="back-btn">← Polla</a>
+  </div>
+</div>
+
+<!-- LOGIN -->
+<div id="screen-login" class="screen content">
+  <div class="login-wrap">
+    <div class="card" style="margin-top:20px">
+      <div class="card-hdr">
+        <div style="color:#f5d020;font-weight:700;font-size:.88rem">¿Quién eres?</div>
+        <div style="font-size:.72rem;color:#8ab4d4;margin-top:4px">Selecciona tu nombre para continuar</div>
+      </div>
+      <div class="card-body">
+        <input type="text" id="login-search" placeholder="🔍 Buscar tu nombre..." oninput="filterLogin(this.value)">
+        <div style="margin-top:10px;max-height:320px;overflow-y:auto" id="login-list"></div>
+      </div>
+    </div>
+    <div style="text-align:center;margin-top:12px;font-size:.7rem;color:#6a8faa;padding:0 8px">
+      🔒 Tus grupos se sincronizan en tiempo real entre todos los dispositivos
+    </div>
+  </div>
+</div>
+
+<!-- LIST -->
+<div id="screen-list" class="screen content">
+  <div style="padding:14px 14px 0">
+    <div class="card">
+      <div class="card-hdr"><span style="color:#f5d020;font-weight:700;font-size:.85rem">🔗 Unirse con código</span></div>
+      <div class="card-body" style="display:flex;gap:8px">
+        <input type="text" id="join-code" placeholder="Código del grupo (ej: AB12CD)"
+          style="flex:1;text-transform:uppercase" oninput="this.value=this.value.toUpperCase()">
+        <button id="join-btn" class="btn btn-primary btn-sm" onclick="joinByCode()">Unirse</button>
+      </div>
+      <div id="join-err" style="padding:0 14px 10px;font-size:.72rem;color:#e74c3c;display:none"></div>
+    </div>
+  </div>
+  <div style="padding:12px 14px 0">
+    <div style="font-size:.7rem;color:#8ab4d4;text-transform:uppercase;letter-spacing:.5px;margin-bottom:8px">Mis grupos</div>
+    <div id="my-groups-list"></div>
+  </div>
+  <div style="padding:14px">
+    <button class="btn btn-primary btn-full" onclick="goScreen('create')">➕ Crear nuevo grupo</button>
+  </div>
+</div>
+
+<!-- CREATE -->
+<div id="screen-create" class="screen content">
+  <div style="padding:14px">
+    <div class="card" style="margin-bottom:12px">
+      <div class="card-hdr"><span style="color:#f5d020;font-weight:700;font-size:.85rem">📝 Nombre del grupo</span></div>
+      <div class="card-body"><input type="text" id="new-group-name" placeholder="Ej: Familia Olarte, Los del Café..."></div>
+    </div>
+    <div class="card" style="margin-bottom:12px">
+      <div class="card-hdr">
+        <span style="color:#f5d020;font-weight:700;font-size:.85rem">🎲 Apuestas especiales</span>
+        <div style="font-size:.7rem;color:#8ab4d4;margin-top:3px">Opcionales</div>
+      </div>
+      <div class="card-body" id="side-bets-list"></div>
+    </div>
+    <div class="card" style="margin-bottom:12px">
+      <div class="card-hdr">
+        <span style="color:#f5d020;font-weight:700;font-size:.85rem">👥 Participantes</span>
+        <span id="member-count-label" style="color:#8ab4d4;font-size:.72rem;float:right"></span>
+      </div>
+      <div class="card-body">
+        <input type="text" id="member-search" placeholder="🔍 Buscar participante..."
+          oninput="filterMembers(this.value)" style="margin-bottom:8px">
+        <div id="member-select-list" style="max-height:260px;overflow-y:auto"></div>
+      </div>
+    </div>
+    <div id="create-err" class="err" style="display:none"></div>
+    <button id="create-btn" class="btn btn-primary btn-full" onclick="createGroup()">🚀 Crear grupo</button>
+    <button class="btn btn-ghost btn-full" style="margin-top:8px" onclick="goScreen('list')">Cancelar</button>
+  </div>
+</div>
+
+<!-- DETAIL -->
+<div id="screen-detail" class="screen">
+  <div class="tab-nav">
+    <button class="act" onclick="switchDetailTab('ranking',this)">Ranking</button>
+    <button onclick="switchDetailTab('miembros',this)">Miembros</button>
+    <button id="tab-bets-btn" onclick="switchDetailTab('apuestas',this)" style="display:none">Apuestas</button>
+  </div>
+  <div id="detail-ranking" class="tab-panel act content">
+    <div id="group-rank-table"></div>
+    <div style="padding:10px 14px">
+      <div style="background:#132840;border:1px solid #1e3a55;border-radius:8px;padding:10px 12px;font-size:.72rem;color:#8ab4d4;line-height:1.5">
+        ℹ️ Los puntos son los mismos de la polla principal y se actualizan cuando el administrador sube nuevos resultados.
+      </div>
+    </div>
+  </div>
+  <div id="detail-miembros" class="tab-panel content">
+    <div style="padding:12px 14px">
+      <div id="add-member-section"></div>
+      <div id="members-list-detail"></div>
+      <div id="leave-section" style="margin-top:16px"></div>
+    </div>
+  </div>
+  <div id="detail-apuestas" class="tab-panel content">
+    <div style="padding:12px 14px">
+      <div id="bets-list"></div>
+      <div id="my-bets-form"></div>
+    </div>
+  </div>
+</div>
+
+<script>
+// Mostrar botón "Cambiar usuario" cuando no estamos en login
+const _origGoScreen = window.goScreen;
+window.goScreen = function(name, g) {
+  _origGoScreen(name, g);
+  document.getElementById("logout-btn").style.display = name==="login" ? "none" : "block";
+};
+</script>
+</body>
+</html>

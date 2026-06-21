@@ -69,12 +69,48 @@ td{padding:10px 8px;font-size:.88rem}
 .cbfill{height:100%;background:#c8a200;border-radius:3px;display:block}
 .cpct{text-align:right;color:#f5d020;font-weight:700;font-size:.8rem;min-width:38px;padding-right:4px}
 .ccnt{text-align:right;color:#6a8faa;font-size:.72rem;padding-right:10px}
+
+/* ── % Aciertos ranking ──────────────────────────────────────── */
+.rank-sub-nav{display:flex;background:#0d2137;border-bottom:1px solid #1e3a55;overflow-x:auto}
+.rank-sub-nav button{flex:1;min-width:90px;padding:8px 4px;border:none;background:transparent;
+  color:#6a8faa;font-size:.65rem;font-weight:700;text-transform:uppercase;letter-spacing:.4px;
+  cursor:pointer;border-bottom:3px solid transparent;white-space:nowrap}
+.rank-sub-nav button.act{color:#f5d020;border-bottom-color:#f5d020}
+.pct-table{width:100%;border-collapse:collapse}
+.pct-table thead th{background:#1a3a5c;padding:8px 6px;font-size:.62rem;text-transform:uppercase;
+  color:#8ab4d4;border-bottom:2px solid #c8a200;text-align:center;white-space:nowrap}
+.pct-table thead th:nth-child(2){text-align:left;padding-left:10px}
+.pct-table tbody td{padding:9px 6px;font-size:.82rem;text-align:center;border-bottom:1px solid #1a3050}
+.pct-table tbody td:nth-child(2){text-align:left;padding-left:10px}
+.pct-bar-wrap{display:inline-flex;align-items:center;gap:4px;width:100%}
+.pct-bar-bg{flex:1;height:6px;background:#1e3a55;border-radius:3px;overflow:hidden;min-width:40px}
+.pct-bar-ex{height:100%;background:#4cde7a;border-radius:3px;float:left}
+.pct-bar-wi{height:100%;background:#f5d020;border-radius:3px;float:left}
+.pct-num{font-size:.75rem;font-weight:700;color:#f5d020;min-width:38px}
+.pending-section{padding:8px 14px;background:#132840;margin:6px 12px;border-radius:8px;
+  font-size:.72rem;color:#6a8faa;border:1px solid #1e3a55}
+/* ── Badges / Salón de la Fama ───────────────────────────────── */
+.badge-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;padding:12px 14px}
+.badge-card{background:#0d2137;border:1px solid #1e3a55;border-radius:10px;overflow:hidden}
+.badge-card.earned{border-color:#c8a200}
+.badge-icon-wrap{padding:14px 14px 8px;text-align:center;font-size:2rem}
+.badge-name{font-size:.78rem;font-weight:700;text-align:center;padding:0 8px}
+.badge-desc{font-size:.65rem;color:#8ab4d4;text-align:center;padding:4px 8px 8px;line-height:1.4}
+.badge-winner{background:#132840;padding:6px 8px;font-size:.68rem;color:#f5d020;
+  text-align:center;font-weight:600;border-top:1px solid #1e3a55}
+.badge-pending{background:#1a3050;padding:6px 8px;font-size:.65rem;color:#6a8faa;
+  text-align:center;border-top:1px solid #1e3a55}
+/* Badge chips on ranking rows */
+.b-chip{display:inline-block;font-size:.7rem;margin-left:3px;vertical-align:middle;cursor:default}
+/* Exact ranking tab */
+.exact-leader{background:#132840;border-left:3px solid #4cde7a}
 </style>
 </head>
 <body>
 <div class="hdr">
   <h1>⚽ Polla FIFA 2026 ⚽</h1>
   <p>116 participantes · 36 partidos jugados</p>
+  <a href="grupos.html" style="display:inline-block;margin-top:8px;padding:6px 18px;background:#c8a200;color:#000;border-radius:20px;font-size:.72rem;font-weight:700;text-decoration:none;letter-spacing:.5px">👥 Grupos Privados</a>
 </div>
 <div class="rbar"><b>Resultados:</b> Mex-Saf 2-0 · Kor-Cze 2-1 · Can-Bih 1-1 · Usa-Par 4-1 · Qat-Swi 1-1 · Bra-Mar 1-1 · Hai-Esc 0-1 · Aus-Tur 2-0 · Ale-Cur 7-1 · PB-Jap 2-2 · CM-Ecu 1-0 · Swe-Tun 5-1 · Esp-CV 0-0 · Bel-Egi 1-1 · AS-Uru 1-1 · Ira-NZ 2-2 · Fra-Sen 3-1 · Irq-Nor 1-4 · Arg-Alg 3-0 · Aus-Jor 3-1 · Por-Con 1-1 · Ing-Cro 4-2 · Gha-Pan 1-0 · Uzb-Col 1-3 · Cze-Saf 1-1 · Swi-Bih 4-1 · Can-Qat 6-0 · Mex-Kor 1-0 · Usa-Aus 2-0 · Esc-Mar 0-1 · Bra-Hai 3-0 · Tur-Par 0-1 · PB-Swe 5-1 · Ale-CM 2-1 · Ecu-Cur 0-0 · Tun-Jap 0-4</div>
 <div class="nav">
@@ -82,127 +118,168 @@ td{padding:10px 8px;font-size:.88rem}
   <a onclick="showTab('preds',this)">Predicciones</a>
   <a onclick="showTab('posiciones',this)">Posiciones</a>
   <a onclick="showTab('campeones',this)">Campeones</a>
+  <a onclick="showTab('salon',this)">🏅</a>
+  <a onclick="showTab('resultados',this)">⚙️</a>
 </div>
 <div id="tab-ranking" class="tab act">
-  <div class="sb"><input type="text" placeholder="🔍 Buscar participante..." oninput="filterTable(this.value)"></div>
-  <table><thead><tr><th>#</th><th>Participante</th><th>Pts</th></tr></thead>
-  <tbody id="rank-body"><tr><td>1</td><td>🥇 Fabian Morales</td><td>115</td></tr>
-<tr><td>2</td><td>🥈 Juliana Silva</td><td>115</td></tr>
-<tr><td>3</td><td>🥉 Alejandro Lisson</td><td>113</td></tr>
-<tr><td>4</td><td> Andres Merizalde</td><td>113</td></tr>
-<tr><td>5</td><td> Carlos Vergara</td><td>109</td></tr>
-<tr><td>6</td><td> Eduardo Rangel</td><td>109</td></tr>
-<tr><td>7</td><td> Andres Gamboa</td><td>107</td></tr>
-<tr><td>8</td><td> Reinaldo Acosta</td><td>107</td></tr>
-<tr><td>9</td><td> Ana Maria Perez</td><td>106</td></tr>
-<tr><td>10</td><td> Mark Mordo</td><td>106</td></tr>
-<tr><td>11</td><td> Juan Carlos Rebolledo</td><td>105</td></tr>
-<tr><td>12</td><td> Felipe Chalela</td><td>104</td></tr>
-<tr><td>13</td><td> Alejandro Acosta</td><td>103</td></tr>
-<tr><td>14</td><td> Daniel Gomez</td><td>103</td></tr>
-<tr><td>15</td><td> Jennie Levitt</td><td>103</td></tr>
-<tr><td>16</td><td> Juan Pablo Isaza</td><td>103</td></tr>
-<tr><td>17</td><td> Nicolas Reyes</td><td>103</td></tr>
-<tr><td>18</td><td> Christian Kling</td><td>102</td></tr>
-<tr><td>19</td><td> Rodrigo Gonzalez</td><td>102</td></tr>
-<tr><td>20</td><td> Veronica Skinner</td><td>101</td></tr>
-<tr><td>21</td><td> Enrique Casas</td><td>100</td></tr>
-<tr><td>22</td><td> Juan Roberto Gomez</td><td>100</td></tr>
-<tr><td>23</td><td> Andres Sarmiento</td><td>99</td></tr>
-<tr><td>24</td><td> Antonia Quijano</td><td>99</td></tr>
-<tr><td>25</td><td> Juan Diego Martinez</td><td>99</td></tr>
-<tr><td>26</td><td> Ernesto Samper</td><td>98</td></tr>
-<tr><td>27</td><td> Juan Jose Olarte</td><td>98</td></tr>
-<tr><td>28</td><td> Juan Pedro Mendieta</td><td>98</td></tr>
+  <!-- Sub-navigation for ranking views -->
+  <div class="rank-sub-nav">
+    <button class="act" onclick="switchRankingTab('panel-pts',this)">Por puntos</button>
+    <button onclick="switchRankingTab('panel-pct',this)">% Aciertos</button>
+    <button onclick="switchRankingTab('panel-exact',this)">Exactos</button>
+  </div>
+
+  <!-- PANEL: Ranking por puntos (original) -->
+  <div id="panel-pts" class="rank-panel">
+    <div class="sb"><input type="text" placeholder="🔍 Buscar participante..." oninput="filterTable(this.value)"></div>
+    <table><thead><tr><th>#</th><th>Participante</th><th>Pts</th></tr></thead>
+    <tbody id="rank-body"><tr><td>1</td><td>🥇 Fabian Morales<span class="b-chip" title="Nostradamus">🔮</span><span class="b-chip" title="Constante">⚡</span></td><td>115</td></tr>
+<tr><td>2</td><td>🥈 Juliana Silva<span class="b-chip" title="Constante">⚡</span></td><td>115</td></tr>
+<tr><td>3</td><td>🥉 Alejandro Lisson<span class="b-chip" title="Francotirador">🎯</span><span class="b-chip" title="Nostradamus">🔮</span><span class="b-chip" title="Constante">⚡</span></td><td>113</td></tr>
+<tr><td>4</td><td> Andres Merizalde<span class="b-chip" title="Nostradamus">🔮</span><span class="b-chip" title="Constante">⚡</span></td><td>113</td></tr>
+<tr><td>5</td><td> Carlos Vergara<span class="b-chip" title="Constante">⚡</span></td><td>109</td></tr>
+<tr><td>6</td><td> Eduardo Rangel<span class="b-chip" title="Constante">⚡</span></td><td>109</td></tr>
+<tr><td>7</td><td> Andres Gamboa<span class="b-chip" title="Constante">⚡</span></td><td>107</td></tr>
+<tr><td>8</td><td> Reinaldo Acosta<span class="b-chip" title="Constante">⚡</span></td><td>107</td></tr>
+<tr><td>9</td><td> Ana Maria Perez<span class="b-chip" title="Constante">⚡</span></td><td>106</td></tr>
+<tr><td>10</td><td> Mark Mordo<span class="b-chip" title="Constante">⚡</span></td><td>106</td></tr>
+<tr><td>11</td><td> Juan Carlos Rebolledo<span class="b-chip" title="Constante">⚡</span></td><td>105</td></tr>
+<tr><td>12</td><td> Felipe Chalela<span class="b-chip" title="Constante">⚡</span></td><td>104</td></tr>
+<tr><td>13</td><td> Alejandro Acosta<span class="b-chip" title="Constante">⚡</span></td><td>103</td></tr>
+<tr><td>14</td><td> Daniel Gomez<span class="b-chip" title="Constante">⚡</span></td><td>103</td></tr>
+<tr><td>15</td><td> Jennie Levitt<span class="b-chip" title="Constante">⚡</span></td><td>103</td></tr>
+<tr><td>16</td><td> Juan Pablo Isaza<span class="b-chip" title="Constante">⚡</span></td><td>103</td></tr>
+<tr><td>17</td><td> Nicolas Reyes<span class="b-chip" title="Constante">⚡</span></td><td>103</td></tr>
+<tr><td>18</td><td> Christian Kling<span class="b-chip" title="Constante">⚡</span></td><td>102</td></tr>
+<tr><td>19</td><td> Rodrigo Gonzalez<span class="b-chip" title="Constante">⚡</span></td><td>102</td></tr>
+<tr><td>20</td><td> Veronica Skinner<span class="b-chip" title="Constante">⚡</span></td><td>101</td></tr>
+<tr><td>21</td><td> Enrique Casas<span class="b-chip" title="Constante">⚡</span></td><td>100</td></tr>
+<tr><td>22</td><td> Juan Roberto Gomez<span class="b-chip" title="Constante">⚡</span></td><td>100</td></tr>
+<tr><td>23</td><td> Andres Sarmiento<span class="b-chip" title="Constante">⚡</span></td><td>99</td></tr>
+<tr><td>24</td><td> Antonia Quijano<span class="b-chip" title="Constante">⚡</span></td><td>99</td></tr>
+<tr><td>25</td><td> Juan Diego Martinez<span class="b-chip" title="Nostradamus">🔮</span><span class="b-chip" title="Constante">⚡</span></td><td>99</td></tr>
+<tr><td>26</td><td> Ernesto Samper<span class="b-chip" title="Constante">⚡</span></td><td>98</td></tr>
+<tr><td>27</td><td> Juan Jose Olarte<span class="b-chip" title="Constante">⚡</span></td><td>98</td></tr>
+<tr><td>28</td><td> Juan Pedro Mendieta<span class="b-chip" title="Constante">⚡</span></td><td>98</td></tr>
 <tr><td>29</td><td> Pablo Andrade-2</td><td>98</td></tr>
-<tr><td>30</td><td> Pablo Gomez</td><td>98</td></tr>
-<tr><td>31</td><td> Andres Felipe Olarte</td><td>97</td></tr>
-<tr><td>32</td><td> Fernando Arana</td><td>97</td></tr>
-<tr><td>33</td><td> Jaime Mor</td><td>97</td></tr>
-<tr><td>34</td><td> Alejandro Gonzalez</td><td>96</td></tr>
-<tr><td>35</td><td> Edith Vargas</td><td>96</td></tr>
+<tr><td>30</td><td> Pablo Gomez<span class="b-chip" title="Constante">⚡</span></td><td>98</td></tr>
+<tr><td>31</td><td> Andres Felipe Olarte<span class="b-chip" title="Constante">⚡</span></td><td>97</td></tr>
+<tr><td>32</td><td> Fernando Arana<span class="b-chip" title="Constante">⚡</span></td><td>97</td></tr>
+<tr><td>33</td><td> Jaime Mor<span class="b-chip" title="Constante">⚡</span></td><td>97</td></tr>
+<tr><td>34</td><td> Alejandro Gonzalez<span class="b-chip" title="Constante">⚡</span></td><td>96</td></tr>
+<tr><td>35</td><td> Edith Vargas<span class="b-chip" title="Constante">⚡</span></td><td>96</td></tr>
 <tr><td>36</td><td> Pablo Andrade-1</td><td>96</td></tr>
-<tr><td>37</td><td> Andres Mejia</td><td>95</td></tr>
-<tr><td>38</td><td> Billy Belzner</td><td>95</td></tr>
-<tr><td>39</td><td> Ferney Ardila</td><td>95</td></tr>
-<tr><td>40</td><td> Juan Felipe Tamayo</td><td>95</td></tr>
-<tr><td>41</td><td> Ricardo Sarmiento</td><td>95</td></tr>
-<tr><td>42</td><td> Benjamin Olarte</td><td>94</td></tr>
-<tr><td>43</td><td> Daniel Mor</td><td>94</td></tr>
-<tr><td>44</td><td> Eva Kling</td><td>94</td></tr>
-<tr><td>45</td><td> Joey Borrero</td><td>94</td></tr>
-<tr><td>46</td><td> Juan Miguel Olarte</td><td>94</td></tr>
-<tr><td>47</td><td> Nicolas De Narvaez</td><td>94</td></tr>
-<tr><td>48</td><td> Alejandro Hernandez</td><td>93</td></tr>
-<tr><td>49</td><td> Diego Perez</td><td>93</td></tr>
-<tr><td>50</td><td> Daniel Escobar</td><td>92</td></tr>
+<tr><td>37</td><td> Andres Mejia<span class="b-chip" title="Constante">⚡</span></td><td>95</td></tr>
+<tr><td>38</td><td> Billy Belzner<span class="b-chip" title="Constante">⚡</span></td><td>95</td></tr>
+<tr><td>39</td><td> Ferney Ardila<span class="b-chip" title="Constante">⚡</span></td><td>95</td></tr>
+<tr><td>40</td><td> Juan Felipe Tamayo<span class="b-chip" title="Constante">⚡</span></td><td>95</td></tr>
+<tr><td>41</td><td> Ricardo Sarmiento<span class="b-chip" title="Constante">⚡</span></td><td>95</td></tr>
+<tr><td>42</td><td> Benjamin Olarte<span class="b-chip" title="Constante">⚡</span></td><td>94</td></tr>
+<tr><td>43</td><td> Daniel Mor<span class="b-chip" title="Constante">⚡</span></td><td>94</td></tr>
+<tr><td>44</td><td> Eva Kling<span class="b-chip" title="Constante">⚡</span></td><td>94</td></tr>
+<tr><td>45</td><td> Joey Borrero<span class="b-chip" title="Constante">⚡</span></td><td>94</td></tr>
+<tr><td>46</td><td> Juan Miguel Olarte<span class="b-chip" title="Constante">⚡</span></td><td>94</td></tr>
+<tr><td>47</td><td> Nicolas De Narvaez<span class="b-chip" title="Constante">⚡</span></td><td>94</td></tr>
+<tr><td>48</td><td> Alejandro Hernandez<span class="b-chip" title="Constante">⚡</span></td><td>93</td></tr>
+<tr><td>49</td><td> Diego Perez<span class="b-chip" title="Constante">⚡</span></td><td>93</td></tr>
+<tr><td>50</td><td> Daniel Escobar<span class="b-chip" title="Constante">⚡</span></td><td>92</td></tr>
 <tr><td>51</td><td> Katerine Hernandez</td><td>92</td></tr>
-<tr><td>52</td><td> Mauricio Quiroga</td><td>92</td></tr>
-<tr><td>53</td><td> Sebastian Manzanera</td><td>92</td></tr>
-<tr><td>54</td><td> Agustin Vejarano</td><td>91</td></tr>
-<tr><td>55</td><td> Alfonso Vejarano</td><td>91</td></tr>
-<tr><td>56</td><td> Daniel Gonzalez</td><td>91</td></tr>
-<tr><td>57</td><td> Jorge Tirado</td><td>91</td></tr>
-<tr><td>58</td><td> Juan Martin Mejia</td><td>91</td></tr>
-<tr><td>59</td><td> Andres Cadena</td><td>90</td></tr>
+<tr><td>52</td><td> Mauricio Quiroga<span class="b-chip" title="Constante">⚡</span></td><td>92</td></tr>
+<tr><td>53</td><td> Sebastian Manzanera<span class="b-chip" title="Constante">⚡</span></td><td>92</td></tr>
+<tr><td>54</td><td> Agustin Vejarano<span class="b-chip" title="Constante">⚡</span></td><td>91</td></tr>
+<tr><td>55</td><td> Alfonso Vejarano<span class="b-chip" title="Constante">⚡</span></td><td>91</td></tr>
+<tr><td>56</td><td> Daniel Gonzalez<span class="b-chip" title="Constante">⚡</span></td><td>91</td></tr>
+<tr><td>57</td><td> Jorge Tirado<span class="b-chip" title="Constante">⚡</span></td><td>91</td></tr>
+<tr><td>58</td><td> Juan Martin Mejia<span class="b-chip" title="Constante">⚡</span></td><td>91</td></tr>
+<tr><td>59</td><td> Andres Cadena<span class="b-chip" title="Constante">⚡</span></td><td>90</td></tr>
 <tr><td>60</td><td> Armando Benito-Revollo</td><td>90</td></tr>
-<tr><td>61</td><td> Mauricio Posse</td><td>90</td></tr>
-<tr><td>62</td><td> Alberto Fonseca</td><td>89</td></tr>
-<tr><td>63</td><td> Andres Silva</td><td>89</td></tr>
-<tr><td>64</td><td> Bianca Olarte</td><td>89</td></tr>
-<tr><td>65</td><td> Diego Rios</td><td>89</td></tr>
-<tr><td>66</td><td> Jaime Silva</td><td>89</td></tr>
-<tr><td>67</td><td> Javier Ropero</td><td>89</td></tr>
-<tr><td>68</td><td> Mauricio Borrero</td><td>89</td></tr>
-<tr><td>69</td><td> Andrea Mordo</td><td>88</td></tr>
-<tr><td>70</td><td> Felipe Merizalde</td><td>88</td></tr>
-<tr><td>71</td><td> Phyllis Conn</td><td>88</td></tr>
-<tr><td>72</td><td> Augusto Hernandez</td><td>87</td></tr>
-<tr><td>73</td><td> Daniel Mordo</td><td>87</td></tr>
-<tr><td>74</td><td> Jose Pablo Reyes</td><td>87</td></tr>
-<tr><td>75</td><td> Camilo Pomares</td><td>86</td></tr>
-<tr><td>76</td><td> Dayana Cruz</td><td>86</td></tr>
-<tr><td>77</td><td> Luis Felipe Aparicio</td><td>86</td></tr>
-<tr><td>78</td><td> Santiago Urdaneta</td><td>86</td></tr>
-<tr><td>79</td><td> Juan Carlos Osorio</td><td>85</td></tr>
-<tr><td>80</td><td> Juan Pablo Duran</td><td>85</td></tr>
-<tr><td>81</td><td> Laura Molina</td><td>85</td></tr>
-<tr><td>82</td><td> Luis Enrique Bermudez</td><td>85</td></tr>
-<tr><td>83</td><td> Santiago Rendon</td><td>85</td></tr>
-<tr><td>84</td><td> Alvaro Acosta</td><td>84</td></tr>
-<tr><td>85</td><td> Cristian Ardila</td><td>84</td></tr>
-<tr><td>86</td><td> Fernando Ortiz</td><td>84</td></tr>
-<tr><td>87</td><td> Daniel Pombo</td><td>83</td></tr>
-<tr><td>88</td><td> Juan Pablo Delgado</td><td>83</td></tr>
+<tr><td>61</td><td> Mauricio Posse<span class="b-chip" title="Constante">⚡</span></td><td>90</td></tr>
+<tr><td>62</td><td> Alberto Fonseca<span class="b-chip" title="Constante">⚡</span></td><td>89</td></tr>
+<tr><td>63</td><td> Andres Silva<span class="b-chip" title="Constante">⚡</span></td><td>89</td></tr>
+<tr><td>64</td><td> Bianca Olarte<span class="b-chip" title="Casi Casi">😅</span><span class="b-chip" title="Constante">⚡</span></td><td>89</td></tr>
+<tr><td>65</td><td> Diego Rios<span class="b-chip" title="Constante">⚡</span></td><td>89</td></tr>
+<tr><td>66</td><td> Jaime Silva<span class="b-chip" title="Constante">⚡</span></td><td>89</td></tr>
+<tr><td>67</td><td> Javier Ropero<span class="b-chip" title="Constante">⚡</span></td><td>89</td></tr>
+<tr><td>68</td><td> Mauricio Borrero<span class="b-chip" title="Constante">⚡</span></td><td>89</td></tr>
+<tr><td>69</td><td> Andrea Mordo<span class="b-chip" title="Constante">⚡</span></td><td>88</td></tr>
+<tr><td>70</td><td> Felipe Merizalde<span class="b-chip" title="Constante">⚡</span></td><td>88</td></tr>
+<tr><td>71</td><td> Phyllis Conn<span class="b-chip" title="Constante">⚡</span></td><td>88</td></tr>
+<tr><td>72</td><td> Augusto Hernandez<span class="b-chip" title="Constante">⚡</span></td><td>87</td></tr>
+<tr><td>73</td><td> Daniel Mordo<span class="b-chip" title="Constante">⚡</span></td><td>87</td></tr>
+<tr><td>74</td><td> Jose Pablo Reyes<span class="b-chip" title="Constante">⚡</span></td><td>87</td></tr>
+<tr><td>75</td><td> Camilo Pomares<span class="b-chip" title="Constante">⚡</span></td><td>86</td></tr>
+<tr><td>76</td><td> Dayana Cruz<span class="b-chip" title="Constante">⚡</span></td><td>86</td></tr>
+<tr><td>77</td><td> Luis Felipe Aparicio<span class="b-chip" title="Constante">⚡</span></td><td>86</td></tr>
+<tr><td>78</td><td> Santiago Urdaneta<span class="b-chip" title="Constante">⚡</span></td><td>86</td></tr>
+<tr><td>79</td><td> Juan Carlos Osorio<span class="b-chip" title="Constante">⚡</span></td><td>85</td></tr>
+<tr><td>80</td><td> Juan Pablo Duran<span class="b-chip" title="Constante">⚡</span></td><td>85</td></tr>
+<tr><td>81</td><td> Laura Molina<span class="b-chip" title="Constante">⚡</span></td><td>85</td></tr>
+<tr><td>82</td><td> Luis Enrique Bermudez<span class="b-chip" title="Constante">⚡</span></td><td>85</td></tr>
+<tr><td>83</td><td> Santiago Rendon<span class="b-chip" title="Constante">⚡</span></td><td>85</td></tr>
+<tr><td>84</td><td> Alvaro Acosta<span class="b-chip" title="Constante">⚡</span></td><td>84</td></tr>
+<tr><td>85</td><td> Cristian Ardila<span class="b-chip" title="Constante">⚡</span></td><td>84</td></tr>
+<tr><td>86</td><td> Fernando Ortiz<span class="b-chip" title="Constante">⚡</span></td><td>84</td></tr>
+<tr><td>87</td><td> Daniel Pombo<span class="b-chip" title="Constante">⚡</span></td><td>83</td></tr>
+<tr><td>88</td><td> Juan Pablo Delgado<span class="b-chip" title="Constante">⚡</span></td><td>83</td></tr>
 <tr><td>89</td><td> Luis F. Fracica</td><td>83</td></tr>
-<tr><td>90</td><td> Erika Padilla</td><td>82</td></tr>
-<tr><td>91</td><td> Javier Tafur</td><td>82</td></tr>
-<tr><td>92</td><td> Monica Zauner</td><td>82</td></tr>
-<tr><td>93</td><td> Andres Rodriguez</td><td>81</td></tr>
+<tr><td>90</td><td> Erika Padilla<span class="b-chip" title="Constante">⚡</span></td><td>82</td></tr>
+<tr><td>91</td><td> Javier Tafur<span class="b-chip" title="Constante">⚡</span></td><td>82</td></tr>
+<tr><td>92</td><td> Monica Zauner<span class="b-chip" title="Constante">⚡</span></td><td>82</td></tr>
+<tr><td>93</td><td> Andres Rodriguez<span class="b-chip" title="Constante">⚡</span></td><td>81</td></tr>
 <tr><td>94</td><td> Erich Riaño</td><td>81</td></tr>
-<tr><td>95</td><td> Federico Camacho</td><td>81</td></tr>
-<tr><td>96</td><td> Felipe Gaitan</td><td>80</td></tr>
-<tr><td>97</td><td> Andres Olarte</td><td>79</td></tr>
-<tr><td>98</td><td> Santiago Acevedo</td><td>79</td></tr>
-<tr><td>99</td><td> Adriana Zauner</td><td>78</td></tr>
-<tr><td>100</td><td> Alejandro Arias</td><td>78</td></tr>
-<tr><td>101</td><td> Sergio Rodriguez</td><td>78</td></tr>
-<tr><td>102</td><td> Javier Garcia</td><td>77</td></tr>
-<tr><td>103</td><td> Juan Manuel Matiz</td><td>77</td></tr>
-<tr><td>104</td><td> Daniel Herrera</td><td>76</td></tr>
-<tr><td>105</td><td> Jairo Rios</td><td>75</td></tr>
+<tr><td>95</td><td> Federico Camacho<span class="b-chip" title="Constante">⚡</span></td><td>81</td></tr>
+<tr><td>96</td><td> Felipe Gaitan<span class="b-chip" title="Constante">⚡</span></td><td>80</td></tr>
+<tr><td>97</td><td> Andres Olarte<span class="b-chip" title="Constante">⚡</span></td><td>79</td></tr>
+<tr><td>98</td><td> Santiago Acevedo<span class="b-chip" title="Constante">⚡</span></td><td>79</td></tr>
+<tr><td>99</td><td> Adriana Zauner<span class="b-chip" title="Constante">⚡</span></td><td>78</td></tr>
+<tr><td>100</td><td> Alejandro Arias<span class="b-chip" title="Constante">⚡</span></td><td>78</td></tr>
+<tr><td>101</td><td> Sergio Rodriguez<span class="b-chip" title="Constante">⚡</span></td><td>78</td></tr>
+<tr><td>102</td><td> Javier Garcia<span class="b-chip" title="Constante">⚡</span></td><td>77</td></tr>
+<tr><td>103</td><td> Juan Manuel Matiz<span class="b-chip" title="Constante">⚡</span></td><td>77</td></tr>
+<tr><td>104</td><td> Daniel Herrera<span class="b-chip" title="Constante">⚡</span></td><td>76</td></tr>
+<tr><td>105</td><td> Jairo Rios<span class="b-chip" title="Sorpresero">🃏</span><span class="b-chip" title="Constante">⚡</span></td><td>75</td></tr>
 <tr><td>106</td><td> Alejandro Escallon (hijo)</td><td>74</td></tr>
-<tr><td>107</td><td> Mariana Reyes</td><td>74</td></tr>
+<tr><td>107</td><td> Mariana Reyes<span class="b-chip" title="Constante">⚡</span></td><td>74</td></tr>
 <tr><td>108</td><td> Alejandro Escallon (papa)</td><td>73</td></tr>
-<tr><td>109</td><td> Sinda Mendizabal</td><td>71</td></tr>
-<tr><td>110</td><td> Alejandro Paez</td><td>69</td></tr>
-<tr><td>111</td><td> Rebecca Borrero</td><td>69</td></tr>
-<tr><td>112</td><td> Alejandro Arbelaez</td><td>68</td></tr>
-<tr><td>113</td><td> Santiago Mejia</td><td>66</td></tr>
+<tr><td>109</td><td> Sinda Mendizabal<span class="b-chip" title="Constante">⚡</span></td><td>71</td></tr>
+<tr><td>110</td><td> Alejandro Paez<span class="b-chip" title="Constante">⚡</span></td><td>69</td></tr>
+<tr><td>111</td><td> Rebecca Borrero<span class="b-chip" title="Constante">⚡</span></td><td>69</td></tr>
+<tr><td>112</td><td> Alejandro Arbelaez<span class="b-chip" title="Constante">⚡</span></td><td>68</td></tr>
+<tr><td>113</td><td> Santiago Mejia<span class="b-chip" title="Constante">⚡</span></td><td>66</td></tr>
 <tr><td>114</td><td> Fernando Piñeros</td><td>65</td></tr>
-<tr><td>115</td><td> Juan Manuel Perez</td><td>62</td></tr>
-<tr><td>116</td><td> Pedro Montaño</td><td>61</td></tr>
+<tr><td>115</td><td> Juan Manuel Perez<span class="b-chip" title="Constante">⚡</span></td><td>62</td></tr>
+<tr><td>116</td><td> Pedro Montaño<span class="b-chip" title="Farolillo Rojo">🔴</span></td><td>61</td></tr>
 </tbody></table>
+  </div>
+
+  <!-- PANEL: Ranking por % de aciertos -->
+  <div id="panel-pct" class="rank-panel" style="display:none">
+    <div style="padding:8px 14px;background:#0d2137;border-bottom:1px solid #1e3a55;font-size:.7rem;color:#8ab4d4">
+      🟢 Exacto &nbsp;🟡 Ganador/empate &nbsp;·&nbsp; Mínimo: 11 partidos evaluados
+    </div>
+    <div id="pct-pending"></div>
+    <table class="pct-table">
+      <thead><tr>
+        <th>#</th><th style="text-align:left;padding-left:10px">Participante</th>
+        <th>Exactos</th><th>Ganador</th><th>Eval.</th><th>% Aciertos</th>
+      </tr></thead>
+      <tbody id="pct-ranking-body"></tbody>
+    </table>
+  </div>
+
+  <!-- PANEL: Ranking por marcadores exactos -->
+  <div id="panel-exact" class="rank-panel" style="display:none">
+    <div style="padding:8px 14px;background:#0d2137;border-bottom:1px solid #1e3a55;font-size:.7rem;color:#8ab4d4">
+      Ordenado por número de marcadores exactos · 🎯 = Francotirador
+    </div>
+    <table class="pct-table">
+      <thead><tr>
+        <th>#</th><th style="text-align:left;padding-left:10px">Participante</th>
+        <th>Exactos</th><th>% Exactos</th><th>Eval.</th>
+      </tr></thead>
+      <tbody id="exact-ranking-body"></tbody>
+    </table>
+  </div>
 </div>
 <div id="tab-preds" class="tab">
   <div class="gb"><button class="grp-btn act" onclick="switchGrp('Grupo_A',this)">A</button><button class="grp-btn " onclick="switchGrp('Grupo_B',this)">B</button><button class="grp-btn " onclick="switchGrp('Grupo_C',this)">C</button><button class="grp-btn " onclick="switchGrp('Grupo_D',this)">D</button><button class="grp-btn " onclick="switchGrp('Grupo_E',this)">E</button><button class="grp-btn " onclick="switchGrp('Grupo_F',this)">F</button><button class="grp-btn " onclick="switchGrp('Grupo_G',this)">G</button><button class="grp-btn " onclick="switchGrp('Grupo_H',this)">H</button><button class="grp-btn " onclick="switchGrp('Grupo_I',this)">I</button><button class="grp-btn " onclick="switchGrp('Grupo_J',this)">J</button><button class="grp-btn " onclick="switchGrp('Grupo_K',this)">K</button><button class="grp-btn " onclick="switchGrp('Grupo_L',this)">L</button></div>
@@ -227,25 +304,406 @@ td{padding:10px 8px;font-size:.88rem}
   <div style="padding:8px 14px;background:#0d2137;border-bottom:1px solid #1e3a55;font-size:.7rem;color:#8ab4d4">% de participantes que apostaron por cada selección o jugador</div>
   <div class="cat-card"><h4>🏆 Campeón</h4><table><tbody><tr><td class="ci">🥇 Francia</td><td><div class="cbar"><div class="cbfill" style="width:120px"></div></div></td><td class="cpct">32%</td><td class="ccnt">(38)</td></tr><tr><td class="ci">🥈 España</td><td><div class="cbar"><div class="cbfill" style="width:82px"></div></div></td><td class="cpct">22%</td><td class="ccnt">(26)</td></tr><tr><td class="ci">🥉 Portugal</td><td><div class="cbar"><div class="cbfill" style="width:63px"></div></div></td><td class="cpct">17%</td><td class="ccnt">(20)</td></tr><tr><td class="ci">  Argentina</td><td><div class="cbar"><div class="cbfill" style="width:25px"></div></div></td><td class="cpct">7%</td><td class="ccnt">(8)</td></tr><tr><td class="ci">  Inglaterra</td><td><div class="cbar"><div class="cbfill" style="width:22px"></div></div></td><td class="cpct">6%</td><td class="ccnt">(7)</td></tr><tr><td class="ci">  Alemania</td><td><div class="cbar"><div class="cbfill" style="width:19px"></div></div></td><td class="cpct">5%</td><td class="ccnt">(6)</td></tr><tr><td class="ci">  P. Bajos</td><td><div class="cbar"><div class="cbfill" style="width:16px"></div></div></td><td class="cpct">4%</td><td class="ccnt">(5)</td></tr><tr><td class="ci">  Brasil</td><td><div class="cbar"><div class="cbfill" style="width:9px"></div></div></td><td class="cpct">3%</td><td class="ccnt">(3)</td></tr></tbody></table></div><div class="cat-card"><h4>🥈 Subcampeón</h4><table><tbody><tr><td class="ci">🥇 Portugal</td><td><div class="cbar"><div class="cbfill" style="width:120px"></div></div></td><td class="cpct">20%</td><td class="ccnt">(23)</td></tr><tr><td class="ci">🥈 Inglaterra</td><td><div class="cbar"><div class="cbfill" style="width:110px"></div></div></td><td class="cpct">18%</td><td class="ccnt">(21)</td></tr><tr><td class="ci">🥉 España</td><td><div class="cbar"><div class="cbfill" style="width:110px"></div></div></td><td class="cpct">18%</td><td class="ccnt">(21)</td></tr><tr><td class="ci">  Argentina</td><td><div class="cbar"><div class="cbfill" style="width:94px"></div></div></td><td class="cpct">15%</td><td class="ccnt">(18)</td></tr><tr><td class="ci">  Francia</td><td><div class="cbar"><div class="cbfill" style="width:73px"></div></div></td><td class="cpct">12%</td><td class="ccnt">(14)</td></tr><tr><td class="ci">  Brasil</td><td><div class="cbar"><div class="cbfill" style="width:57px"></div></div></td><td class="cpct">9%</td><td class="ccnt">(11)</td></tr><tr><td class="ci">  Colombia</td><td><div class="cbar"><div class="cbfill" style="width:16px"></div></div></td><td class="cpct">3%</td><td class="ccnt">(3)</td></tr><tr><td class="ci">  P. Bajos</td><td><div class="cbar"><div class="cbfill" style="width:10px"></div></div></td><td class="cpct">2%</td><td class="ccnt">(2)</td></tr></tbody></table></div><div class="cat-card"><h4>🥉 Tercer Puesto</h4><table><tbody><tr><td class="ci">🥇 España</td><td><div class="cbar"><div class="cbfill" style="width:120px"></div></div></td><td class="cpct">35%</td><td class="ccnt">(41)</td></tr><tr><td class="ci">🥈 Francia</td><td><div class="cbar"><div class="cbfill" style="width:82px"></div></div></td><td class="cpct">24%</td><td class="ccnt">(28)</td></tr><tr><td class="ci">🥉 Brasil</td><td><div class="cbar"><div class="cbfill" style="width:29px"></div></div></td><td class="cpct">9%</td><td class="ccnt">(10)</td></tr><tr><td class="ci">  Argentina</td><td><div class="cbar"><div class="cbfill" style="width:20px"></div></div></td><td class="cpct">6%</td><td class="ccnt">(7)</td></tr><tr><td class="ci">  Portugal</td><td><div class="cbar"><div class="cbfill" style="width:18px"></div></div></td><td class="cpct">5%</td><td class="ccnt">(6)</td></tr><tr><td class="ci">  Inglaterra</td><td><div class="cbar"><div class="cbfill" style="width:15px"></div></div></td><td class="cpct">4%</td><td class="ccnt">(5)</td></tr><tr><td class="ci">  Alemania</td><td><div class="cbar"><div class="cbfill" style="width:15px"></div></div></td><td class="cpct">4%</td><td class="ccnt">(5)</td></tr><tr><td class="ci">  Colombia</td><td><div class="cbar"><div class="cbfill" style="width:9px"></div></div></td><td class="cpct">3%</td><td class="ccnt">(3)</td></tr></tbody></table></div><div class="cat-card"><h4>👟 Botín de Oro</h4><table><tbody><tr><td class="ci">🥇 Kylian Mbappe</td><td><div class="cbar"><div class="cbfill" style="width:120px"></div></div></td><td class="cpct">41%</td><td class="ccnt">(45)</td></tr><tr><td class="ci">🥈 Harry Kane</td><td><div class="cbar"><div class="cbfill" style="width:53px"></div></div></td><td class="cpct">18%</td><td class="ccnt">(20)</td></tr><tr><td class="ci">🥉 Lamine Yamal</td><td><div class="cbar"><div class="cbfill" style="width:21px"></div></div></td><td class="cpct">7%</td><td class="ccnt">(8)</td></tr><tr><td class="ci">  Erling Haaland</td><td><div class="cbar"><div class="cbfill" style="width:11px"></div></div></td><td class="cpct">4%</td><td class="ccnt">(4)</td></tr><tr><td class="ci">  H Kane</td><td><div class="cbar"><div class="cbfill" style="width:8px"></div></div></td><td class="cpct">3%</td><td class="ccnt">(3)</td></tr><tr><td class="ci">  Kilian Mbappe</td><td><div class="cbar"><div class="cbfill" style="width:8px"></div></div></td><td class="cpct">3%</td><td class="ccnt">(3)</td></tr><tr><td class="ci">  Ousmane Dembele</td><td><div class="cbar"><div class="cbfill" style="width:5px"></div></div></td><td class="cpct">2%</td><td class="ccnt">(2)</td></tr><tr><td class="ci">  Cristiano Ronaldo</td><td><div class="cbar"><div class="cbfill" style="width:5px"></div></div></td><td class="cpct">2%</td><td class="ccnt">(2)</td></tr><tr><td class="ci">  Luis Diaz</td><td><div class="cbar"><div class="cbfill" style="width:5px"></div></div></td><td class="cpct">2%</td><td class="ccnt">(2)</td></tr><tr><td class="ci">  Ferran Torres</td><td><div class="cbar"><div class="cbfill" style="width:5px"></div></div></td><td class="cpct">2%</td><td class="ccnt">(2)</td></tr></tbody></table></div><div class="cat-card"><h4>👟 Botín de Plata</h4><table><tbody><tr><td class="ci">🥇 Harry Kane</td><td><div class="cbar"><div class="cbfill" style="width:120px"></div></div></td><td class="cpct">28%</td><td class="ccnt">(31)</td></tr><tr><td class="ci">🥈 Kylian Mbappe</td><td><div class="cbar"><div class="cbfill" style="width:74px"></div></div></td><td class="cpct">17%</td><td class="ccnt">(19)</td></tr><tr><td class="ci">🥉 Lamine Yamal</td><td><div class="cbar"><div class="cbfill" style="width:35px"></div></div></td><td class="cpct">8%</td><td class="ccnt">(9)</td></tr><tr><td class="ci">  Vinicius Jr.</td><td><div class="cbar"><div class="cbfill" style="width:23px"></div></div></td><td class="cpct">6%</td><td class="ccnt">(6)</td></tr><tr><td class="ci">  Lionel Messi</td><td><div class="cbar"><div class="cbfill" style="width:15px"></div></div></td><td class="cpct">4%</td><td class="ccnt">(4)</td></tr><tr><td class="ci">  Cristiano Ronaldo</td><td><div class="cbar"><div class="cbfill" style="width:12px"></div></div></td><td class="cpct">3%</td><td class="ccnt">(3)</td></tr><tr><td class="ci">  Erling Haaland</td><td><div class="cbar"><div class="cbfill" style="width:12px"></div></div></td><td class="cpct">3%</td><td class="ccnt">(3)</td></tr><tr><td class="ci">  Luis Diaz</td><td><div class="cbar"><div class="cbfill" style="width:12px"></div></div></td><td class="cpct">3%</td><td class="ccnt">(3)</td></tr><tr><td class="ci">  Jamal Musiala</td><td><div class="cbar"><div class="cbfill" style="width:8px"></div></div></td><td class="cpct">2%</td><td class="ccnt">(2)</td></tr><tr><td class="ci">  Lautaro Martinez</td><td><div class="cbar"><div class="cbfill" style="width:8px"></div></div></td><td class="cpct">2%</td><td class="ccnt">(2)</td></tr></tbody></table></div><div class="cat-card"><h4>👟 Botín de Bronce</h4><table><tbody><tr><td class="ci">🥇 Cristiano Ronaldo</td><td><div class="cbar"><div class="cbfill" style="width:120px"></div></div></td><td class="cpct">11%</td><td class="ccnt">(12)</td></tr><tr><td class="ci">🥈 Harry Kane</td><td><div class="cbar"><div class="cbfill" style="width:110px"></div></div></td><td class="cpct">10%</td><td class="ccnt">(11)</td></tr><tr><td class="ci">🥉 Lamine Yamal</td><td><div class="cbar"><div class="cbfill" style="width:100px"></div></div></td><td class="cpct">9%</td><td class="ccnt">(10)</td></tr><tr><td class="ci">  Julian Alvarez</td><td><div class="cbar"><div class="cbfill" style="width:90px"></div></div></td><td class="cpct">8%</td><td class="ccnt">(9)</td></tr><tr><td class="ci">  Erling Haaland</td><td><div class="cbar"><div class="cbfill" style="width:80px"></div></div></td><td class="cpct">7%</td><td class="ccnt">(8)</td></tr><tr><td class="ci">  Lionel Messi</td><td><div class="cbar"><div class="cbfill" style="width:50px"></div></div></td><td class="cpct">5%</td><td class="ccnt">(5)</td></tr><tr><td class="ci">  Kylian Mbappe</td><td><div class="cbar"><div class="cbfill" style="width:40px"></div></div></td><td class="cpct">4%</td><td class="ccnt">(4)</td></tr><tr><td class="ci">  Luis Diaz</td><td><div class="cbar"><div class="cbfill" style="width:40px"></div></div></td><td class="cpct">4%</td><td class="ccnt">(4)</td></tr><tr><td class="ci">  Vinicius Jr.</td><td><div class="cbar"><div class="cbfill" style="width:40px"></div></div></td><td class="cpct">4%</td><td class="ccnt">(4)</td></tr><tr><td class="ci">  Julián Alvarez</td><td><div class="cbar"><div class="cbfill" style="width:30px"></div></div></td><td class="cpct">3%</td><td class="ccnt">(3)</td></tr></tbody></table></div><div class="cat-card"><h4>⚽ Balón de Oro</h4><table><tbody><tr><td class="ci">🥇 Lamine Yamal</td><td><div class="cbar"><div class="cbfill" style="width:120px"></div></div></td><td class="cpct">29%</td><td class="ccnt">(32)</td></tr><tr><td class="ci">🥈 Kylian Mbappe</td><td><div class="cbar"><div class="cbfill" style="width:75px"></div></div></td><td class="cpct">18%</td><td class="ccnt">(20)</td></tr><tr><td class="ci">🥉 Harry Kane</td><td><div class="cbar"><div class="cbfill" style="width:30px"></div></div></td><td class="cpct">7%</td><td class="ccnt">(8)</td></tr><tr><td class="ci">  Bruno Fernandes</td><td><div class="cbar"><div class="cbfill" style="width:22px"></div></div></td><td class="cpct">6%</td><td class="ccnt">(6)</td></tr><tr><td class="ci">  Cristiano Ronaldo</td><td><div class="cbar"><div class="cbfill" style="width:19px"></div></div></td><td class="cpct">5%</td><td class="ccnt">(5)</td></tr><tr><td class="ci">  Michael Olise</td><td><div class="cbar"><div class="cbfill" style="width:19px"></div></div></td><td class="cpct">5%</td><td class="ccnt">(5)</td></tr><tr><td class="ci">  Vitinha</td><td><div class="cbar"><div class="cbfill" style="width:15px"></div></div></td><td class="cpct">4%</td><td class="ccnt">(4)</td></tr><tr><td class="ci">  Ousmane Dembele</td><td><div class="cbar"><div class="cbfill" style="width:15px"></div></div></td><td class="cpct">4%</td><td class="ccnt">(4)</td></tr><tr><td class="ci">  Lionel Messi</td><td><div class="cbar"><div class="cbfill" style="width:11px"></div></div></td><td class="cpct">3%</td><td class="ccnt">(3)</td></tr><tr><td class="ci">  Lamin Yamal</td><td><div class="cbar"><div class="cbfill" style="width:8px"></div></div></td><td class="cpct">2%</td><td class="ccnt">(2)</td></tr></tbody></table></div><div class="cat-card"><h4>⚽ Balón de Plata</h4><table><tbody><tr><td class="ci">🥇 Kylian Mbappe</td><td><div class="cbar"><div class="cbfill" style="width:120px"></div></div></td><td class="cpct">12%</td><td class="ccnt">(13)</td></tr><tr><td class="ci">🥈 Harry Kane</td><td><div class="cbar"><div class="cbfill" style="width:111px"></div></div></td><td class="cpct">11%</td><td class="ccnt">(12)</td></tr><tr><td class="ci">🥉 Lamine Yamal</td><td><div class="cbar"><div class="cbfill" style="width:102px"></div></div></td><td class="cpct">10%</td><td class="ccnt">(11)</td></tr><tr><td class="ci">  Luis Diaz</td><td><div class="cbar"><div class="cbfill" style="width:74px"></div></div></td><td class="cpct">7%</td><td class="ccnt">(8)</td></tr><tr><td class="ci">  Vitinha</td><td><div class="cbar"><div class="cbfill" style="width:65px"></div></div></td><td class="cpct">6%</td><td class="ccnt">(7)</td></tr><tr><td class="ci">  Lionel Messi</td><td><div class="cbar"><div class="cbfill" style="width:55px"></div></div></td><td class="cpct">6%</td><td class="ccnt">(6)</td></tr><tr><td class="ci">  Vinicius Jr.</td><td><div class="cbar"><div class="cbfill" style="width:37px"></div></div></td><td class="cpct">4%</td><td class="ccnt">(4)</td></tr><tr><td class="ci">  Cristiano Ronaldo</td><td><div class="cbar"><div class="cbfill" style="width:28px"></div></div></td><td class="cpct">3%</td><td class="ccnt">(3)</td></tr><tr><td class="ci">  Julian Alvarez</td><td><div class="cbar"><div class="cbfill" style="width:28px"></div></div></td><td class="cpct">3%</td><td class="ccnt">(3)</td></tr><tr><td class="ci">  Pedri</td><td><div class="cbar"><div class="cbfill" style="width:28px"></div></div></td><td class="cpct">3%</td><td class="ccnt">(3)</td></tr></tbody></table></div><div class="cat-card"><h4>⚽ Balón de Bronce</h4><table><tbody><tr><td class="ci">🥇 Lamine Yamal</td><td><div class="cbar"><div class="cbfill" style="width:120px"></div></div></td><td class="cpct">14%</td><td class="ccnt">(15)</td></tr><tr><td class="ci">🥈 Kylian Mbappe</td><td><div class="cbar"><div class="cbfill" style="width:88px"></div></div></td><td class="cpct">10%</td><td class="ccnt">(11)</td></tr><tr><td class="ci">🥉 Lionel Messi</td><td><div class="cbar"><div class="cbfill" style="width:72px"></div></div></td><td class="cpct">8%</td><td class="ccnt">(9)</td></tr><tr><td class="ci">  Harry Kane</td><td><div class="cbar"><div class="cbfill" style="width:64px"></div></div></td><td class="cpct">7%</td><td class="ccnt">(8)</td></tr><tr><td class="ci">  Luis Diaz</td><td><div class="cbar"><div class="cbfill" style="width:56px"></div></div></td><td class="cpct">6%</td><td class="ccnt">(7)</td></tr><tr><td class="ci">  Pedri</td><td><div class="cbar"><div class="cbfill" style="width:40px"></div></div></td><td class="cpct">5%</td><td class="ccnt">(5)</td></tr><tr><td class="ci">  Vinicius Jr.</td><td><div class="cbar"><div class="cbfill" style="width:40px"></div></div></td><td class="cpct">5%</td><td class="ccnt">(5)</td></tr><tr><td class="ci">  Vitinha</td><td><div class="cbar"><div class="cbfill" style="width:32px"></div></div></td><td class="cpct">4%</td><td class="ccnt">(4)</td></tr><tr><td class="ci">  Michael Olise</td><td><div class="cbar"><div class="cbfill" style="width:32px"></div></div></td><td class="cpct">4%</td><td class="ccnt">(4)</td></tr><tr><td class="ci">  Rodri</td><td><div class="cbar"><div class="cbfill" style="width:24px"></div></div></td><td class="cpct">3%</td><td class="ccnt">(3)</td></tr></tbody></table></div>
 </div>
+<div id="tab-salon" class="tab">
+  <div style="padding:8px 14px;background:#0d2137;border-bottom:1px solid #1e3a55;font-size:.7rem;color:#8ab4d4">
+    Insignias ganadas por rendimiento real. Las que dependen de historial de jornadas se activarán en próximas actualizaciones.
+  </div>
+  <!-- BADGE GRID -->
+  <div class="badge-grid"><div class="badge-card earned">
+  <div class="badge-icon-wrap">🎯</div>
+  <div class="badge-name">Francotirador</div>
+  <div class="badge-desc">Mayor porcentaje de marcadores exactos</div>
+  <div class="badge-winner">Alejandro Lisson</div>
+</div><div class="badge-card earned">
+  <div class="badge-icon-wrap">🔮</div>
+  <div class="badge-name">Nostradamus</div>
+  <div class="badge-desc">5 o más marcadores exactos en el torneo</div>
+  <div class="badge-winner">Alejandro Lisson, Andres Merizalde, Fabian Morales +1</div>
+</div><div class="badge-card earned">
+  <div class="badge-icon-wrap">😅</div>
+  <div class="badge-name">Casi Casi</div>
+  <div class="badge-desc">Más resultados acertados sin marcador exacto</div>
+  <div class="badge-winner">Bianca Olarte</div>
+</div><div class="badge-card earned">
+  <div class="badge-icon-wrap">⚡</div>
+  <div class="badge-name">Constante</div>
+  <div class="badge-desc">Aciertos en todas las jornadas jugadas</div>
+  <div class="badge-winner">Alejandro Acosta, Alejandro Arbelaez, Alejandro Arias +2</div>
+</div><div class="badge-card earned">
+  <div class="badge-icon-wrap">🃏</div>
+  <div class="badge-name">Sorpresero</div>
+  <div class="badge-desc">Más aciertos en resultados poco predichos (<15%)</div>
+  <div class="badge-winner">Jairo Rios</div>
+</div><div class="badge-card ">
+  <div class="badge-icon-wrap">👑</div>
+  <div class="badge-name">Rey del Mundial</div>
+  <div class="badge-desc">Líder del ranking durante 3 jornadas — pendiente de historial</div>
+  <div class="badge-pending">⏳ Requiere historial de jornadas</div>
+</div><div class="badge-card ">
+  <div class="badge-icon-wrap">⚽</div>
+  <div class="badge-name">Gol de Último Minuto</div>
+  <div class="badge-desc">Mayor subida en el ranking tras una jornada — pendiente de historial</div>
+  <div class="badge-pending">⏳ Requiere historial de jornadas</div>
+</div><div class="badge-card earned">
+  <div class="badge-icon-wrap">🔴</div>
+  <div class="badge-name">Farolillo Rojo</div>
+  <div class="badge-desc">Último lugar del ranking general</div>
+  <div class="badge-winner">Pedro Montaño</div>
+</div></div>
+  <!-- TOP EXACTOS LEADERBOARD -->
+  <div style="padding:0 14px 14px">
+    <div style="font-size:.72rem;font-weight:700;color:#f5d020;text-transform:uppercase;letter-spacing:1px;margin-bottom:8px">
+      🎯 Top marcadores exactos
+    </div>
+    <div style="background:#0d2137;border:1px solid #1e3a55;border-radius:10px;overflow:hidden">
+      <table style="width:100%;border-collapse:collapse">
+        <thead>
+          <tr style="background:#1a3a5c">
+            <th style="padding:8px 6px;font-size:.62rem;color:#8ab4d4;text-transform:uppercase;width:36px">#</th>
+            <th style="padding:8px 6px 8px 10px;font-size:.62rem;color:#8ab4d4;text-transform:uppercase;text-align:left">Participante</th>
+            <th style="padding:8px 6px;font-size:.62rem;color:#8ab4d4;text-transform:uppercase">Exactos</th>
+            <th style="padding:8px 6px;font-size:.62rem;color:#8ab4d4;text-transform:uppercase">%</th>
+          </tr>
+        </thead>
+        <tbody><tr><td style="text-align:center;color:#8ab4d4;font-size:.75rem;padding:9px 6px">🥇</td><td style="padding:9px 6px 9px 10px;font-size:.85rem">Alejandro Lisson</td><td style="text-align:center;color:#4cde7a;font-weight:700;font-size:.95rem;padding:9px 6px">8</td><td style="text-align:center;color:#f5d020;font-size:.82rem;padding:9px 6px">22.2%</td></tr><tr><td style="text-align:center;color:#8ab4d4;font-size:.75rem;padding:9px 6px">🥈</td><td style="padding:9px 6px 9px 10px;font-size:.85rem">Andres Merizalde</td><td style="text-align:center;color:#4cde7a;font-weight:700;font-size:.95rem;padding:9px 6px">8</td><td style="text-align:center;color:#f5d020;font-size:.82rem;padding:9px 6px">22.2%</td></tr><tr><td style="text-align:center;color:#8ab4d4;font-size:.75rem;padding:9px 6px">🥉</td><td style="padding:9px 6px 9px 10px;font-size:.85rem">Fabian Morales</td><td style="text-align:center;color:#4cde7a;font-weight:700;font-size:.95rem;padding:9px 6px">7</td><td style="text-align:center;color:#f5d020;font-size:.82rem;padding:9px 6px">19.4%</td></tr><tr><td style="text-align:center;color:#8ab4d4;font-size:.75rem;padding:9px 6px">4</td><td style="padding:9px 6px 9px 10px;font-size:.85rem">Juan Diego Martinez</td><td style="text-align:center;color:#4cde7a;font-weight:700;font-size:.95rem;padding:9px 6px">7</td><td style="text-align:center;color:#f5d020;font-size:.82rem;padding:9px 6px">19.4%</td></tr><tr><td style="text-align:center;color:#8ab4d4;font-size:.75rem;padding:9px 6px">5</td><td style="padding:9px 6px 9px 10px;font-size:.85rem">Alejandro Acosta</td><td style="text-align:center;color:#4cde7a;font-weight:700;font-size:.95rem;padding:9px 6px">6</td><td style="text-align:center;color:#f5d020;font-size:.82rem;padding:9px 6px">16.7%</td></tr><tr><td style="text-align:center;color:#8ab4d4;font-size:.75rem;padding:9px 6px">6</td><td style="padding:9px 6px 9px 10px;font-size:.85rem">Andres Felipe Olarte</td><td style="text-align:center;color:#4cde7a;font-weight:700;font-size:.95rem;padding:9px 6px">6</td><td style="text-align:center;color:#f5d020;font-size:.82rem;padding:9px 6px">16.7%</td></tr><tr><td style="text-align:center;color:#8ab4d4;font-size:.75rem;padding:9px 6px">7</td><td style="padding:9px 6px 9px 10px;font-size:.85rem">Andres Mejia</td><td style="text-align:center;color:#4cde7a;font-weight:700;font-size:.95rem;padding:9px 6px">6</td><td style="text-align:center;color:#f5d020;font-size:.82rem;padding:9px 6px">16.7%</td></tr><tr><td style="text-align:center;color:#8ab4d4;font-size:.75rem;padding:9px 6px">8</td><td style="padding:9px 6px 9px 10px;font-size:.85rem">Benjamin Olarte</td><td style="text-align:center;color:#4cde7a;font-weight:700;font-size:.95rem;padding:9px 6px">6</td><td style="text-align:center;color:#f5d020;font-size:.82rem;padding:9px 6px">16.7%</td></tr><tr><td style="text-align:center;color:#8ab4d4;font-size:.75rem;padding:9px 6px">9</td><td style="padding:9px 6px 9px 10px;font-size:.85rem">Daniel Gomez</td><td style="text-align:center;color:#4cde7a;font-weight:700;font-size:.95rem;padding:9px 6px">6</td><td style="text-align:center;color:#f5d020;font-size:.82rem;padding:9px 6px">16.7%</td></tr><tr><td style="text-align:center;color:#8ab4d4;font-size:.75rem;padding:9px 6px">10</td><td style="padding:9px 6px 9px 10px;font-size:.85rem">Jennie Levitt</td><td style="text-align:center;color:#4cde7a;font-weight:700;font-size:.95rem;padding:9px 6px">6</td><td style="text-align:center;color:#f5d020;font-size:.82rem;padding:9px 6px">16.7%</td></tr></tbody>
+      </table>
+    </div>
+  </div>
+</div>
+<div id="tab-resultados" class="tab">
+  <div style="padding:12px 14px;background:#132840;border-bottom:1px solid #1e3a55">
+    <div style="font-size:.85rem;font-weight:700;color:#f5d020;margin-bottom:8px">⚙️ Panel de Administrador</div>
+    <p style="font-size:.72rem;color:#8ab4d4;margin-bottom:12px">Ingresa o actualiza resultados de partidos. Los cambios se aplican al ranking inmediatamente.</p>
+    
+    <!-- API Section -->
+    <div style="background:#0d2137;border:1px solid #1e3a55;border-radius:8px;padding:12px;margin-bottom:12px">
+      <div style="font-size:.78rem;font-weight:700;color:#4cde7a;margin-bottom:6px">🌐 Actualización automática vía API</div>
+      <p style="font-size:.7rem;color:#8ab4d4;margin-bottom:8px">Usa football-data.org (gratis). Necesitas una clave API gratuita de <a href="https://www.football-data.org/client/register" target="_blank" style="color:#4cde7a">football-data.org</a></p>
+      <div style="display:flex;gap:8px;margin-bottom:8px">
+        <input id="api-key-input" type="password" placeholder="Pega tu API key aquí" style="flex:1;padding:7px 12px;border-radius:8px;border:1px solid #2a5070;background:#1a3a5c;color:#fff;font-size:.78rem;outline:none">
+        <button onclick="fetchLiveResults()" style="padding:7px 14px;background:#4cde7a;color:#000;border:none;border-radius:8px;font-size:.75rem;font-weight:700;cursor:pointer;white-space:nowrap">🔄 Buscar</button>
+      </div>
+      <div id="api-status" style="font-size:.7rem;color:#8ab4d4"></div>
+    </div>
+    
+    <!-- Manual Entry -->
+    <div style="background:#0d2137;border:1px solid #1e3a55;border-radius:8px;padding:12px">
+      <div style="font-size:.78rem;font-weight:700;color:#f5d020;margin-bottom:8px">✏️ Ingreso manual de resultados</div>
+      <div id="match-filter-btns" style="display:flex;gap:6px;flex-wrap:wrap;margin-bottom:10px">
+        <button class="grp-btn act" onclick="filterMatchGroup('ALL',this)">Todos</button>
+        <button class="grp-btn" onclick="filterMatchGroup('A',this)">A</button>
+        <button class="grp-btn" onclick="filterMatchGroup('B',this)">B</button>
+        <button class="grp-btn" onclick="filterMatchGroup('C',this)">C</button>
+        <button class="grp-btn" onclick="filterMatchGroup('D',this)">D</button>
+        <button class="grp-btn" onclick="filterMatchGroup('E',this)">E</button>
+        <button class="grp-btn" onclick="filterMatchGroup('F',this)">F</button>
+        <button class="grp-btn" onclick="filterMatchGroup('G',this)">G</button>
+        <button class="grp-btn" onclick="filterMatchGroup('H',this)">H</button>
+        <button class="grp-btn" onclick="filterMatchGroup('I',this)">I</button>
+        <button class="grp-btn" onclick="filterMatchGroup('J',this)">J</button>
+        <button class="grp-btn" onclick="filterMatchGroup('K',this)">K</button>
+        <button class="grp-btn" onclick="filterMatchGroup('L',this)">L</button>
+        <button class="grp-btn" onclick="filterMatchGroup('PENDING',this)" style="background:#c8a200;color:#000;border-color:#c8a200">Pendientes</button>
+      </div>
+      <div id="match-list"></div>
+      <button onclick="applyResults()" style="width:100%;padding:12px;background:#c8a200;color:#000;border:none;border-radius:8px;font-size:.85rem;font-weight:700;cursor:pointer;margin-top:12px">⚽ Aplicar resultados y recalcular ranking</button>
+    </div>
+  </div>
+</div>
 <script>
+
+// ── % Aciertos data (generated by Python from 117 Excel files) ─────────────
+// Structure: {name: {ev:evaluated, ex:exact, wi:winner, wr:wrong, pex:pct_exact, pac:pct_aciertos}}
+const STATS = {"Adriana Zauner": {"ev": 36, "ex": 2, "wi": 17, "wr": 17, "pex": 5.6, "pac": 52.8}, "Agustin Vejarano": {"ev": 36, "ex": 4, "wi": 17, "wr": 15, "pex": 11.1, "pac": 58.3}, "Alberto Fonseca": {"ev": 36, "ex": 3, "wi": 16, "wr": 17, "pex": 8.3, "pac": 52.8}, "Alejandro Acosta": {"ev": 36, "ex": 6, "wi": 16, "wr": 14, "pex": 16.7, "pac": 61.1}, "Alejandro Arbelaez": {"ev": 36, "ex": 1, "wi": 15, "wr": 20, "pex": 2.8, "pac": 44.4}, "Alejandro Arias": {"ev": 36, "ex": 2, "wi": 18, "wr": 16, "pex": 5.6, "pac": 55.6}, "Alejandro Escallon Hijo": {"ev": 36, "ex": 1, "wi": 18, "wr": 17, "pex": 2.8, "pac": 52.8}, "Alejandro Escallon Papa": {"ev": 36, "ex": 2, "wi": 16, "wr": 18, "pex": 5.6, "pac": 50.0}, "Alejandro Gonzalex": {"ev": 0, "ex": 0, "wi": 0, "wr": 0, "pex": 0, "pac": 0}, "Alejandro Gonzalez": {"ev": 36, "ex": 5, "wi": 17, "wr": 14, "pex": 13.9, "pac": 61.1}, "Alejandro Hernandez": {"ev": 36, "ex": 5, "wi": 15, "wr": 16, "pex": 13.9, "pac": 55.6}, "Alejandro Lisson": {"ev": 36, "ex": 8, "wi": 15, "wr": 13, "pex": 22.2, "pac": 63.9}, "Alejandro Paez": {"ev": 36, "ex": 2, "wi": 13, "wr": 21, "pex": 5.6, "pac": 41.7}, "Alfonso Vejarano": {"ev": 36, "ex": 4, "wi": 17, "wr": 15, "pex": 11.1, "pac": 58.3}, "Alvaro Acosta": {"ev": 36, "ex": 4, "wi": 12, "wr": 20, "pex": 11.1, "pac": 44.4}, "Ana Maria Perez": {"ev": 36, "ex": 5, "wi": 17, "wr": 14, "pex": 13.9, "pac": 61.1}, "Andrea Mordo": {"ev": 36, "ex": 2, "wi": 19, "wr": 15, "pex": 5.6, "pac": 58.3}, "Andres Cadena": {"ev": 36, "ex": 3, "wi": 15, "wr": 18, "pex": 8.3, "pac": 50.0}, "Andres Felipe Olarte": {"ev": 36, "ex": 6, "wi": 13, "wr": 17, "pex": 16.7, "pac": 52.8}, "Andres Gamboa": {"ev": 36, "ex": 5, "wi": 19, "wr": 12, "pex": 13.9, "pac": 66.7}, "Andres Mejia": {"ev": 36, "ex": 6, "wi": 12, "wr": 18, "pex": 16.7, "pac": 50.0}, "Andres Merizalde": {"ev": 36, "ex": 8, "wi": 15, "wr": 13, "pex": 22.2, "pac": 63.9}, "Andres Olarte": {"ev": 36, "ex": 1, "wi": 18, "wr": 17, "pex": 2.8, "pac": 52.8}, "Andres Rodriguez": {"ev": 36, "ex": 2, "wi": 17, "wr": 17, "pex": 5.6, "pac": 52.8}, "Andres Sarmiento": {"ev": 36, "ex": 3, "wi": 20, "wr": 13, "pex": 8.3, "pac": 63.9}, "Andres Silva": {"ev": 36, "ex": 5, "wi": 12, "wr": 19, "pex": 13.9, "pac": 47.2}, "Antonia Quijano": {"ev": 36, "ex": 4, "wi": 18, "wr": 14, "pex": 11.1, "pac": 61.1}, "Armando Benito Revollo": {"ev": 36, "ex": 3, "wi": 20, "wr": 13, "pex": 8.3, "pac": 63.9}, "Augusto Hernandez": {"ev": 36, "ex": 3, "wi": 18, "wr": 15, "pex": 8.3, "pac": 58.3}, "Benjamin Olarte": {"ev": 36, "ex": 6, "wi": 13, "wr": 17, "pex": 16.7, "pac": 52.8}, "Bianca Olarte": {"ev": 36, "ex": 2, "wi": 22, "wr": 12, "pex": 5.6, "pac": 66.7}, "Billy Belzner": {"ev": 36, "ex": 4, "wi": 18, "wr": 14, "pex": 11.1, "pac": 61.1}, "Camilo Pomares": {"ev": 36, "ex": 4, "wi": 15, "wr": 17, "pex": 11.1, "pac": 52.8}, "Carlos Vergara": {"ev": 36, "ex": 5, "wi": 18, "wr": 13, "pex": 13.9, "pac": 63.9}, "Christian Kling": {"ev": 36, "ex": 5, "wi": 15, "wr": 16, "pex": 13.9, "pac": 55.6}, "Cristian Ardila": {"ev": 36, "ex": 4, "wi": 13, "wr": 19, "pex": 11.1, "pac": 47.2}, "Daniel Escobar": {"ev": 36, "ex": 3, "wi": 16, "wr": 17, "pex": 8.3, "pac": 52.8}, "Daniel Gomez": {"ev": 36, "ex": 6, "wi": 15, "wr": 15, "pex": 16.7, "pac": 58.3}, "Daniel Gonzalez": {"ev": 36, "ex": 3, "wi": 17, "wr": 16, "pex": 8.3, "pac": 55.6}, "Daniel Herrera": {"ev": 36, "ex": 1, "wi": 13, "wr": 22, "pex": 2.8, "pac": 38.9}, "Daniel Mor": {"ev": 36, "ex": 2, "wi": 20, "wr": 14, "pex": 5.6, "pac": 61.1}, "Daniel Mordo": {"ev": 36, "ex": 2, "wi": 18, "wr": 16, "pex": 5.6, "pac": 55.6}, "Daniel Pombo": {"ev": 36, "ex": 2, "wi": 19, "wr": 15, "pex": 5.6, "pac": 58.3}, "Dayana Cruz": {"ev": 36, "ex": 4, "wi": 16, "wr": 16, "pex": 11.1, "pac": 55.6}, "Diego Perez": {"ev": 36, "ex": 4, "wi": 15, "wr": 17, "pex": 11.1, "pac": 52.8}, "Diego Rios": {"ev": 36, "ex": 5, "wi": 13, "wr": 18, "pex": 13.9, "pac": 50.0}, "Edith Vargas": {"ev": 36, "ex": 5, "wi": 13, "wr": 18, "pex": 13.9, "pac": 50.0}, "Eduardo Rangel": {"ev": 36, "ex": 5, "wi": 18, "wr": 13, "pex": 13.9, "pac": 63.9}, "Enrique Casas": {"ev": 36, "ex": 5, "wi": 17, "wr": 14, "pex": 13.9, "pac": 61.1}, "Erich Riano": {"ev": 36, "ex": 2, "wi": 16, "wr": 18, "pex": 5.6, "pac": 50.0}, "Erika Padilla": {"ev": 36, "ex": 4, "wi": 14, "wr": 18, "pex": 11.1, "pac": 50.0}, "Ernesto Samper": {"ev": 36, "ex": 4, "wi": 17, "wr": 15, "pex": 11.1, "pac": 58.3}, "Eva Kling": {"ev": 36, "ex": 2, "wi": 21, "wr": 13, "pex": 5.6, "pac": 63.9}, "Fabian Morales": {"ev": 36, "ex": 7, "wi": 19, "wr": 10, "pex": 19.4, "pac": 72.2}, "Federico Camacho": {"ev": 36, "ex": 3, "wi": 13, "wr": 20, "pex": 8.3, "pac": 44.4}, "Felipe Chalela": {"ev": 36, "ex": 5, "wi": 17, "wr": 14, "pex": 13.9, "pac": 61.1}, "Felipe Gaitan": {"ev": 36, "ex": 2, "wi": 17, "wr": 17, "pex": 5.6, "pac": 52.8}, "Felipe Merizalde": {"ev": 36, "ex": 0, "wi": 22, "wr": 14, "pex": 0.0, "pac": 61.1}, "Fernando Arana": {"ev": 36, "ex": 5, "wi": 16, "wr": 15, "pex": 13.9, "pac": 58.3}, "Fernando Ortiz": {"ev": 36, "ex": 2, "wi": 17, "wr": 17, "pex": 5.6, "pac": 52.8}, "Fernando Pineros": {"ev": 36, "ex": 2, "wi": 12, "wr": 22, "pex": 5.6, "pac": 38.9}, "Ferney Ardila": {"ev": 36, "ex": 5, "wi": 16, "wr": 15, "pex": 13.9, "pac": 58.3}, "Jaime Mor": {"ev": 36, "ex": 4, "wi": 17, "wr": 15, "pex": 11.1, "pac": 58.3}, "Jaime Silva": {"ev": 36, "ex": 3, "wi": 15, "wr": 18, "pex": 8.3, "pac": 50.0}, "Jairo Rios": {"ev": 36, "ex": 2, "wi": 16, "wr": 18, "pex": 5.6, "pac": 50.0}, "Javier Garcia": {"ev": 36, "ex": 3, "wi": 14, "wr": 19, "pex": 8.3, "pac": 47.2}, "Javier Ropero": {"ev": 36, "ex": 4, "wi": 16, "wr": 16, "pex": 11.1, "pac": 55.6}, "Javier Tafur": {"ev": 36, "ex": 1, "wi": 19, "wr": 16, "pex": 2.8, "pac": 55.6}, "Jennie Levitt": {"ev": 36, "ex": 6, "wi": 16, "wr": 14, "pex": 16.7, "pac": 61.1}, "Joey Borrero": {"ev": 36, "ex": 5, "wi": 15, "wr": 16, "pex": 13.9, "pac": 55.6}, "Jorge Tirado": {"ev": 36, "ex": 6, "wi": 11, "wr": 19, "pex": 16.7, "pac": 47.2}, "Jose Pablo Reyes": {"ev": 36, "ex": 4, "wi": 15, "wr": 17, "pex": 11.1, "pac": 52.8}, "Juan Carlos Osorio": {"ev": 36, "ex": 2, "wi": 17, "wr": 17, "pex": 5.6, "pac": 52.8}, "Juan Carlos Rebolledo": {"ev": 36, "ex": 3, "wi": 18, "wr": 15, "pex": 8.3, "pac": 58.3}, "Juan Diego Martinez": {"ev": 36, "ex": 7, "wi": 14, "wr": 15, "pex": 19.4, "pac": 58.3}, "Juan Felipe Tamayo": {"ev": 36, "ex": 5, "wi": 16, "wr": 15, "pex": 13.9, "pac": 58.3}, "Juan Jose Olarte": {"ev": 36, "ex": 2, "wi": 20, "wr": 14, "pex": 5.6, "pac": 61.1}, "Juan Manuel Matiz": {"ev": 36, "ex": 1, "wi": 17, "wr": 18, "pex": 2.8, "pac": 50.0}, "Juan Manuel Perez": {"ev": 36, "ex": 2, "wi": 13, "wr": 21, "pex": 5.6, "pac": 41.7}, "Juan Martin Mejia": {"ev": 36, "ex": 4, "wi": 15, "wr": 17, "pex": 11.1, "pac": 52.8}, "Juan Miguel Olarte": {"ev": 36, "ex": 5, "wi": 13, "wr": 18, "pex": 13.9, "pac": 50.0}, "Juan Pablo Delgado": {"ev": 36, "ex": 2, "wi": 15, "wr": 19, "pex": 5.6, "pac": 47.2}, "Juan Pablo Duran": {"ev": 36, "ex": 2, "wi": 19, "wr": 15, "pex": 5.6, "pac": 58.3}, "Juan Pablo Isaza": {"ev": 36, "ex": 5, "wi": 16, "wr": 15, "pex": 13.9, "pac": 58.3}, "Juan Pedro Mendieta": {"ev": 36, "ex": 3, "wi": 19, "wr": 14, "pex": 8.3, "pac": 61.1}, "Juan Roberto Gomez": {"ev": 36, "ex": 4, "wi": 15, "wr": 17, "pex": 11.1, "pac": 52.8}, "Juliana Silva": {"ev": 36, "ex": 3, "wi": 20, "wr": 13, "pex": 8.3, "pac": 63.9}, "Katerin Hernandez": {"ev": 36, "ex": 3, "wi": 14, "wr": 19, "pex": 8.3, "pac": 47.2}, "Laura Molina": {"ev": 36, "ex": 1, "wi": 17, "wr": 18, "pex": 2.8, "pac": 50.0}, "Luis Enrique Bermudez": {"ev": 36, "ex": 2, "wi": 19, "wr": 15, "pex": 5.6, "pac": 58.3}, "Luis Felipe Aparicio": {"ev": 36, "ex": 4, "wi": 14, "wr": 18, "pex": 11.1, "pac": 50.0}, "Luis Francisco Fracica": {"ev": 36, "ex": 3, "wi": 15, "wr": 18, "pex": 8.3, "pac": 50.0}, "Mariana Reyes": {"ev": 36, "ex": 0, "wi": 18, "wr": 18, "pex": 0.0, "pac": 50.0}, "Mark Mordo": {"ev": 36, "ex": 6, "wi": 15, "wr": 15, "pex": 16.7, "pac": 58.3}, "Mauricio Borrero": {"ev": 36, "ex": 4, "wi": 14, "wr": 18, "pex": 11.1, "pac": 50.0}, "Mauricio Posse": {"ev": 36, "ex": 3, "wi": 18, "wr": 15, "pex": 8.3, "pac": 58.3}, "Mauricio Quiroga": {"ev": 36, "ex": 3, "wi": 19, "wr": 14, "pex": 8.3, "pac": 61.1}, "Monica Zauner": {"ev": 36, "ex": 1, "wi": 19, "wr": 16, "pex": 2.8, "pac": 55.6}, "Nicolas De Narvaez": {"ev": 36, "ex": 5, "wi": 15, "wr": 16, "pex": 13.9, "pac": 55.6}, "Nicolas Reyes": {"ev": 36, "ex": 2, "wi": 21, "wr": 13, "pex": 5.6, "pac": 63.9}, "Pablo Andrade 2": {"ev": 36, "ex": 4, "wi": 18, "wr": 14, "pex": 11.1, "pac": 61.1}, "Pablo Andrade": {"ev": 36, "ex": 3, "wi": 17, "wr": 16, "pex": 8.3, "pac": 55.6}, "Pablo Gomez": {"ev": 36, "ex": 4, "wi": 19, "wr": 13, "pex": 11.1, "pac": 63.9}, "Pedro Montano": {"ev": 36, "ex": 3, "wi": 10, "wr": 23, "pex": 8.3, "pac": 36.1}, "Phyllis Conn": {"ev": 36, "ex": 2, "wi": 16, "wr": 18, "pex": 5.6, "pac": 50.0}, "Rebecca Borrero": {"ev": 36, "ex": 2, "wi": 14, "wr": 20, "pex": 5.6, "pac": 44.4}, "Reinaldo Acosta": {"ev": 36, "ex": 4, "wi": 19, "wr": 13, "pex": 11.1, "pac": 63.9}, "Ricardo Sarmiento": {"ev": 36, "ex": 5, "wi": 16, "wr": 15, "pex": 13.9, "pac": 58.3}, "Rodrigo Gonzalez": {"ev": 36, "ex": 3, "wi": 18, "wr": 15, "pex": 8.3, "pac": 58.3}, "Santiago Acevedo": {"ev": 36, "ex": 3, "wi": 14, "wr": 19, "pex": 8.3, "pac": 47.2}, "Santiago Mejia": {"ev": 36, "ex": 2, "wi": 13, "wr": 21, "pex": 5.6, "pac": 41.7}, "Santiago Rendon": {"ev": 36, "ex": 2, "wi": 18, "wr": 16, "pex": 5.6, "pac": 55.6}, "Santiago Urdaneta": {"ev": 36, "ex": 3, "wi": 15, "wr": 18, "pex": 8.3, "pac": 50.0}, "Sebastian Manzanera": {"ev": 36, "ex": 3, "wi": 18, "wr": 15, "pex": 8.3, "pac": 58.3}, "Sergio Rodriguez": {"ev": 36, "ex": 3, "wi": 15, "wr": 18, "pex": 8.3, "pac": 50.0}, "Sinda Mendizabal": {"ev": 36, "ex": 1, "wi": 16, "wr": 19, "pex": 2.8, "pac": 47.2}, "Veronica Skinner": {"ev": 36, "ex": 6, "wi": 16, "wr": 14, "pex": 16.7, "pac": 61.1}};
+
+// ── Badge assignments (generated from match-by-match analysis) ──────────────
+// Structure: {name: [badge_id, ...]}
+const BADGES = {"Alejandro Lisson": ["francotirador", "nostradamus", "constante"], "Bianca Olarte": ["casicasi", "constante"], "Pedro Montaño": ["farolillo"], "Jairo Rios": ["sorpresero", "constante"], "Adriana Zauner": ["constante"], "Agustin Vejarano": ["constante"], "Alberto Fonseca": ["constante"], "Andres Merizalde": ["nostradamus", "constante"], "Fabian Morales": ["nostradamus", "constante"], "Juan Diego Martinez": ["nostradamus", "constante"], "Alejandro Acosta": ["constante"], "Alejandro Arbelaez": ["constante"], "Alejandro Arias": ["constante"], "Alejandro Escallon Hijo": ["constante"], "Alejandro Escallon Papa": ["constante"], "Alejandro Gonzalez": ["constante"], "Alejandro Hernandez": ["constante"], "Alejandro Paez": ["constante"], "Alfonso Vejarano": ["constante"], "Alvaro Acosta": ["constante"], "Ana Maria Perez": ["constante"], "Andrea Mordo": ["constante"], "Andres Cadena": ["constante"], "Andres Felipe Olarte": ["constante"], "Andres Gamboa": ["constante"], "Andres Mejia": ["constante"], "Andres Olarte": ["constante"], "Andres Rodriguez": ["constante"], "Andres Sarmiento": ["constante"], "Andres Silva": ["constante"], "Antonia Quijano": ["constante"], "Armando Benito Revollo": ["constante"], "Augusto Hernandez": ["constante"], "Benjamin Olarte": ["constante"], "Billy Belzner": ["constante"], "Camilo Pomares": ["constante"], "Carlos Vergara": ["constante"], "Christian Kling": ["constante"], "Cristian Ardila": ["constante"], "Daniel Escobar": ["constante"], "Daniel Gomez": ["constante"], "Daniel Gonzalez": ["constante"], "Daniel Herrera": ["constante"], "Daniel Mor": ["constante"], "Daniel Mordo": ["constante"], "Daniel Pombo": ["constante"], "Dayana Cruz": ["constante"], "Diego Perez": ["constante"], "Diego Rios": ["constante"], "Edith Vargas": ["constante"], "Eduardo Rangel": ["constante"], "Enrique Casas": ["constante"], "Erich Riano": ["constante"], "Erika Padilla": ["constante"], "Ernesto Samper": ["constante"], "Eva Kling": ["constante"], "Federico Camacho": ["constante"], "Felipe Chalela": ["constante"], "Felipe Gaitan": ["constante"], "Felipe Merizalde": ["constante"], "Fernando Arana": ["constante"], "Fernando Ortiz": ["constante"], "Fernando Pineros": ["constante"], "Ferney Ardila": ["constante"], "Jaime Mor": ["constante"], "Jaime Silva": ["constante"], "Javier Garcia": ["constante"], "Javier Ropero": ["constante"], "Javier Tafur": ["constante"], "Jennie Levitt": ["constante"], "Joey Borrero": ["constante"], "Jorge Tirado": ["constante"], "Jose Pablo Reyes": ["constante"], "Juan Carlos Osorio": ["constante"], "Juan Carlos Rebolledo": ["constante"], "Juan Felipe Tamayo": ["constante"], "Juan Jose Olarte": ["constante"], "Juan Manuel Matiz": ["constante"], "Juan Manuel Perez": ["constante"], "Juan Martin Mejia": ["constante"], "Juan Miguel Olarte": ["constante"], "Juan Pablo Delgado": ["constante"], "Juan Pablo Duran": ["constante"], "Juan Pablo Isaza": ["constante"], "Juan Pedro Mendieta": ["constante"], "Juan Roberto Gomez": ["constante"], "Juliana Silva": ["constante"], "Katerin Hernandez": ["constante"], "Laura Molina": ["constante"], "Luis Enrique Bermudez": ["constante"], "Luis Felipe Aparicio": ["constante"], "Luis Francisco Fracica": ["constante"], "Mariana Reyes": ["constante"], "Mark Mordo": ["constante"], "Mauricio Borrero": ["constante"], "Mauricio Posse": ["constante"], "Mauricio Quiroga": ["constante"], "Monica Zauner": ["constante"], "Nicolas De Narvaez": ["constante"], "Nicolas Reyes": ["constante"], "Pablo Andrade 2": ["constante"], "Pablo Andrade": ["constante"], "Pablo Gomez": ["constante"], "Pedro Montano": ["constante"], "Phyllis Conn": ["constante"], "Rebecca Borrero": ["constante"], "Reinaldo Acosta": ["constante"], "Ricardo Sarmiento": ["constante"], "Rodrigo Gonzalez": ["constante"], "Santiago Acevedo": ["constante"], "Santiago Mejia": ["constante"], "Santiago Rendon": ["constante"], "Santiago Urdaneta": ["constante"], "Sebastian Manzanera": ["constante"], "Sergio Rodriguez": ["constante"], "Sinda Mendizabal": ["constante"], "Veronica Skinner": ["constante"]};
+
+// ── Badge definitions ────────────────────────────────────────────────────────
+const BADGE_DEFS = {"nostradamus": {"icon": "🔮", "name": "Nostradamus", "desc": "5 o más marcadores exactos en el torneo"}, "francotirador": {"icon": "🎯", "name": "Francotirador", "desc": "Mayor porcentaje de marcadores exactos"}, "casicasi": {"icon": "😅", "name": "Casi Casi", "desc": "Más resultados acertados sin marcador exacto"}, "constante": {"icon": "⚡", "name": "Constante", "desc": "Aciertos en todas las jornadas jugadas"}, "sorpresero": {"icon": "🃏", "name": "Sorpresero", "desc": "Más aciertos en resultados poco predichos (<15%)"}, "farolillo": {"icon": "🔴", "name": "Farolillo Rojo", "desc": "Último lugar del ranking general"}, "rey_mundial": {"icon": "👑", "name": "Rey del Mundial", "desc": "Líder del ranking durante 3 jornadas — pendiente de historial"}, "gol_ultimo": {"icon": "⚽", "name": "Gol de Último Minuto", "desc": "Mayor subida en el ranking tras una jornada — pendiente de historial"}};
+
+// ── Jornada history (placeholder — populated as tournament progresses) ───────
+// Structure: {jornada: {name: pts_in_that_jornada}}
+const JORNADA_HISTORY = {
+  1: {},  // Filled when j1 results are final
+  2: {},  // Filled when j2 results are final
+  3: {},  // Filled when j3 results are final
+};
+
+// Minimum matches evaluated to appear in % ranking
+const MIN_EVALUATED = Math.ceil(36 * 0.30);  // 30% of 36 played = 11
+
+// ── Render % aciertos ranking ─────────────────────────────────────────────────
+function renderPctRanking() {
+  const eligible = [], pending = [];
+  Object.entries(STATS).forEach(([name, s]) => {
+    if (s.ev >= MIN_EVALUATED) eligible.push({name, ...s});
+    else pending.push({name, ...s});
+  });
+  // Sort by % aciertos total desc, then exact desc
+  eligible.sort((a,b) => b.pac - a.pac || b.pex - a.pex);
+
+  const medals = ['🥇','🥈','🥉'];
+  let rows = eligible.map((p,i) => {
+    const exBar = Math.round(p.pex * 0.9);
+    const wiBar = Math.round((p.pac - p.pex) * 0.9);
+    return `<tr class="${i===eligible.length-1?'exact-leader':''}">
+      <td style="color:#8ab4d4;font-size:.75rem;text-align:center">${medals[i]||i+1}</td>
+      <td style="padding-left:10px;font-size:.82rem">${p.name}</td>
+      <td style="text-align:center;color:#4cde7a;font-weight:700">${p.ex}</td>
+      <td style="text-align:center;color:#f5d020">${p.wi}</td>
+      <td style="text-align:center;color:#8ab4d4">${p.ev}</td>
+      <td style="padding:6px 8px;min-width:120px">
+        <div class="pct-bar-wrap">
+          <div class="pct-bar-bg">
+            <div class="pct-bar-ex" style="width:${exBar}%"></div>
+            <div class="pct-bar-wi" style="width:${wiBar}%"></div>
+          </div>
+          <span class="pct-num">${p.pac}%</span>
+        </div>
+      </td>
+    </tr>`;
+  }).join('');
+
+  let pendingHtml = '';
+  if (pending.length > 0) {
+    pendingHtml = `<div class="pending-section">
+      ⏳ <b>${pending.length} participantes</b> aún no alcanzan el mínimo de ${MIN_EVALUATED} partidos evaluados para aparecer en este ranking.
+    </div>`;
+  }
+
+  document.getElementById('pct-ranking-body').innerHTML = rows;
+  document.getElementById('pct-pending').innerHTML = pendingHtml;
+}
+
+// ── Render exact scores ranking ───────────────────────────────────────────────
+function renderExactRanking() {
+  const sorted = Object.entries(STATS)
+    .sort((a,b) => b[1].ex - a[1].ex || b[1].pex - a[1].pex);
+  const medals = ['🥇','🥈','🥉'];
+  const rows = sorted.map(([name,s],i) => {
+    const chips = (BADGES[name]||[]).map(bid => {
+      const bd = BADGE_DEFS[bid]||{};
+      return bd.icon ? `<span class="b-chip" title="${bd.name}">${bd.icon}</span>` : '';
+    }).join('');
+    return `<tr class="${i<3?'exact-leader':''}">
+      <td style="color:#8ab4d4;font-size:.75rem;text-align:center">${medals[i]||i+1}</td>
+      <td style="padding-left:10px;font-size:.82rem">${name}${chips}</td>
+      <td style="text-align:center;color:#4cde7a;font-weight:700;font-size:.95rem">${s.ex}</td>
+      <td style="text-align:center;color:#f5d020;font-size:.82rem">${s.pex}%</td>
+      <td style="text-align:center;color:#8ab4d4;font-size:.78rem">${s.ev}</td>
+    </tr>`;
+  }).join('');
+  document.getElementById('exact-ranking-body').innerHTML = rows;
+}
+
+// Sub-nav switching
+function switchRankingTab(id, btn) {
+  document.querySelectorAll('.rank-sub-nav button').forEach(b=>b.classList.remove('act'));
+  document.querySelectorAll('.rank-panel').forEach(p=>p.style.display='none');
+  btn.classList.add('act');
+  document.getElementById(id).style.display='block';
+  if(id==='panel-pct') renderPctRanking();
+  if(id==='panel-exact') renderExactRanking();
+}
+
+
+// Tab switching (enhanced — also initializes sub-panels)
 function showTab(id,el){
   document.querySelectorAll('.tab').forEach(t=>t.classList.remove('act'));
   document.querySelectorAll('.nav a').forEach(a=>a.classList.remove('act'));
   document.getElementById('tab-'+id).classList.add('act');
   el.classList.add('act');
+  if(id==='resultados') renderMatchList('PENDING');
 }
+
+// Filter ranking by points (original)
 function filterTable(q){
   q=q.toLowerCase();
   document.querySelectorAll('#rank-body tr').forEach(tr=>{
     tr.classList.toggle('hidden',q&&!tr.cells[1].textContent.toLowerCase().includes(q));
   });
 }
+
+// Switch group in predictions tab
 function switchGrp(id,btn){
   document.querySelectorAll('.grp-btn').forEach(b=>b.classList.remove('act'));
   document.querySelectorAll('.gp').forEach(p=>p.classList.remove('act'));
   btn.classList.add('act');
   document.getElementById('panel_'+id).classList.add('act');
 }
+
+// ══════════════════════════════════════════════════════════════════════════════
+// ADMIN PANEL — Match data, results management, API integration
+// ══════════════════════════════════════════════════════════════════════════════
+
+const MATCHES = [
+  {id:1,  grp:'A',j:1,h:'México',        a:'Sudáfrica',    rh:2,ra:0},
+  {id:2,  grp:'A',j:1,h:'Corea del Sur', a:'Chequia',      rh:2,ra:1},
+  {id:25, grp:'A',j:2,h:'Chequia',       a:'Sudáfrica',    rh:1,ra:1},
+  {id:28, grp:'A',j:2,h:'México',        a:'Corea del Sur',rh:1,ra:0},
+  {id:53, grp:'A',j:3,h:'Chequia',       a:'México',       rh:null,ra:null},
+  {id:54, grp:'A',j:3,h:'Sudáfrica',     a:'Corea del Sur',rh:null,ra:null},
+  {id:3,  grp:'B',j:1,h:'Canadá',        a:'Bosnia',       rh:1,ra:1},
+  {id:8,  grp:'B',j:1,h:'Qatar',         a:'Suiza',        rh:1,ra:1},
+  {id:26, grp:'B',j:2,h:'Suiza',         a:'Bosnia',       rh:4,ra:1},
+  {id:27, grp:'B',j:2,h:'Canadá',        a:'Qatar',        rh:6,ra:0},
+  {id:51, grp:'B',j:3,h:'Bosnia',        a:'Suiza',        rh:null,ra:null},
+  {id:52, grp:'B',j:3,h:'Qatar',         a:'Bosnia',       rh:null,ra:null},
+  {id:7,  grp:'C',j:1,h:'Brasil',        a:'Marruecos',    rh:1,ra:1},
+  {id:5,  grp:'C',j:1,h:'Haití',         a:'Escocia',      rh:0,ra:1},
+  {id:30, grp:'C',j:2,h:'Escocia',       a:'Marruecos',    rh:0,ra:1},
+  {id:29, grp:'C',j:2,h:'Brasil',        a:'Haití',        rh:3,ra:0},
+  {id:49, grp:'C',j:3,h:'Escocia',       a:'Brasil',       rh:null,ra:null},
+  {id:50, grp:'C',j:3,h:'Marruecos',     a:'Haití',        rh:null,ra:null},
+  {id:4,  grp:'D',j:1,h:'EE.UU.',        a:'Paraguay',     rh:4,ra:1},
+  {id:6,  grp:'D',j:1,h:'Australia',     a:'Turquía',      rh:2,ra:0},
+  {id:32, grp:'D',j:2,h:'EE.UU.',        a:'Australia',    rh:2,ra:0},
+  {id:31, grp:'D',j:2,h:'Turquía',       a:'Paraguay',     rh:0,ra:1},
+  {id:59, grp:'D',j:3,h:'Turquía',       a:'EE.UU.',       rh:null,ra:null},
+  {id:60, grp:'D',j:3,h:'Paraguay',      a:'Australia',    rh:null,ra:null},
+  {id:10, grp:'E',j:1,h:'Alemania',      a:'Curazao',      rh:7,ra:1},
+  {id:9,  grp:'E',j:1,h:'C. de Marfil',  a:'Ecuador',      rh:1,ra:0},
+  {id:33, grp:'E',j:2,h:'Alemania',      a:'C. de Marfil', rh:2,ra:1},
+  {id:34, grp:'E',j:2,h:'Ecuador',       a:'Curazao',      rh:0,ra:0},
+  {id:55, grp:'E',j:3,h:'Curazao',       a:'C. de Marfil', rh:null,ra:null},
+  {id:56, grp:'E',j:3,h:'Ecuador',       a:'Alemania',     rh:null,ra:null},
+  {id:11, grp:'F',j:1,h:'P. Bajos',      a:'Japón',        rh:2,ra:2},
+  {id:12, grp:'F',j:1,h:'Suecia',        a:'Túnez',        rh:5,ra:1},
+  {id:35, grp:'F',j:2,h:'P. Bajos',      a:'Suecia',       rh:5,ra:1},
+  {id:36, grp:'F',j:2,h:'Túnez',         a:'Japón',        rh:0,ra:4},
+  {id:57, grp:'F',j:3,h:'Japón',         a:'Suecia',       rh:null,ra:null},
+  {id:58, grp:'F',j:3,h:'Túnez',         a:'P. Bajos',     rh:null,ra:null},
+  {id:16, grp:'G',j:1,h:'Bélgica',       a:'Egipto',       rh:1,ra:1},
+  {id:15, grp:'G',j:1,h:'Irán',          a:'N. Zelanda',   rh:2,ra:2},
+  {id:39, grp:'G',j:2,h:'Bélgica',       a:'Irán',         rh:null,ra:null},
+  {id:40, grp:'G',j:2,h:'N. Zelanda',    a:'Egipto',       rh:null,ra:null},
+  {id:63, grp:'G',j:3,h:'Egipto',        a:'Irán',         rh:null,ra:null},
+  {id:64, grp:'G',j:3,h:'N. Zelanda',    a:'Bélgica',      rh:null,ra:null},
+  {id:14, grp:'H',j:1,h:'España',        a:'Cabo Verde',   rh:0,ra:0},
+  {id:13, grp:'H',j:1,h:'Arabia Saudita',a:'Uruguay',      rh:1,ra:1},
+  {id:38, grp:'H',j:2,h:'España',        a:'Arabia Saudita',rh:null,ra:null},
+  {id:37, grp:'H',j:2,h:'Uruguay',       a:'Cabo Verde',   rh:null,ra:null},
+  {id:65, grp:'H',j:3,h:'Cabo Verde',    a:'Arabia Saudita',rh:null,ra:null},
+  {id:66, grp:'H',j:3,h:'Uruguay',       a:'España',       rh:null,ra:null},
+  {id:17, grp:'I',j:1,h:'Francia',       a:'Senegal',      rh:3,ra:1},
+  {id:18, grp:'I',j:1,h:'Irak',          a:'Noruega',      rh:1,ra:4},
+  {id:42, grp:'I',j:2,h:'Francia',       a:'Irak',         rh:null,ra:null},
+  {id:41, grp:'I',j:2,h:'Noruega',       a:'Senegal',      rh:null,ra:null},
+  {id:61, grp:'I',j:3,h:'Noruega',       a:'Francia',      rh:null,ra:null},
+  {id:62, grp:'I',j:3,h:'Senegal',       a:'Irak',         rh:null,ra:null},
+  {id:19, grp:'J',j:1,h:'Argentina',     a:'Argelia',      rh:3,ra:0},
+  {id:20, grp:'J',j:1,h:'Austria',       a:'Jordania',     rh:3,ra:1},
+  {id:43, grp:'J',j:2,h:'Argentina',     a:'Austria',      rh:null,ra:null},
+  {id:44, grp:'J',j:2,h:'Jordania',      a:'Argelia',      rh:null,ra:null},
+  {id:69, grp:'J',j:3,h:'Argelia',       a:'Austria',      rh:null,ra:null},
+  {id:70, grp:'J',j:3,h:'Jordania',      a:'Argentina',    rh:null,ra:null},
+  {id:23, grp:'K',j:1,h:'Portugal',      a:'Congo',        rh:1,ra:1},
+  {id:24, grp:'K',j:1,h:'Uzbekistán',    a:'Colombia',     rh:1,ra:3},
+  {id:47, grp:'K',j:2,h:'Portugal',      a:'Uzbekistán',   rh:null,ra:null},
+  {id:48, grp:'K',j:2,h:'Colombia',      a:'Congo',        rh:null,ra:null},
+  {id:71, grp:'K',j:3,h:'Colombia',      a:'Portugal',     rh:null,ra:null},
+  {id:72, grp:'K',j:3,h:'Congo',         a:'Uzbekistán',   rh:null,ra:null},
+  {id:22, grp:'L',j:1,h:'Inglaterra',    a:'Croacia',      rh:4,ra:2},
+  {id:21, grp:'L',j:1,h:'Ghana',         a:'Panamá',       rh:1,ra:0},
+  {id:45, grp:'L',j:2,h:'Inglaterra',    a:'Ghana',        rh:null,ra:null},
+  {id:46, grp:'L',j:2,h:'Panamá',        a:'Croacia',      rh:null,ra:null},
+  {id:67, grp:'L',j:3,h:'Panamá',        a:'Inglaterra',   rh:null,ra:null},
+  {id:68, grp:'L',j:3,h:'Croacia',       a:'Ghana',        rh:null,ra:null},
+];
+
+// Current results state (pre-loaded with known results)
+let RESULTS = {};
+MATCHES.forEach(m => { if(m.rh !== null) RESULTS[m.id] = {rh:m.rh, ra:m.ra}; });
+
+// ── Render match list in admin panel ──────────────────────────────────────────
+function renderMatchList(filter) {
+  const container = document.getElementById('match-list');
+  if(!container) return;
+  const filtered = filter==='ALL' ? MATCHES :
+                   filter==='PENDING' ? MATCHES.filter(m=>!RESULTS[m.id]) :
+                   MATCHES.filter(m=>m.grp===filter);
+  container.innerHTML = filtered.map(m => {
+    const r = RESULTS[m.id];
+    const rh = r ? r.rh : '', ra = r ? r.ra : '';
+    const icon = r ? '✅' : '⏳';
+    return `<div class="mc" style="margin:6px 0">
+      <div style="display:flex;align-items:center;gap:8px;padding:9px 12px;background:#1a3a5c;border-radius:10px">
+        <span style="font-size:.65rem;color:#8ab4d4;min-width:40px">G${m.grp} J${m.j}</span>
+        <span style="flex:1;font-size:.82rem;font-weight:600">${m.h}</span>
+        <input type="number" min="0" max="20" value="${rh}" id="rh_${m.id}"
+          style="width:42px;text-align:center;padding:4px;background:#0a1628;border:1px solid #2a5070;color:#f5d020;border-radius:6px;font-size:.9rem;font-weight:700">
+        <span style="color:#8ab4d4">-</span>
+        <input type="number" min="0" max="20" value="${ra}" id="ra_${m.id}"
+          style="width:42px;text-align:center;padding:4px;background:#0a1628;border:1px solid #2a5070;color:#f5d020;border-radius:6px;font-size:.9rem;font-weight:700">
+        <span style="flex:1;font-size:.82rem;font-weight:600;text-align:right">${m.a}</span>
+        <span style="font-size:.75rem;min-width:18px;text-align:right">${icon}</span>
+      </div>
+    </div>`;
+  }).join('');
+}
+
+function filterMatchGroup(grp, btn) {
+  document.querySelectorAll('#match-filter-btns .grp-btn').forEach(b=>b.classList.remove('act'));
+  btn.classList.add('act');
+  renderMatchList(grp);
+}
+
+function applyResults() {
+  MATCHES.forEach(m => {
+    const rhEl = document.getElementById('rh_'+m.id);
+    const raEl = document.getElementById('ra_'+m.id);
+    if(rhEl && raEl && rhEl.value!=='' && raEl.value!=='') {
+      RESULTS[m.id] = {rh:+rhEl.value, ra:+raEl.value};
+    }
+  });
+  const played = MATCHES.filter(m=>RESULTS[m.id]);
+  const barText = played.map(m=>{
+    const r=RESULTS[m.id];
+    return `${m.h.substring(0,3)}-${m.a.substring(0,3)} ${r.rh}-${r.ra}`;
+  }).join(' · ');
+  document.querySelector('.rbar').innerHTML = '<b>Resultados:</b> '+barText;
+  alert(`✅ ${played.length} resultados aplicados. Comparte los nuevos con Claude para recalcular el ranking.`);
+}
+
+async function fetchLiveResults() {
+  const key = document.getElementById('api-key-input').value.trim();
+  const status = document.getElementById('api-status');
+  if(!key){ status.innerHTML='<span style="color:#e74c3c">❌ Ingresa tu API key primero</span>'; return; }
+  status.innerHTML='<span style="color:#f5d020">🔄 Consultando API...</span>';
+  try {
+    const res = await fetch('https://api.football-data.org/v4/competitions/WC/matches?status=FINISHED',
+      {headers:{'X-Auth-Token':key}});
+    if(!res.ok){
+      status.innerHTML=`<span style="color:#e74c3c">❌ Error ${res.status} — verifica tu API key</span>`; return;
+    }
+    const data = await res.json();
+    let found=0;
+    (data.matches||[]).forEach(m=>{
+      if(m.score?.fullTime?.home!==null){
+        const local=MATCHES.find(lm=>teamMatch(lm.h,m.homeTeam?.name)&&teamMatch(lm.a,m.awayTeam?.name));
+        if(local){ RESULTS[local.id]={rh:m.score.fullTime.home,ra:m.score.fullTime.away}; found++; }
+      }
+    });
+    if(found>0){
+      renderMatchList('PENDING');
+      status.innerHTML=`<span style="color:#4cde7a">✅ ${found} partidos encontrados. Revisa y presiona Aplicar.</span>`;
+    } else {
+      status.innerHTML='<span style="color:#f5d020">⚠️ No se encontraron partidos o los nombres no coinciden.</span>';
+    }
+  } catch(e){ status.innerHTML=`<span style="color:#e74c3c">❌ Error: ${e.message}</span>`; }
+}
+
+function teamMatch(local, api) {
+  if(!local||!api) return false;
+  const n=s=>s.toLowerCase().replace(/[^a-z ]/g,'').trim();
+  const l=n(local),a=n(api);
+  if(l===a||a.includes(l)||l.includes(a)) return true;
+  const map={'ee uu':'united states','p  bajos':'netherlands','c  de marfil':'ivory coast','corea del sur':'korea republic','arabe saudita':'saudi arabia'};
+  return map[l]===a||map[a]===l;
+}
+
 </script>
 </body>
 </html>
