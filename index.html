@@ -65,6 +65,10 @@ td{padding:10px 8px;font-size:.88rem}
 .b-chip{display:inline-block;font-size:.7rem;margin-left:3px;vertical-align:middle;cursor:default}
 .exact-top{background:#132840;border-left:3px solid #4cde7a}
 </style>
+<!-- Firebase para ranking en tiempo real (opcional — fallback a JSON si no disponible) -->
+<script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-firestore-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-auth-compat.js"></script>
 </head>
 <body>
 
@@ -163,6 +167,22 @@ td{padding:10px 8px;font-size:.88rem}
     <div style="font-size:.85rem;font-weight:700;color:#f5d020;margin-bottom:8px">⚙️ Panel de Administrador</div>
 
     <!-- ARCHITECTURE NOTE -->
+    <!-- Actualización automática -->
+    <div style="background:#0d2137;border:1px solid #1e3a55;border-radius:8px;padding:12px;margin-bottom:12px">
+      <div style="font-size:.78rem;font-weight:700;color:#4cde7a;margin-bottom:6px">⚡ Actualización automática</div>
+      <div style="font-size:.7rem;color:#8ab4d4;margin-bottom:10px;line-height:1.5">
+        Firebase Function corre cada hora y actualiza los resultados automáticamente.
+        El ranking se recalcula en tiempo real para todos los usuarios.
+      </div>
+      <div style="display:flex;gap:8px;margin-bottom:8px">
+        <button onclick="actualizarAhora()" style="flex:1;padding:10px;background:#4cde7a;color:#000;border:none;border-radius:8px;font-size:.78rem;font-weight:700;cursor:pointer">
+          🔄 Actualizar ahora
+        </button>
+      </div>
+      <div id="auto-status" style="font-size:.7rem;color:#8ab4d4"></div>
+      <div id="last-update" style="font-size:.68rem;color:#6a8faa;margin-top:4px"></div>
+    </div>
+
     <div style="background:#0d2137;border:1px solid #1e3a55;border-radius:8px;padding:10px 12px;font-size:.72rem;color:#8ab4d4;line-height:1.6;margin-bottom:12px">
       <b style="color:#4cde7a">✅ Nueva arquitectura:</b> El ranking se calcula en tiempo real desde
       <code style="background:#132840;padding:1px 5px;border-radius:4px;color:#f5d020">predicciones.json</code> +
@@ -247,9 +267,93 @@ let PREDICCIONES = null;  // from predicciones.json
 let RESULTADOS   = null;  // from resultados.json
 let RANKING      = [];    // computed ranking array
 
+
+// ═══════════════════════════════════════════════════════════════════════════
+// FIREBASE — actualización en tiempo real desde Firestore
+// Si Firebase no está disponible, carga desde predicciones.json + resultados.json
+// ═══════════════════════════════════════════════════════════════════════════
+const FB_CFG_INDEX = {
+  apiKey:            "AIzaSyC0gMdgEwRgLYl04joznnH-YVHCDnZ5B8Y",
+  authDomain:        "polla2026-d5b70.firebaseapp.com",
+  projectId:         "polla2026-d5b70",
+  storageBucket:     "polla2026-d5b70.firebasestorage.app",
+  messagingSenderId: "523205939411",
+  appId:             "1:523205939411:web:75f481332a1fdc4b8dc426"
+};
+
+// URL de la Cloud Function para actualización manual
+// Reemplaza con tu URL real después de hacer deploy:
+// firebase deploy --only functions → te da la URL
+const FUNCTION_URL = "https://us-central1-polla2026-d5b70.cloudfunctions.net/actualizarManual";
+
+let fbDb = null, fbAuth = null, fbInitialized = false;
+let resultadosUnsub = null;
+
+function initFirebaseIndex() {
+  try {
+    // Si ya está inicializado por grupos.html en la misma sesión, reusar
+    if (firebase.apps.length > 0) {
+      fbDb = firebase.firestore();
+      fbAuth = firebase.auth();
+    } else {
+      firebase.initializeApp(FB_CFG_INDEX);
+      fbDb = firebase.firestore();
+      fbAuth = firebase.auth();
+    }
+    fbInitialized = true;
+    fbAuth.signInAnonymously().catch(function(){});
+  } catch(e) {
+    console.warn('Firebase no disponible en index, usando JSON:', e.message);
+    fbInitialized = false;
+  }
+}
+
 async function loadData() {
   try {
-    // Load both JSON files in parallel
+    // Intentar Firestore primero, fallback a JSON
+    if (fbInitialized && fbDb) {
+      await loadFromFirestore();
+      return;
+    }
+    await loadFromJSON();
+  } catch(err) {
+    console.warn('Error cargando datos:', err.message);
+    renderStaticFallback();
+    document.getElementById('loading').classList.add('gone');
+  }
+}
+
+async function loadFromFirestore() {
+  try {
+    // Cargar predicciones.json (estático, no cambia)
+    const pRes = await fetch('predicciones.json');
+    if (!pRes.ok) throw new Error('predicciones.json no encontrado');
+    PREDICCIONES = await pRes.json();
+
+    // Escuchar resultados en tiempo real desde Firestore
+    if (resultadosUnsub) resultadosUnsub();
+    resultadosUnsub = fbDb.collection('resultados').onSnapshot(function(snap) {
+      // Construir RESULTADOS desde Firestore
+      const partidos = snap.docs.map(function(d) { return d.data(); });
+      RESULTADOS = { partidos: partidos };
+      recalcularYRenderizar();
+      // Mostrar última actualización
+      mostrarUltimaActualizacion();
+    }, function(err) {
+      console.warn('Firestore error, fallback a JSON:', err);
+      loadFromJSON();
+    });
+
+    document.getElementById('loading').classList.add('gone');
+    return;
+  } catch(e) {
+    console.warn('Firestore load failed, usando JSON:', e.message);
+    await loadFromJSON();
+  }
+}
+
+async function loadFromJSON() {
+  // Load both JSON files in parallel
     const [pRes, rRes] = await Promise.all([
       fetch('predicciones.json'),
       fetch('resultados.json'),
@@ -598,7 +702,83 @@ function swG(id,btn) {
   document.getElementById(id).classList.add('act');
 }
 
+// ─── Recalcular ranking desde PREDICCIONES + RESULTADOS actuales ──────────
+function recalcularYRenderizar() {
+  if (!PREDICCIONES || !RESULTADOS) return;
+  const results = {};
+  (RESULTADOS.partidos||[]).forEach(function(p) {
+    if (p.estado === 'finalizado' && p.golesLocal !== null) {
+      results[p.id] = {rh: p.golesLocal, ra: p.golesVisitante};
+    }
+  });
+
+  RANKING = (PREDICCIONES.participantes||[]).map(function(p) {
+    var pts=0, exact=0, winner=0, evaluated=0;
+    Object.entries(p.predicciones||{}).forEach(function([pid, pred]) {
+      const r = results[pid];
+      if (!r) return;
+      evaluated++;
+      const s = scoreMatch(pred.golesLocal, pred.golesVisitante, r.rh, r.ra);
+      pts += s;
+      const ph=pred.golesLocal, pa=pred.golesVisitante, rh=r.rh, ra=r.ra;
+      if (ph===rh && pa===ra) exact++;
+      else {
+        const ps=ph>pa?1:(ph<pa?2:0), rs=rh>ra?1:(rh<ra?2:0);
+        if (ps===rs) winner++;
+      }
+    });
+    return {
+      id:p.id, nombre:p.nombre, pts, exact, winner, evaluated,
+      pctAciertos: evaluated ? Math.round(100*(exact+winner)/evaluated*10)/10 : 0,
+      pctExacto:   evaluated ? Math.round(100*exact/evaluated*10)/10 : 0,
+    };
+  }).sort(function(a,b) { return b.pts - a.pts; });
+
+  const played = Object.keys(results).length;
+  document.getElementById('hdr-sub').textContent =
+    (PREDICCIONES._meta?.total_participantes||116) + ' participantes · ' + played + ' partidos jugados';
+
+  renderRankingPts();
+  document.getElementById('loading').classList.add('gone');
+}
+
+// ─── Actualización manual desde el botón ─────────────────────────────────
+async function actualizarAhora() {
+  const status = document.getElementById('auto-status');
+  status.innerHTML = '<span style="color:#f5d020">🔄 Consultando API-Football...</span>';
+  try {
+    const res = await fetch(FUNCTION_URL, {method:'GET'});
+    if (!res.ok) throw new Error('Error ' + res.status);
+    const data = await res.json();
+    if (data.ok) {
+      status.innerHTML = '<span style="color:#4cde7a">✅ ' + data.updated + ' partidos actualizados</span>';
+      // Firestore onSnapshot actualizará el ranking automáticamente
+    } else {
+      throw new Error(data.error || 'Error desconocido');
+    }
+  } catch(e) {
+    status.innerHTML = '<span style="color:#e74c3c">❌ ' + e.message + '</span>';
+  }
+}
+
+// ─── Mostrar última actualización ─────────────────────────────────────────
+function mostrarUltimaActualizacion() {
+  if (!fbDb) return;
+  fbDb.collection('meta').doc('lastUpdate').get().then(function(doc) {
+    if (doc.exists) {
+      const d = doc.data();
+      const t = d.timestamp?.toDate();
+      const el = document.getElementById('last-update');
+      if (el && t) {
+        el.textContent = 'Última actualización: ' + t.toLocaleString('es-CO') +
+          ' · ' + (d.partidosActualizados||0) + ' partidos';
+      }
+    }
+  }).catch(function(){});
+}
+
 // Init
+initFirebaseIndex();
 loadData();
 </script>
 </body>

@@ -1,0 +1,33 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+
+    // Resultados: cualquier usuario autenticado puede leer
+    // Solo Firebase Admin (Functions) puede escribir
+    match /resultados/{docId} {
+      allow read: if request.auth != null;
+      allow write: if false;  // Solo Functions con Admin SDK
+    }
+
+    // Predicciones: solo lectura para usuarios autenticados
+    match /predicciones/{docId} {
+      allow read: if request.auth != null;
+      allow write: if false;  // Solo migración inicial via Function
+    }
+
+    // Grupos privados: lectura/escritura para miembros autenticados
+    match /grupos/{grupoId} {
+      allow read: if request.auth != null;
+      allow create: if request.auth != null;
+      allow update: if request.auth != null
+        && request.resource.data.keys().hasAny(['members','memberNames','memberBets','betResults','sideBets']);
+      allow delete: if false;  // No se puede borrar grupos (para proteger datos)
+    }
+
+    // Metadata del sistema: solo lectura
+    match /meta/{docId} {
+      allow read: if request.auth != null;
+      allow write: if false;
+    }
+  }
+}
