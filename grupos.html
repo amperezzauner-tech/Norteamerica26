@@ -269,25 +269,62 @@ var SEL_MEM = [], SEL_BETS = [];
 // INIT — se ejecuta cuando todo el DOM está listo
 // ═══════════════════════════════════════════════════════
 function init() {
-  setMsg('Conectando con Firebase...');
-  try {
-    firebase.initializeApp(FB_CFG);
-    db   = firebase.firestore();
-    auth = firebase.auth();
-    USE_FB = true;
-    setMsg('Iniciando sesión...');
-    auth.signInAnonymously()
-      .then(function() { afterAuth(); })
-      .catch(function(e) {
-        console.error('signInAnonymously error:', e);
-        setMsg('Sin autenticación — modo local');
-        USE_FB = false;
-        afterAuth();
-      });
-  } catch(e) {
-    console.error('Firebase error:', e);
+  // Safety net: si algo falla, mostrar la app después de 5 segundos
+  var safetyTimer = setTimeout(function() {
+    console.warn('Safety timeout — mostrando app sin Firebase');
     USE_FB = false;
     afterAuth();
+  }, 5000);
+
+  function doInit() {
+    clearTimeout(safetyTimer);
+    try {
+      // Evitar error si ya fue inicializado (p.ej. recarga de página)
+      if (typeof firebase === 'undefined') {
+        throw new Error('Firebase SDK no cargó');
+      }
+      if (firebase.apps && firebase.apps.length > 0) {
+        db   = firebase.app().firestore();
+        auth = firebase.app().auth();
+      } else {
+        firebase.initializeApp(FB_CFG);
+        db   = firebase.firestore();
+        auth = firebase.auth();
+      }
+      USE_FB = true;
+      setMsg('Iniciando sesión...');
+      auth.signInAnonymously()
+        .then(function() { afterAuth(); })
+        .catch(function(e) {
+          console.warn('Auth anónima falló (¿está habilitada en Firebase Console?):', e.code);
+          USE_FB = false;
+          afterAuth();
+        });
+    } catch(e) {
+      console.warn('Firebase init falló, modo local:', e.message);
+      USE_FB = false;
+      afterAuth();
+    }
+  }
+
+  // Esperar a que firebase esté definido (hasta 3 segundos)
+  if (typeof firebase !== 'undefined') {
+    doInit();
+  } else {
+    var attempts = 0;
+    var check = setInterval(function() {
+      attempts++;
+      if (typeof firebase !== 'undefined') {
+        clearInterval(check);
+        doInit();
+      } else if (attempts >= 30) { // 3 segundos (30 x 100ms)
+        clearInterval(check);
+        clearTimeout(safetyTimer);
+        console.warn('Firebase nunca cargó, usando modo local');
+        USE_FB = false;
+        afterAuth();
+      }
+    }, 100);
   }
 }
 
@@ -811,9 +848,13 @@ function toast(msg,bg){
 // ═══════════════════════════════════════════════════════
 // ARRANQUE — esperar a que DOM y scripts estén listos
 // ═══════════════════════════════════════════════════════
-window.addEventListener('load', function() {
+// Arranque robusto: usa DOMContentLoaded primero, window.load como respaldo
+if (document.readyState === 'loading') {
+  document.addEventListener('DOMContentLoaded', function() { init(); });
+} else {
+  // DOM ya está listo
   init();
-});
+}
 </script>
 </body>
 </html>

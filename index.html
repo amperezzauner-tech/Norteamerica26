@@ -290,65 +290,57 @@ let fbDb = null, fbAuth = null, fbInitialized = false;
 let resultadosUnsub = null;
 
 function initFirebaseIndex() {
+  // Firebase se inicializa en segundo plano
+  // La página SIEMPRE carga desde JSON primero
   try {
-    // Si ya está inicializado por grupos.html en la misma sesión, reusar
-    if (firebase.apps.length > 0) {
-      fbDb = firebase.firestore();
-      fbAuth = firebase.auth();
+    if (typeof firebase === 'undefined') return;
+    if (firebase.apps && firebase.apps.length > 0) {
+      fbDb  = firebase.app().firestore();
+      fbAuth= firebase.app().auth();
     } else {
       firebase.initializeApp(FB_CFG_INDEX);
-      fbDb = firebase.firestore();
-      fbAuth = firebase.auth();
+      fbDb  = firebase.firestore();
+      fbAuth= firebase.auth();
     }
-    fbInitialized = true;
-    fbAuth.signInAnonymously().catch(function(){});
+    // Auth anónima en segundo plano — cuando esté lista activa el listener
+    fbAuth.signInAnonymously()
+      .then(function() {
+        fbInitialized = true;
+        // Solo escuchar Firestore si las predicciones ya cargaron
+        if (PREDICCIONES) activarListenerFirestore();
+      })
+      .catch(function(e) {
+        console.warn('Auth anónima falló:', e.code,
+          '— Activa Authentication > Anónimo en Firebase Console');
+      });
   } catch(e) {
-    console.warn('Firebase no disponible en index, usando JSON:', e.message);
-    fbInitialized = false;
+    console.warn('Firebase no disponible:', e.message);
   }
+}
+
+function activarListenerFirestore() {
+  if (!fbDb || !fbInitialized) return;
+  if (resultadosUnsub) resultadosUnsub();
+  resultadosUnsub = fbDb.collection('resultados').onSnapshot(function(snap) {
+    if (snap.empty) return; // Firestore vacío — mantener datos de JSON
+    const partidos = snap.docs.map(function(d) { return d.data(); });
+    RESULTADOS = { partidos: partidos };
+    recalcularYRenderizar();
+    mostrarUltimaActualizacion();
+  }, function(err) {
+    console.warn('Firestore onSnapshot error:', err.message);
+  });
 }
 
 async function loadData() {
+  // SIEMPRE carga desde JSON — rápido y confiable
+  // Firebase actualiza en segundo plano si está disponible
   try {
-    // Intentar Firestore primero, fallback a JSON
-    if (fbInitialized && fbDb) {
-      await loadFromFirestore();
-      return;
-    }
     await loadFromJSON();
   } catch(err) {
-    console.warn('Error cargando datos:', err.message);
+    console.warn('Error cargando JSON:', err.message);
     renderStaticFallback();
     document.getElementById('loading').classList.add('gone');
-  }
-}
-
-async function loadFromFirestore() {
-  try {
-    // Cargar predicciones.json (estático, no cambia)
-    const pRes = await fetch('predicciones.json');
-    if (!pRes.ok) throw new Error('predicciones.json no encontrado');
-    PREDICCIONES = await pRes.json();
-
-    // Escuchar resultados en tiempo real desde Firestore
-    if (resultadosUnsub) resultadosUnsub();
-    resultadosUnsub = fbDb.collection('resultados').onSnapshot(function(snap) {
-      // Construir RESULTADOS desde Firestore
-      const partidos = snap.docs.map(function(d) { return d.data(); });
-      RESULTADOS = { partidos: partidos };
-      recalcularYRenderizar();
-      // Mostrar última actualización
-      mostrarUltimaActualizacion();
-    }, function(err) {
-      console.warn('Firestore error, fallback a JSON:', err);
-      loadFromJSON();
-    });
-
-    document.getElementById('loading').classList.add('gone');
-    return;
-  } catch(e) {
-    console.warn('Firestore load failed, usando JSON:', e.message);
-    await loadFromJSON();
   }
 }
 
@@ -363,6 +355,8 @@ async function loadFromJSON() {
 
     PREDICCIONES = await pRes.json();
     RESULTADOS   = await rRes.json();
+    // Si Firebase ya está listo, activar listener en tiempo real
+    if (fbInitialized) activarListenerFirestore();
 
     // Build result lookup: {partidoId: {golesLocal, golesVisitante}}
     const results = {};
