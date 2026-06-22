@@ -77,7 +77,6 @@ td{padding:10px 8px;font-size:.88rem}
 <div class="hdr">
   <h1>⚽ Polla FIFA 2026 ⚽</h1>
   <p id="hdr-sub">117 participantes · 40 partidos jugados</p>
-  <a href="grupos.html" class="grp-link">👥 Grupos Privados</a>
 </div>
 <div class="rbar"><b>Resultados:</b> Mex-Saf 2-0 · Kor-Cze 2-1 · Can-Bih 1-1 · Usa-Par 4-1 · Qat-Swi 1-1 · Bra-Mar 1-1 · Hai-Esc 0-1 · Aus-Tur 2-0 · Ale-Cur 7-1 · PB-Jap 2-2 · CM-Ecu 1-0 · Swe-Tun 5-1 · Esp-CV 0-0 · AS-Uru 1-1 · Bel-Egi 1-1 · Ira-NZ 2-2 · Fra-Sen 3-1 · Irq-Nor 1-4 · Arg-Alg 3-0 · Aus-Jor 3-1 · Por-Con 1-1 · Ing-Cro 4-2 · Gha-Pan 1-0 · Uzb-Col 1-3 · Cze-Saf 1-1 · Swi-Bih 4-1 · Can-Qat 6-0 · Mex-Kor 1-0 · Usa-Aus 2-0 · Esc-Mar 0-1 · Bra-Hai 3-0 · Tur-Par 0-1 · PB-Swe 5-1 · Ale-CM 2-1 · Ecu-Cur 0-0 · Tun-Jap 0-4 · Esp-KSA 4-0 · Bel-Ira 0-0 · Uru-CV 2-2 · NZ-Egi 1-3</div>
 
@@ -508,27 +507,15 @@ function filterAdminMatches(f,btn) {
 }
 
 async function applyAndRecalculate() {
-  // Read inputs and update editResults
   MATCHES.forEach(m=>{
     const rh=document.getElementById('rh_'+m.id), ra=document.getElementById('ra_'+m.id);
     if(rh&&ra&&rh.value!==''&&ra.value!=='') editResults[m.id]={rh:+rh.value,ra:+ra.value};
   });
-  // Update RESULTADOS object if loaded
-  if (RESULTADOS) {
-    RESULTADOS.partidos.forEach(p=>{
-      if(editResults[p.id]) {
-        p.golesLocal=editResults[p.id].rh;
-        p.golesVisitante=editResults[p.id].ra;
-        p.estado='finalizado';
-      }
-    });
-    // Re-run calculation
-    await loadData();
-  }
-  // Update results bar
   const played=MATCHES.filter(m=>editResults[m.id]);
-  document.querySelector('.rbar').innerHTML='<b>Resultados:</b> '+played.map(m=>m.h.substring(0,3)+'-'+m.a.substring(0,3)+' '+editResults[m.id].rh+'-'+editResults[m.id].ra).join(' · ');
-  alert('✅ Ranking recalculado con '+played.length+' partidos. Descarga resultados.json y sube a GitHub.');
+  document.querySelector('.rbar').innerHTML='<b>Resultados:</b> '+played.map(m=>
+    m.h.substring(0,3)+'-'+m.a.substring(0,3)+' '+editResults[m.id].rh+'-'+editResults[m.id].ra
+  ).join(' · ');
+  alert('✅ '+played.length+' resultados. Dile a Claude los nuevos marcadores para actualizar el ranking.');
 }
 
 // API-Football v3 integration
